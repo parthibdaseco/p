@@ -3,154 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parthib Das | Links</title>
+    <title>Parthib Das | LinkedIn Style</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #f9fafb;
-            color: #111827;
+            background-color: #f4f2ee; /* LinkedIn's signature gray background */
+            color: rgba(0, 0, 0, 0.9);
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 24px;
+            padding: 40px 10px;
         }
 
-        .card {
+        .profile-card {
             width: 100%;
-            max-width: 400px;
+            max-width: 550px;
             background: #ffffff;
-            padding: 40px 24px;
-            border-radius: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 4px 4px rgba(0,0,0,0.02);
+        }
+
+        .cover-photo {
+            height: 120px;
+            background: linear-gradient(to right, #a0b4b7, #d9e2e1); /* Placeholder for a cover image */
+            position: relative;
+        }
+
+        .profile-header {
+            padding: 0 24px 24px;
+            position: relative;
+        }
+
+        .avatar-container {
+            width: 130px;
+            height: 130px;
+            background: white;
+            border-radius: 50%;
+            padding: 4px;
+            position: absolute;
+            top: -65px;
+            left: 24px;
         }
 
         .avatar {
-            width: 88px;
-            height: 88px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             background: #f3f4f6;
-            margin: 0 auto 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #e0e0e0;
+        }
+
+        .info {
+            margin-top: 75px;
+            text-align: left;
         }
 
         h1 {
             font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-weight: 600;
         }
 
-        .bio {
-            font-size: 0.9rem;
-            color: #6b7280;
-            margin-bottom: 32px;
+        .headline {
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.6);
+            margin-top: 4px;
+            line-height: 1.4;
         }
 
-        .links-list {
+        .location {
+            font-size: 0.85rem;
+            color: rgba(0, 0, 0, 0.6);
+            margin-top: 8px;
+        }
+
+        .action-buttons {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            gap: 8px;
+            margin-top: 16px;
+            border-bottom: 1px solid #ebebeb;
+            padding-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #0a66c2;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 1600px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline {
+            color: #0a66c2;
+            border: 1px solid #0a66c2;
+            padding: 6px 16px;
+            border-radius: 1600px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .section-title {
+            padding: 24px 24px 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .link-list {
+            padding: 0 24px 24px;
         }
 
         .link-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 14px 20px;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
+            padding: 12px 0;
             text-decoration: none;
-            color: #374151;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            color: inherit;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
         }
 
-        .link-item:hover {
-            background: #f8fafc;
-            border-color: #3b82f6;
-            color: #3b82f6;
-            transform: translateX(4px);
+        .link-item:last-child {
+            border-bottom: none;
         }
 
-        .link-content {
+        .link-icon {
+            width: 48px;
+            height: 48px;
+            background: #f3f4f6;
+            border-radius: 4px;
             display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .icon-box {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            color: currentColor;
+            align-items: center;
+            margin-right: 12px;
+            color: #666;
         }
 
-        .arrow-icon {
-            opacity: 0.3;
+        .link-text h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
         }
 
-        .footer {
-            margin-top: 32px;
-            font-size: 0.75rem;
-            color: #9ca3af;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .link-text p {
+            font-size: 0.85rem;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .link-item:hover .link-text h3 {
+            color: #0a66c2;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="avatar">
-            <i data-lucide="user" size="40" stroke-width="1.5"></i>
-        </div>
+    <div class="profile-card">
+        <div class="cover-photo"></div>
         
-        <h1>Parthib Das</h1>
-        <p class="bio">Web Developer & Inflencer</p>
-
-        <div class="links-list">
-            <a href="http://linktr.ee/parthibdas" class="link-item" target="_blank">
-                <div class="link-content">
-                    <span class="icon-box"><i data-lucide="link"></i></span>
-                    <span>Linktree Portfolio</span>
+        <div class="profile-header">
+            <div class="avatar-container">
+                <div class="avatar">
+                    <i data-lucide="user" size="64" color="#666"></i>
                 </div>
-                <i data-lucide="external-link" size="16" class="arrow-icon"></i>
-            </a>
-
-            <a href="https://www.facebook.com/parthibdas2023" class="link-item" target="_blank">
-                <div class="link-content">
-                    <span class="icon-box"><i data-lucide="facebook"></i></span>
-                    <span>Facebook</span>
+            </div>
+            
+            <div class="info">
+                <h1>Parthib Das</h1>
+                <p class="headline">Web Developer | Administrator | Tech Enthusiast</p>
+                <p class="location">Dhaka Division, Bangladesh</p>
+                
+                <div class="action-buttons">
+                    <a href="https://www.facebook.com/parthibdas2023" class="btn-primary" target="_blank">Connect</a>
+                    <a href="http://linktr.ee/parthibdas" class="btn-outline" target="_blank">View Portfolio</a>
                 </div>
-                <i data-lucide="external-link" size="16" class="arrow-icon"></i>
-            </a>
-
-            <a href="https://youtube.com/@parthib_2023?si=7mWVg_vYrWx7DwJA" class="link-item" target="_blank">
-                <div class="link-content">
-                    <span class="icon-box"><i data-lucide="youtube"></i></span>
-                    <span>YouTube Channel</span>
-                </div>
-                <i data-lucide="external-link" size="16" class="arrow-icon"></i>
-            </a>
+            </div>
         </div>
 
-        <p class="footer">© 2026</p>
+        <h2 class="section-title">Resources & Links</h2>
+        <div class="link-list">
+            <a href="https://youtube.com/@parthib_2023" class="link-item" target="_blank">
+                <div class="link-icon"><i data-lucide="play-circle"></i></div>
+                <div class="link-text">
+                    <h3>YouTube Channel</h3>
+                    <p>Tutorials and Tech Updates</p>
+                </div>
+            </a>
+            
+            <a href="http://linktr.ee/parthibdas" class="link-item" target="_blank">
+                <div class="link-icon"><i data-lucide="external-link"></i></div>
+                <div class="link-text">
+                    <h3>Linktree</h3>
+                    <p>All my professional links in one place</p>
+                </div>
+            </a>
+        </div>
     </div>
 
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
     </script>
 </body>

@@ -44,7 +44,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        /* Banner Container */
         .banner-wrap {
             height: 180px;
             width: 100%;
@@ -62,7 +61,6 @@
             padding: 0 24px 24px 24px;
         }
 
-        /* Profile Photo Container */
         .avatar-container {
             margin-top: -90px;
             margin-bottom: 16px;
@@ -110,7 +108,9 @@
         .btn {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
+            flex: 1;
             padding: 10px 24px;
             border-radius: 30px;
             text-decoration: none;
@@ -143,6 +143,8 @@
             margin-top: 28px;
             border-top: 1px solid #f0f0f0;
             padding-top: 12px;
+            display: grid;
+            grid-template-columns: 1fr;
         }
 
         .link-row {
@@ -163,6 +165,9 @@
         .link-icon {
             margin-right: 16px;
             color: var(--text-grey);
+            width: 24px;
+            display: flex;
+            justify-content: center;
         }
 
         .link-row b {
@@ -202,17 +207,34 @@
                 </div>
 
                 <div class="links-list">
-                    <a href="https://youtube.com/@parthib_2023" class="link-row" target="_blank">
-                        <i data-lucide="youtube" class="link-icon"></i>
-                        <b>YouTube Channel</b>
+                    <a href="https://www.youtube.com/@parthib_2023" class="link-row" target="_blank">
+                        <span class="link-icon"><i data-lucide="youtube"></i></span>
+                        <b>YouTube</b>
                     </a>
+
+                    <a href="https://tiktok.com/@parthib_2023" class="link-row" target="_blank">
+                        <span class="link-icon"><i data-lucide="music-2"></i></span>
+                        <b>TikTok</b>
+                    </a>
+
                     <a href="https://instagram.com/parthib_2023" class="link-row" target="_blank">
-                        <i data-lucide="instagram" class="link-icon"></i>
+                        <span class="link-icon"><i data-lucide="instagram"></i></span>
                         <b>Instagram</b>
                     </a>
+
                     <a href="https://x.com/parthib_2023" class="link-row" target="_blank">
-                        <i data-lucide="twitter" class="link-icon"></i>
-                        <b>X Profile</b>
+                        <span class="link-icon"><i data-lucide="twitter"></i></span>
+                        <b>X (Twitter)</b>
+                    </a>
+
+                    <a href="https://www.pinterest.com/parthib_2023" class="link-row" target="_blank">
+                        <span class="link-icon"><i data-lucide="image"></i></span>
+                        <b>Pinterest</b>
+                    </a>
+
+                    <a href="https://www.threads.net/@parthib_2023" class="link-row" target="_blank">
+                        <span class="link-icon"><i data-lucide="at-sign"></i></span>
+                        <b>Threads</b>
                     </a>
                 </div>
             </div>

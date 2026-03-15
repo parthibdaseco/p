@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parthib Das</title>
+    <title>Parthib Das | Portfolio</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        :root {
+            --bg: #ffffff;
+            --card-bg: #f8f9fa;
+            --border: #e9ecef;
+            --text-primary: #121212;
+            --text-secondary: #6c757d;
+            --accent: #000000;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,117 +23,151 @@
         }
 
         body {
-            background-color: #ffffff;
-            color: #000000;
+            background-color: var(--bg);
+            color: var(--text-primary);
             display: flex;
             justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            padding: 30px;
+            padding: 60px 20px;
         }
 
-        .content {
+        .wrapper {
             width: 100%;
-            max-width: 480px;
+            max-width: 440px;
         }
 
         header {
+            text-align: center;
             margin-bottom: 48px;
         }
 
+        .profile-image {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -2px;
-            line-height: 1;
-            margin-bottom: 16px;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
         }
 
-        .description {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.6;
-            max-width: 320px;
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 400;
         }
 
-        .links-grid {
+        .links-container {
             display: grid;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .link-card {
+        .link-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 24px;
-            background: #f4f4f4;
-            border-radius: 16px;
+            padding: 20px 24px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
             text-decoration: none;
-            color: #000;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+            border: 1px solid transparent;
         }
 
-        .link-card:hover {
-            background: #000;
-            color: #fff;
+        .link-item:hover {
+            background-color: var(--accent);
+            color: #ffffff;
             transform: scale(1.02);
         }
 
-        .brand-info {
+        .link-main {
             display: flex;
             align-items: center;
             gap: 16px;
         }
 
-        .brand-name {
-            font-size: 1.1rem;
-            font-weight: 600;
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.05);
+            border-radius: 12px;
+            color: inherit;
         }
 
-        .footer {
-            margin-top: 64px;
+        .link-item:hover .icon-circle {
+            background: rgba(255,255,255,0.2);
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
             font-size: 0.8rem;
-            color: #999;
-            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <div class="content">
+    <div class="wrapper">
         <header>
+            <div class="profile-image">
+                <i data-lucide="user" size="48" stroke-width="1.5" color="#aaa"></i>
+            </div>
             <h1>Parthib Das</h1>
-            <p class="description">Web Developer & Building digital solutions.</p>
+            <p class="subtitle">Web Developer & School Administrator</p>
         </header>
 
-        <div class="links-grid">
-            <a href="http://linktr.ee/parthibdas" class="link-card" target="_blank">
-                <div class="brand-info">
-                    <i data-lucide="layout"></i>
-                    <span class="brand-name">Portfolio</span>
+        <div class="links-container">
+            <a href="http://linktr.ee/parthibdas" class="link-item" target="_blank">
+                <div class="link-main">
+                    <div class="icon-circle"><i data-lucide="layout"></i></div>
+                    <span>Linktree Portfolio</span>
                 </div>
-                <i data-lucide="arrow-up-right" size="20"></i>
+                <i data-lucide="chevron-right" size="18"></i>
             </a>
 
-            <a href="https://youtube.com/@parthib_2023" class="link-card" target="_blank">
-                <div class="brand-info">
-                    <i data-lucide="youtube"></i>
-                    <span class="brand-name">YouTube</span>
+            <a href="https://www.facebook.com/parthibdas2023" class="link-item" target="_blank">
+                <div class="link-main">
+                    <div class="icon-circle"><i data-lucide="facebook"></i></div>
+                    <span>Facebook Profile</span>
                 </div>
-                <i data-lucide="arrow-up-right" size="20"></i>
+                <i data-lucide="chevron-right" size="18"></i>
             </a>
 
-            <a href="https://www.facebook.com/parthibdas2023" class="link-card" target="_blank">
-                <div class="brand-info">
-                    <i data-lucide="facebook"></i>
-                    <span class="brand-name">Facebook</span>
+            <a href="https://youtube.com/@parthib_2023?si=7mWVg_vYrWx7DwJA" class="link-item" target="_blank">
+                <div class="link-main">
+                    <div class="icon-circle"><i data-lucide="youtube"></i></div>
+                    <span>YouTube Channel</span>
                 </div>
-                <i data-lucide="arrow-up-right" size="20"></i>
+                <i data-lucide="chevron-right" size="18"></i>
             </a>
         </div>
 
-        <footer class="footer">
-            PARTHIBDAS.PRO &copy; 2026
+        <footer>
+            &copy; 2026 • Build for the Web
         </footer>
     </div>
 

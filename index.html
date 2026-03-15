@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parthib Das | Profile</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary: #0a66c2;
             --bg: #f4f2ee;
             --card-white: #ffffff;
             --text-dark: #1d1d1d;
             --text-grey: #666666;
             --border: #e0e0e0;
+            
+            /* Official Brand Colors */
+            --whatsapp: #25D366;
+            --facebook: #1877F2;
+            --youtube: #FF0000;
+            --tiktok: #000000;
+            --instagram: #E4405F;
+            --twitter-x: #000000;
+            --pinterest: #BD081C;
+            --threads: #000000;
         }
 
         * {
@@ -99,6 +108,7 @@
             line-height: 1.5;
         }
 
+        /* Buttons with Official Brand Colors */
         .button-group {
             display: flex;
             gap: 12px;
@@ -111,34 +121,34 @@
             justify-content: center;
             gap: 10px;
             flex: 1;
-            padding: 10px 24px;
+            padding: 12px 24px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
             transition: 0.2s ease-in-out;
+            border: 1px solid transparent;
         }
 
-        .btn-message {
-            background-color: var(--primary);
+        .btn-whatsapp {
+            background-color: var(--whatsapp);
             color: white;
-            border: 1px solid var(--primary);
         }
 
-        .btn-message:hover {
-            background-color: #004182;
+        .btn-whatsapp:hover {
+            filter: brightness(0.9);
         }
 
-        .btn-connect {
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            background: transparent;
+        .btn-facebook {
+            border: 1px solid var(--facebook);
+            color: var(--facebook);
         }
 
-        .btn-connect:hover {
-            background-color: rgba(10, 102, 194, 0.08);
+        .btn-facebook:hover {
+            background-color: rgba(24, 119, 242, 0.05);
         }
 
+        /* Links with Branding */
         .links-list {
             margin-top: 28px;
             border-top: 1px solid #f0f0f0;
@@ -153,27 +163,35 @@
             color: var(--text-dark);
             border-radius: 10px;
             margin-bottom: 4px;
-            transition: background 0.2s;
+            transition: 0.2s;
         }
 
         .link-row:hover {
-            background: #f3f4f6;
+            background: #f8f9fa;
+            transform: translateX(5px);
         }
 
         .link-icon {
-            margin-right: 16px;
-            color: var(--text-grey);
+            margin-right: 18px;
             width: 24px;
+            font-size: 1.4rem;
             display: flex;
             justify-content: center;
         }
+
+        /* Specific Link Colors */
+        .yt-icon { color: var(--youtube); }
+        .tk-icon { color: var(--tiktok); }
+        .ig-icon { color: var(--instagram); }
+        .x-icon { color: var(--twitter-x); }
+        .pn-icon { color: var(--pinterest); }
+        .th-icon { color: var(--threads); }
 
         .link-row b {
             font-size: 1.05rem;
             font-weight: 600;
         }
 
-        /* Copyright Section */
         .footer-copyright {
             margin-top: 20px;
             padding-top: 15px;
@@ -200,56 +218,53 @@
                 </div>
 
                 <h1>Parthib Das</h1>
-                <p class="bio">Freelancer | Customer Service Expert | Influencer</p>
+                <p class="bio">Web Developer | School Administrator | Student Management Systems</p>
 
                 <div class="button-group">
-                    <a href="https://wa.me/8801406903532" class="btn btn-message">
-                        <i data-lucide="message-circle" size="20"></i>
-                        Message
+                    <a href="https://wa.me/8801406903532" class="btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        WhatsApp
                     </a>
                     
-                    <a href="https://www.facebook.com/parthibdas2023" class="btn btn-connect">
-                        <i data-lucide="facebook" size="20"></i>
-                        Connect
+                    <a href="https://www.facebook.com/parthibdas2023" class="btn btn-facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        Facebook
                     </a>
                 </div>
 
                 <div class="links-list">
                     <a href="https://www.youtube.com/@parthib_2023" class="link-row" target="_blank">
-                        <span class="link-icon"><i data-lucide="youtube"></i></span>
+                        <span class="link-icon yt-icon"><i class="fa-brands fa-youtube"></i></span>
                         <b>YouTube</b>
                     </a>
                     <a href="https://tiktok.com/@parthib_2023" class="link-row" target="_blank">
-                        <span class="link-icon"><i data-lucide="music-2"></i></span>
+                        <span class="link-icon tk-icon"><i class="fa-brands fa-tiktok"></i></span>
                         <b>TikTok</b>
                     </a>
                     <a href="https://instagram.com/parthib_2023" class="link-row" target="_blank">
-                        <span class="link-icon"><i data-lucide="instagram"></i></span>
+                        <span class="link-icon ig-icon"><i class="fa-brands fa-instagram"></i></span>
                         <b>Instagram</b>
                     </a>
                     <a href="https://x.com/parthib_2023" class="link-row" target="_blank">
-                        <span class="link-icon"><i data-lucide="twitter"></i></span>
+                        <span class="link-icon x-icon"><i class="fa-brands fa-x-twitter"></i></span>
                         <b>X (Twitter)</b>
                     </a>
                     <a href="https://www.pinterest.com/parthib_2023" class="link-row" target="_blank">
-                        <span class="link-icon"><i data-lucide="image"></i></span>
+                        <span class="link-icon pn-icon"><i class="fa-brands fa-pinterest"></i></span>
                         <b>Pinterest</b>
                     </a>
                     <a href="https://www.threads.net/@parthib_2023" class="link-row" target="_blank">
-                        <span class="link-icon"><i data-lucide="at-sign"></i></span>
+                        <span class="link-icon th-icon"><i class="fa-brands fa-threads"></i></span>
                         <b>Threads</b>
                     </a>
                 </div>
 
                 <div class="footer-copyright">
-                    &copy; 2026 Parthib | All rights reserved.
+                    &copy; 2026 Parthib Das. All rights reserved.
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>

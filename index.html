@@ -26,7 +26,7 @@
             flex-direction: column; 
             align-items: center;
             justify-content: flex-start;
-            padding: 40px 20px 100px 20px; /* নিচে কিছু স্পেস দেওয়া হয়েছে কুইক অ্যাক্সেস বারের জন্য */
+            padding: 40px 20px;
             gap: 30px;
         }
 
@@ -507,67 +507,9 @@
             font-size: 14px;
             padding: 15px 0;
         }
-
-        /* কুইক এক্সেস নেভিগেশন স্টাইল */
-        .quick-access-bar {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(13, 27, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 12px 25px;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            z-index: 9999;
-            border: 1px solid rgba(197, 168, 128, 0.3);
-            width: max-content;
-            max-width: 90%;
-        }
-
-        .quick-link {
-            color: #ffffff;
-            font-size: 18px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .quick-link:hover {
-            color: #0d1b2a;
-            background-color: #c5a880;
-            transform: translateY(-5px);
-        }
     </style>
 </head>
 <body>
-
-    <!-- কুইক এক্সেস বার (Floating Navigation) -->
-    <div class="quick-access-bar">
-        <a href="mailto:parthibdas.eco@gmail.com" class="quick-link" title="Email Me">
-            <i class="fa-regular fa-envelope"></i>
-        </a>
-        <a href="tel:01406903532" class="quick-link" title="Call Me">
-            <i class="fa-solid fa-phone"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/parthib-das" target="_blank" class="quick-link" title="LinkedIn">
-            <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a href="#academicSection" class="quick-link" title="Academic Background">
-            <i class="fa-solid fa-graduation-cap"></i>
-        </a>
-        <a href="#sec-title" class="quick-link" title="Research Insights">
-            <i class="fa-solid fa-book-open"></i>
-        </a>
-    </div>
 
     <div class="profile-card">
         <div class="card-header"></div>
@@ -736,11 +678,12 @@
             </button>
         </div>
         <div id="news-list-container" class="news-list">
-            <div class="loading bn-font" id="loading-msg">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+            <div class="loading bn-font" id="loading-msg">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
         </div>
     </div>
 
     <script>
+        // গুগল শিটের আসল আইডি (আন্ডারস্কোর সম্বলিত) নিশ্চিত করা হয়েছে
         const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
         const SHEET_NAME = 'Sheet1'; 
 
@@ -780,6 +723,7 @@
             renderArticles(); 
         }
 
+        // অ্যাডভান্সড CSV পার্সার ফাংশন যা লেখার ভেতরের সব কমাকে নিখুঁতভাবে হ্যান্ডেল করবে
         async function fetchNews() {
             try {
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
@@ -788,6 +732,7 @@
                 
                 allArticles = []; 
 
+                // টেক্সটের ভেতরের কমা এবং ডাবল কোটেশন ট্র্যাক করার রেগুলার এক্সপ্রেশন
                 let arrMatches = [];
                 let strDelimiter = ",";
                 let objPattern = new RegExp((
@@ -813,6 +758,7 @@
                     arrData[arrData.length - 1].push(strMatchedValue);
                 }
 
+                // প্রথম সারি (Header) বাদ দিয়ে কলাম অনুযায়ী লুপ (A=0, B=1, C=2, D=3, E=4, F=5, G=6)
                 for (let i = 1; i < arrData.length; i++) {
                     const row = arrData[i];
                     if (!row || row.length < 3) continue;
@@ -825,6 +771,7 @@
                     let im1 = row[5] || '';
                     let im2 = row[6] || '';
 
+                    // ডেটা ফিল্টারিং যাতে কোনো ফাঁকা রো বা অতিরিক্ত হেডার অবজেক্ট তৈরি না করে
                     if (dateVal.toLowerCase().includes('date') || (!hlBN && !hlEN)) continue;
 
                     allArticles.push({
@@ -842,7 +789,7 @@
 
             } catch (error) {
                 console.error('Error fetching data:', error);
-                document.getElementById('news-list-container').innerHTML = '<div class="loading bn-font" style="color:red;">আর্টিকেল লোড করতে সমস্যা হয়েছে! শিটের সেটিংস চেক করুন।</div>';
+                document.getElementById('news-list-container').innerHTML = '<div class="loading bn-font" style="color:red;">আর্টিকেল লোড করতে সমস্যা হয়েছে! শিটের সেটিংস চেক করুন।</div>';
             }
         }
 
@@ -852,11 +799,12 @@
 
             if(allArticles.length === 0) {
                 newsListContainer.innerHTML = currentLang === 'BN' ? 
-                    '<div class="loading bn-font">কোনো আর্টিকেল পাওয়া যায়নি।</div>' : 
+                    '<div class="loading bn-font">কোনো আর্টিকেল পাওয়া যায়নি।</div>' : 
                     '<div class="loading">No articles found.</div>';
                 return;
             }
 
+            // নতুন ডেটা সবার ওপরে রেন্ডার করার জন্য উল্টো লুপ
             for (let i = allArticles.length - 1; i >= 0; i--) {
                 const art = allArticles[i];
                 

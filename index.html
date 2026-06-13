@@ -6,11 +6,7 @@
     <title>Parthib Das - Portfolio & Economic Research</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind_Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-   <link rel="icon" type="image/svg+xml" href="/icon.svg">
-    <meta name="description" content="Parthib Das - Data Entry Expert & Economics Researcher. Explorer of economic insights, trends, and data analysis.">
-    <meta name="keywords" content="Parthib Das, Economics Articles, Data Entry Expert, Economic Research, Parthib Economics, Freelancer Parthib">
-    <meta name="author" content="Parthib Das">
-
+    
     <style>
         * {
             margin: 0;
@@ -20,14 +16,13 @@
 
         body {
             font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: #f3f4f6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column; 
             align-items: center;
             justify-content: flex-start;
             padding: 40px 20px;
-            gap: 30px;
         }
 
         .bn-font {
@@ -37,142 +32,18 @@
         .profile-card {
             background: white;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
             width: 100%;
             max-width: 430px;
             overflow: hidden;
-            padding-bottom: 35px;
-            position: relative;
+            padding: 30px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
 
-        .card-header {
-            background-color: #0d1b2a;
-            height: 160px;
-            position: relative;
-            border-bottom-left-radius: 50% 20%;
-            border-bottom-right-radius: 50% 20%;
-        }
-
-        .img-container {
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 170px;
-            height: 170px;
-            border-radius: 50%;
-            background: white;
-            padding: 6px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .card-body {
-            margin-top: 65px;
-            padding: 0 25px;
-        }
-
-        h2 {
-            font-size: 30px;
-            color: #0d1b2a;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .designation {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #c5a880; 
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .divider {
-            width: 40px;
-            height: 2px;
-            background-color: #0d1b2a;
-            margin: 0 auto 20px auto;
-        }
-
-        .contact-info {
-            margin-bottom: 25px;
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 6px 0;
-            color: #4a5568;
-            font-size: 14px;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .contact-item:hover {
-            color: #c5a880;
-        }
-
-        .contact-item i {
-            color: #c5a880;
-            font-size: 15px;
-        }
-
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 40px;
-            border-radius: 10px;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            opacity: 0.9;
-        }
-
-        .facebook { background-color: #1877F2; }
-        .instagram { background-color: #E1306C; }
-        .linkedin { background-color: #0077B5; }
-        
-        .threads { 
-            background-color: #ffffff !important; 
-            border: 1px solid #ccd1d9 !important;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .about-section {
+        /* --- ১. কুইক অ্যাক্সেস সেকশন (সবার উপরে) --- */
+        .quick-access-section {
             text-align: left;
-            margin-bottom: 20px;
-            background: #fdfdfd;
-            border-left: 4px solid #c5a880;
-            padding: 15px;
-            border-radius: 0 15px 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            margin-bottom: 25px;
         }
 
         .section-title {
@@ -181,80 +52,102 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .section-title i {
-            color: #c5a880;
-        }
-
-        .about-text {
-            font-size: 13.5px;
-            color: #555;
-            line-height: 1.6;
-            text-align: justify;
-        }
-
-        /* একাডেমিক সেকশন স্টাইল */
-        .academic-dropdown {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .academic-toggle-btn {
-            width: 100%;
-            background: #0d1b2a;
-            color: white;
-            padding: 14px 15px;
-            border-radius: 12px;
-            border: 1px solid #0d1b2a;
-            font-weight: 700;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .academic-toggle-btn:hover {
-            background: #1b2a4a;
-        }
-
-        .academic-toggle-btn .left-side {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .academic-toggle-btn .left-side i {
-            color: #c5a880;
-            font-size: 16px;
-        }
-
-        .academic-toggle-btn .arrow-icon {
             transition: transform 0.3s ease;
-            color: #c5a880;
         }
 
-        .academic-dropdown.active .arrow-icon {
-            transform: rotate(180deg);
+        /* মাউস ধরলে টাইটেল হালকা ডানে সরবে */
+        .section-title:hover {
+            transform: translateX(3px);
+        }
+
+        .section-title i.fa-bolt { color: #ff9f43; }
+        .section-title i.fa-user { color: #10ac84; }
+
+        .quick-access-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* কুইক অ্যাক্সেস কার্ডের জীবন্ত ইফেক্ট */
+        .quick-access-card {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            padding: 14px 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* স্মুথ বাউন্স ইফেক্ট */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f1f3f5;
+        }
+
+        /* মাউস ধরলে হালকা ওপরে উঠবে এবং গ্লো করবে */
+        .quick-access-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+            background-color: #ffffff;
+            border-color: #e2e8f0;
+        }
+
+        /* মাউস ধরলে আইকনটি হালকা ঘুরবে */
+        .quick-access-card:hover .quick-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .quick-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            margin-right: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .quick-text {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: #1e293b;
+            flex-grow: 1;
+        }
+
+        .quick-arrow {
+            font-size: 13px;
+            color: #94a3b8;
+            transition: transform 0.3s ease;
+        }
+
+        .quick-access-card:hover .quick-arrow {
+            transform: translateX(3px);
+        }
+
+        /* ব্রাইট কালার থিম */
+        .icon-academic { background-color: #e0f2fe; color: #0284c7; }
+        .icon-skills { background-color: #fef3c7; color: #d97706; }
+        .icon-certificates { background-color: #dcfce7; color: #16a34a; }
+        .icon-research { background-color: #f3e8ff; color: #9333ea; }
+
+        /* একাডেমিক ড্রপডাউন */
+        .academic-dropdown {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #f1f3f5;
+            overflow: hidden;
         }
 
         .academic-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background: #ffffff;
-            border-radius: 0 0 12px 12px;
-        }
-
-        .academic-dropdown.active .academic-content {
-            border: 2px solid #0d1b2a; 
-            border-top: none;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .table-responsive {
@@ -267,609 +160,337 @@
             border-collapse: collapse;
             font-size: 12px;
             text-align: left;
-            min-width: 380px; 
-            border: 2px solid #0d1b2a;
+            min-width: 320px;
+            border: 1px solid #e2e8f0;
         }
 
         .academic-table th {
-            background: linear-gradient(135deg, #0d1b2a, #1b2a4a);
+            background: #0d1b2a;
             color: white;
-            padding: 12px 10px;
-            font-weight: 600;
-            border: 2px solid #0d1b2a; 
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.5px;
+            padding: 8px;
+            border: 1px solid #e2e8f0;
         }
 
         .academic-table td {
-            padding: 12px 10px;
-            border: 2px solid #0d1b2a; 
-            color: #2d3748;
-            line-height: 1.4;
-            font-weight: 500;
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            transition: background 0.2s ease;
+        }
+
+        /* টেবিলের রো-এর ওপর মাউস রাখলে হাইলাইট হবে */
+        .academic-table tr:hover td {
+            background-color: #edf2f7 !important;
         }
 
         .academic-table tr:nth-child(even) {
-            background-color: #f7fafc;
-        }
-        
-        .academic-table tr:hover {
-            background-color: #edf2f7; 
+            background-color: #f8fafc;
         }
 
-        .badge-inst-new {
-            font-size: 11px;
-            color: #c5a880; 
-            font-weight: 600;
+        /* --- ২. প্রোফাইল পিকচার এবং নাম সেকশন --- */
+        .profile-header-box {
+            text-align: center;
+            margin-bottom: 25px;
         }
 
-        /* স্কিলস ও সার্টিফিকেট সেকশন স্টাইল */
-        .certificate-section {
-            text-align: left;
-            margin-top: 10px;
-        }
-
-        .cert-buttons-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .cert-button {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #0d1b2a;
-            color: white;
-            padding: 12px 15px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13.5px;
-            transition: all 0.3s ease;
-            border: 1px solid #0d1b2a;
-        }
-
-        .cert-button:hover {
+        .img-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
             background: white;
-            color: #0d1b2a;
-            border: 1px solid #0d1b2a;
-            transform: translateX(4px);
+            padding: 5px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin: 0 auto 15px auto;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .cert-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* ছবিতে মাউস ধরলে হালকা জুম ও রোটেট হবে */
+        .img-container:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
         }
 
-        .cert-left i {
-            color: #c5a880;
-            font-size: 16px;
-        }
-
-        .cert-button .fa-arrow-right {
-            font-size: 12px;
-            opacity: 0.7;
-        }
-
-        /* রিসার্চ অ্যান্ড ইকোনমিক ইনসাইটস সেকশন স্টাইল */
-        .news-container {
+        .profile-img {
             width: 100%;
-            max-width: 430px;
-            background: white;
-            border-radius: 25px;
-            padding: 24px 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            position: relative;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
-        .news-header-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 2px solid #f3f4f6;
-            padding-bottom: 10px;
-            margin-bottom: 18px;
-        }
-
-        .news-section-title {
-            font-size: 18px;
+        h2 {
+            font-size: 26px;
             color: #0d1b2a;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }
 
-        .news-section-title i {
-            color: #c5a880; 
-        }
-
-        .lang-switch-btn {
-            background: #0d1b2a;
-            color: white;
-            border: 1px solid #c5a880;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .lang-switch-btn:hover {
-            background: #c5a880;
-            color: #0d1b2a;
-            border-color: #0d1b2a;
-        }
-
-        .lang-switch-btn i {
+        .designation {
             font-size: 13px;
-        }
-
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .news-item {
-            background: #ffffff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
-            border: 1px solid #eef0f2;
-            transition: all 0.3s ease;
-        }
-
-        .news-header-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #0d1b2a, #1b2a4a); 
-            color: white;
-            border: none;
-            padding: 16px;
-            text-align: left;
-            font-size: 14.5px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            position: relative;
-            transition: background 0.3s;
-        }
-
-        .news-header-btn:hover {
-            background: linear-gradient(135deg, #1b2a4a, #0d1b2a);
-        }
-
-        .news-date {
-            font-size: 11px;
-            color: #c5a880;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 2px;
+            color: #ff9f43;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* --- ৩. যোগাযোগ বক্স --- */
+        .contact-info {
+            margin-bottom: 25px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #edf2f7;
+            text-align: center;
+        }
+
+        .contact-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            gap: 10px;
+            margin: 8px 0;
+            color: #4a5568;
+            font-size: 14.5px;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* ইমেইল ও নাম্বারে মাউস নিলে হালকা ডান-বামে ভাইব্রেট বা মুভ করবে */
+        .contact-item:hover {
+            transform: translateX(4px);
+        }
+        
+        .contact-item.email-text {
+            color: #1877F2;
             font-weight: 500;
         }
-
-        .news-headline {
-            padding-right: 25px;
-            line-height: 1.45;
+        .contact-item.email-text:hover {
+            color: #2b6cb0;
         }
 
-        .news-header-btn::after {
-            content: '\f107';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
+        .contact-item i {
+            color: #ff9f43;
             transition: transform 0.3s ease;
-            color: #c5a880;
-            font-size: 16px;
+        }
+        .contact-item:hover i {
+            transform: scale(1.2);
         }
 
-        .news-item.active .news-header-btn::after {
-            transform: translateY(-50%) rotate(180deg);
+        /* --- ৪. অ্যাবাউট মি সেকশন --- */
+        .about-section {
+            text-align: left;
+            margin-bottom: 20px;
+            border-left: 4px solid #10ac84;
+            padding-left: 15px;
+            transition: border-left 0.3s ease;
         }
 
-        .news-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #fdfdfd;
+        .about-section:hover {
+            border-left-width: 6px;
         }
 
-        .news-content-inner {
-            padding: 18px;
-            font-size: 13.5px;
-            color: #4a5568;
-            line-height: 1.65;
-            text-align: justify;
-            border-top: 1px solid #eef0f2;
-            white-space: pre-line; 
-        }
-
-        .loading {
-            text-align: center;
-            color: #718096;
+        .about-text {
             font-size: 14px;
-            padding: 15px 0;
+            color: #4a5568;
+            line-height: 1.6;
+            text-align: justify;
+            margin-top: 8px;
+            transition: color 0.3s ease;
         }
+        
+        .about-section:hover .about-text {
+            color: #2d3748;
+        }
+
+        /* --- ৫. সোশ্যাল মিডিয়া গ্রিড (About Me এর নিচে) --- */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* সোশ্যাল বাটনে মাউস নিলে পপ-আপ অ্যানিমেশন */
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+            opacity: 0.95;
+        }
+
+        .facebook { background-color: #1877F2; }
+        .instagram { background-color: #E1306C; }
+        .linkedin { background-color: #0077B5; }
+        .threads { 
+            background-color: #ffffff; 
+            border: 1px solid #ccd1d9;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="profile-card">
-        <div class="card-header"></div>
         
-        <div class="img-container">
-            <img src="https://i.ibb.co.com/N6QZR81Q/IMG-20260608-WA0009.jpg" alt="Parthib Das" class="profile-img">
+        <!-- [১] কুইক অ্যাক্সেস মেনু (সবার উপরে) -->
+        <div class="quick-access-section">
+            <div class="section-title">
+                <i class="fa-solid fa-bolt"></i> Quick Access Menu
+            </div>
+            
+            <div class="quick-access-container">
+                <!-- একাডেমিক ড্রপডাউন বাটন -->
+                <a href="javascript:void(0)" class="quick-access-card" onclick="toggleAcademic()">
+                    <div class="quick-icon-wrapper icon-academic">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="quick-text">Academic Section</span>
+                    <i class="fa-solid fa-chevron-down quick-arrow" id="academicArrow"></i>
+                </a>
+
+                <!-- একাডেমিক টেবিল কন্টেন্ট -->
+                <div class="academic-dropdown">
+                    <div class="academic-content" id="academicContent">
+                        <div class="table-responsive">
+                            <table class="academic-table">
+                                <thead>
+                                    <tr>
+                                        <th>Degree</th>
+                                        <th>Year</th>
+                                        <th>Institution</th>
+                                        <th>Board</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>BSS Econ</strong></td>
+                                        <td>Current</td>
+                                        <td>Govt Gopalgonj College</td>
+                                        <td>National Uni</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>HSC</strong></td>
+                                        <td>2022</td>
+                                        <td>Haji Lal mia city College</td>
+                                        <td>Dhaka</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>SSC</strong></td>
+                                        <td>2020</td>
+                                        <td>G B D High School</td>
+                                        <td>Jessore</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- বাকি ৩টি কালারফুল বাটন -->
+                <a href="#" class="quick-access-card">
+                    <div class="quick-icon-wrapper icon-skills">
+                        <i class="fa-solid fa-keyboard"></i>
+                    </div>
+                    <span class="quick-text">Skills & Expertises</span>
+                    <i class="fa-solid fa-chevron-right quick-arrow"></i>
+                </a>
+                
+                <a href="#" class="quick-access-card">
+                    <div class="quick-icon-wrapper icon-certificates">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <span class="quick-text">Certificates & Achievements</span>
+                    <i class="fa-solid fa-chevron-right quick-arrow"></i>
+                </a>
+                
+                <a href="#" class="quick-access-card">
+                    <div class="quick-icon-wrapper icon-research">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <span class="quick-text">Economic Research Portfolio</span>
+                    <i class="fa-solid fa-chevron-right quick-arrow"></i>
+                </a>
+            </div>
         </div>
-        
-        <div class="card-body">
+
+        <!-- ডিভাইডার লাইন -->
+        <hr style="border: 0; height: 1px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0)); margin-bottom: 25px;">
+
+        <!-- [২] প্রোফাইল ইমেজ ও নাম সেকশন -->
+        <div class="profile-header-box">
+            <div class="img-container">
+                <img src="https://i.ibb.co.com/N6QZR81Q/IMG-20260608-WA0009.jpg" alt="Parthib Das" class="profile-img">
+            </div>
             <h2>Parthib Das</h2>
             <div class="designation">Data Entry Expert</div>
-            <div class="divider"></div>
-            
-            <div class="contact-info">
-                <a href="mailto:parthibdas.eco@gmail.com" class="contact-item">
-                    <i class="fa-regular fa-envelope"></i>
-                    <span>parthibdas.eco@gmail.com</span>
-                </a>
-                <a href="tel:01406903532" class="contact-item">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <span>01406903532</span>
-                </a>
-            </div>
-            
-            <div class="social-grid">
-                <a href="https://www.facebook.com/parthibdas2023" class="social-btn facebook" target="_blank" title="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/parthib_2023" class="social-btn instagram" target="_blank" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/parthib-das" class="social-btn linkedin" target="_blank" title="LinkedIn">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-                <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank" title="Threads">
-                    <i class="fa-brands fa-threads" style="color: #000000 !important; font-size: 19px;"></i>
-                </a>
-            </div>
-
-            <div class="about-section">
-                <div class="section-title">
-                    <i class="fa-solid fa-user"></i> About Me
-                </div>
-                <p class="about-text">
-                    Hi, I am Parthib Das. As an Economics background student, I am naturally driven by data, structure, and quantitative analysis. I leverage this analytical mindset as a detail-oriented Data Entry Specialist. I expert in web research, data mining, and organizing data using MS Excel and Google Sheets. My primary goal is to deliver 100% accurate, error-free work within deadlines while ensuring high data integrity. I am ready to help manage your data efficiently and look forward to contributing to research-driven global opportunities.
-                </p>
-            </div>
-            
-            <div class="academic-dropdown" id="academicSection">
-                <button class="academic-toggle-btn" onclick="toggleAcademic()">
-                    <div class="left-side">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Academic Background</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
-                </button>
-                <div class="academic-content" id="academicContent">
-                    <div class="table-responsive">
-                        <table class="academic-table">
-                            <thead>
-                                <tr>
-                                    <th>Degree / Group</th>
-                                    <th>Year</th>
-                                    <th>Institution</th>
-                                    <th>Board / Uni</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>BSS in Economics</strong></td>
-                                    <td>Current</td>
-                                    <td>Government Gopalgonj College</td>
-                                    <td><span class="badge-inst-new">National University</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>HSC</strong><br><span style="font-size:10px; color:#718096; font-weight:bold;">Humanities</span></td>
-                                    <td>2022</td>
-                                    <td>Haji Lal mia city College</td>
-                                    <td><span class="badge-inst-new">Dhaka Board</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>SSC</strong><br><span style="font-size:10px; color:#718096; font-weight:bold;">Science</span></td>
-                                    <td>2020</td>
-                                    <td>G B D High School</td>
-                                    <td><span class="badge-inst-new">Jessore Board</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="certificate-section">
-                <div class="section-title">
-                    <i class="fa-solid fa-laptop-code"></i> Skills & Certificates
-                </div>
-                <div class="cert-buttons-container">
-                    <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-comments"></i>
-                            <span>Presentation & Public Speaking</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    
-                    <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-keyboard"></i>
-                            <span>Data Entry Freelancing</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    
-                    <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-brain"></i>
-                            <span>Basics of Artificial Intelligence</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-file-invoice"></i>
-                            <span>CV Writing</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1C57GVL3uAr4_gd1nlL4p2TvL-hzM6Sax/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-envelope-open-text"></i>
-                            <span>Email Writing</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1dfvQ8MzzcJARV1m-Soo56sJpPnMqb4VS/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-bullhorn"></i>
-                            <span>News Presentation</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/14kDHSjccoKs8CR7PyTG-nWIojQzU5VLD/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-language"></i>
-                            <span>Pronunciation Mistakes Mastery</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
         </div>
-    </div>
+        
+        <!-- [৩] কন্টাক্ট বক্স (জিমেইল এবং মোবাইল নম্বর) -->
+        <div class="contact-info">
+            <a href="mailto:parthibdas.eco@gmail.com" class="contact-item email-text">
+                <i class="fa-regular fa-envelope"></i>
+                <span>parthibdas.eco@gmail.com</span>
+            </a>
+            <a href="tel:01406903532" class="contact-item">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span>01406903532</span>
+            </a>
+        </div>
 
-    <div class="news-container">
-        <div class="news-header-wrapper">
-            <div class="news-section-title" id="sec-title">
-                <i class="fa-solid fa-microscope"></i> Research & Economic Insights
+        <!-- [৪] অ্যাবাউট মি সেকশন -->
+        <div class="about-section">
+            <div class="section-title">
+                <i class="fa-solid fa-user"></i> ABOUT ME
             </div>
-            <button class="lang-switch-btn" onclick="toggleLanguage()">
-                <i class="fa-solid fa-earth-americas"></i> <span id="lang-btn-text">বাংলা</span>
-            </button>
+            <p class="about-text">
+                Hi, I am Parthib Das. As an Economics background student, I am naturally driven by data, structure, and quantitative analysis. I leverage this analytical mindset as a detail-oriented Data Entry Specialist. I expert in web research, data mining, and organizing data using MS Excel and Google Sheets. My primary goal is to deliver 100% accurate, error-free work within deadlines while ensuring high data integrity. I am ready to help manage your data efficiently and look forward to contributing to research-driven global opportunities.
+            </p>
         </div>
-        <div id="news-list-container" class="news-list">
-            <div class="loading bn-font" id="loading-msg">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+
+        <!-- [৫] সোশ্যাল মিডিয়া বাটন (About Me এর নিচে) -->
+        <div class="social-grid">
+            <a href="https://www.facebook.com/parthibdas2023" class="social-btn facebook" target="_blank">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/parthib_2023" class="social-btn instagram" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/parthib-das" class="social-btn linkedin" target="_blank">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank">
+                <i class="fa-brands fa-threads" style="color: #000000 !important;"></i>
+            </a>
         </div>
+
     </div>
 
     <script>
-        // গুগল শিটের আসল আইডি (আন্ডারস্কোর সম্বলিত) নিশ্চিত করা হয়েছে
-        const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
-        const SHEET_NAME = 'Sheet1'; 
-
-        let allArticles = [];
-        let currentLang = 'EN'; 
-
+        // ড্রপডাউন কন্ট্রোল ফাংশন
         function toggleAcademic() {
-            const dropdown = document.getElementById('academicSection');
             const content = document.getElementById('academicContent');
+            const arrow = document.getElementById('academicArrow');
             
-            dropdown.classList.toggle('active');
-            if (dropdown.classList.contains('active')) {
-                content.style.maxHeight = content.scrollHeight + "px";
-            } else {
+            if (content.style.maxHeight) {
                 content.style.maxHeight = null;
-            }
-        }
-
-        function isBengali(text) {
-            const banglaRegex = /[\u0980-\u09FF]/;
-            return banglaRegex.test(text);
-        }
-
-        function toggleLanguage() {
-            currentLang = (currentLang === 'EN') ? 'BN' : 'EN';
-            document.getElementById('lang-btn-text').innerText = (currentLang === 'EN') ? 'বাংলা' : 'English';
-            
-            const titleDiv = document.getElementById('sec-title');
-            if(currentLang === 'BN') {
-                titleDiv.innerHTML = `<i class="fa-solid fa-microscope"></i> অর্থনৈতিক গবেষণা ও প্রবন্ধ`;
-                titleDiv.classList.add('bn-font');
+                arrow.style.transform = "rotate(0deg)";
             } else {
-                titleDiv.innerHTML = `<i class="fa-solid fa-microscope"></i> Research & Economic Insights`;
-                titleDiv.classList.remove('bn-font');
-            }
-            
-            renderArticles(); 
-        }
-
-        // অ্যাডভান্সড CSV পার্সার ফাংশন যা লেখার ভেতরের সব কমাকে নিখুঁতভাবে হ্যান্ডেল করবে
-        async function fetchNews() {
-            try {
-                const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
-                const response = await fetch(csvUrl);
-                const csvText = await response.text();
-                
-                allArticles = []; 
-
-                // টেক্সটের ভেতরের কমা এবং ডাবল কোটেশন ট্র্যাক করার রেগুলার এক্সপ্রেশন
-                let arrMatches = [];
-                let strDelimiter = ",";
-                let objPattern = new RegExp((
-                    "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-                    "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-                    "([^\"\\" + strDelimiter + "\\r\\n]*))"
-                ), "gi");
-
-                let arrData = [[]];
-                let arrMatchesArray = null;
-
-                while (arrMatchesArray = objPattern.exec(csvText)) {
-                    let strMatchedDelimiter = arrMatchesArray[1];
-                    if (strMatchedDelimiter.length && strMatchedDelimiter !== strDelimiter) {
-                        arrData.push([]);
-                    }
-                    let strMatchedValue;
-                    if (arrMatchesArray[2]) {
-                        strMatchedValue = arrMatchesArray[2].replace(new RegExp("\"\"", "g"), "\"");
-                    } else {
-                        strMatchedValue = arrMatchesArray[3];
-                    }
-                    arrData[arrData.length - 1].push(strMatchedValue);
-                }
-
-                // প্রথম সারি (Header) বাদ দিয়ে কলাম অনুযায়ী লুপ (A=0, B=1, C=2, D=3, E=4, F=5, G=6)
-                for (let i = 1; i < arrData.length; i++) {
-                    const row = arrData[i];
-                    if (!row || row.length < 3) continue;
-
-                    let dateVal = row[0] || '';
-                    let hlBN = row[1] || '';
-                    let ctBN = row[2] || '';
-                    let hlEN = row[3] || '';
-                    let ctEN = row[4] || '';
-                    let im1 = row[5] || '';
-                    let im2 = row[6] || '';
-
-                    // ডেটা ফিল্টারিং যাতে কোনো ফাঁকা রো বা অতিরিক্ত হেডার অবজেক্ট তৈরি না করে
-                    if (dateVal.toLowerCase().includes('date') || (!hlBN && !hlEN)) continue;
-
-                    allArticles.push({
-                        date: dateVal,
-                        headlineBN: hlBN,
-                        contentBN: ctBN,
-                        headlineEN: hlEN,
-                        contentEN: ctEN,
-                        img1: im1,
-                        img2: im2
-                    });
-                }
-
-                renderArticles();
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('news-list-container').innerHTML = '<div class="loading bn-font" style="color:red;">আর্টিকেল লোড করতে সমস্যা হয়েছে! শিটের সেটিংস চেক করুন।</div>';
-            }
-        }
-
-        function renderArticles() {
-            const newsListContainer = document.getElementById('news-list-container');
-            newsListContainer.innerHTML = ''; 
-
-            if(allArticles.length === 0) {
-                newsListContainer.innerHTML = currentLang === 'BN' ? 
-                    '<div class="loading bn-font">কোনো আর্টিকেল পাওয়া যায়নি।</div>' : 
-                    '<div class="loading">No articles found.</div>';
-                return;
-            }
-
-            // নতুন ডেটা সবার ওপরে রেন্ডার করার জন্য উল্টো লুপ
-            for (let i = allArticles.length - 1; i >= 0; i--) {
-                const art = allArticles[i];
-                
-                let displayHeadline = currentLang === 'BN' ? art.headlineBN : (art.headlineEN || art.headlineBN);
-                let displayContent = currentLang === 'BN' ? art.contentBN : (art.contentEN || art.contentBN);
-
-                const headlineClass = isBengali(displayHeadline) ? 'bn-font' : '';
-                const contentClass = isBengali(displayContent) ? 'bn-font' : '';
-                const dateClass = isBengali(art.date) ? 'bn-font' : '';
-
-                let imageTag1 = '';
-                if (art.img1 && art.img1.trim() !== '') {
-                    imageTag1 = `<img src="${art.img1}" alt="Research Image 1" style="width:100%; max-height:220px; object-fit:cover; border-radius:8px; margin-bottom:14px; display:block;">`;
-                }
-
-                let imageTag2 = '';
-                if (art.img2 && art.img2.trim() !== '') {
-                    imageTag2 = `<img src="${art.img2}" alt="Research Image 2" style="width:100%; max-height:220px; object-fit:cover; border-radius:8px; margin-top:14px; display:block;">`;
-                }
-
-                const autoKeywords = displayHeadline.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(" ").join(", ");
-
-                const newsItem = document.createElement('div');
-                newsItem.className = 'news-item';
-                newsItem.setAttribute('data-keywords', autoKeywords);
-                
-                newsItem.innerHTML = `
-                    <button class="news-header-btn" onclick="toggleNews(this)">
-                        <span class="news-date ${dateClass}"><i class="fa-regular fa-calendar-days"></i> ${art.date}</span>
-                        <h3 class="news-headline ${headlineClass}" style="font-size: 14.5px; font-weight: 600;">${displayHeadline}</h3>
-                    </button>
-                    <div class="news-content">
-                        <div class="news-content-inner ${contentClass}">
-                            ${imageTag1}
-                            <p>${displayContent}</p>
-                            ${imageTag2}
-                        </div>
-                    </div>
-                `;
-                
-                newsListContainer.appendChild(newsItem);
-            }
-        }
-
-        function toggleNews(button) {
-            const newsItem = button.parentElement;
-            const content = button.nextElementSibling;
-            
-            document.querySelectorAll('.news-item').forEach(item => {
-                if (item !== newsItem && item.classList.contains('active')) {
-                    item.classList.remove('active');
-                    item.querySelector('.news-content').style.maxHeight = null;
-                }
-            });
-
-            newsItem.classList.toggle('active');
-            if (newsItem.classList.contains('active')) {
                 content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-                content.style.maxHeight = null;
+                arrow.style.transform = "rotate(180deg)";
             }
         }
-
-        window.onload = fetchNews;
     </script>
-
 </body>
 </html>

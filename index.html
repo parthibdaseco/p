@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Galada&family=Hind_Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* মূল স্টাইল এবং গ্লোবাল ভেরিয়েবল (ডার্ক মোডের জন্য) */
         :root {
             --bg-color: #f3f4f6;
             --card-bg: #ffffff;
@@ -55,7 +54,6 @@
             font-family: 'Hind Siliguri', sans-serif !important;
         }
 
-        /* ডার্ক মোড টগল বাটন */
         .theme-toggle-btn {
             position: absolute;
             top: 20px;
@@ -75,7 +73,6 @@
             z-index: 999;
         }
 
-        /* প্রোফাইল কার্ডের ডিজাইন */
         .profile-card {
             background: var(--card-bg);
             border-radius: 30px;
@@ -96,7 +93,6 @@
             border-bottom-right-radius: 50% 20%;
         }
 
-        /* কুইক এক্সেস বাটন - টেক্সট লেবেল সহ (Feature 1) */
         .quick-access-btn {
             position: absolute;
             top: 20px;
@@ -161,7 +157,6 @@
 
         h2 { font-size: 30px; color: var(--text-main); font-weight: 700; margin-bottom: 5px; }
         
-        /* টাইপিং ইফেক্ট স্টাইল (Feature 4) */
         .designation-container {
             height: 20px;
             margin-bottom: 15px;
@@ -199,7 +194,6 @@
         .threads { background-color: #ffffff; border: 1px solid #ccd1d9; }
         [data-theme="dark"] .threads { background-color: #111827; border-color: #334155; }
 
-        /* About Me সেকশন */
         .about-section { 
             text-align: left; 
             margin-bottom: 25px; 
@@ -239,7 +233,6 @@
         
         .about-text { font-size: 13.5px; color: var(--text-sub); line-height: 1.6; text-align: justify; }
 
-        /* কাস্টম 'Contact Me' ফর্ম স্টাইল (Feature 5) */
         .contact-form-container {
             text-align: left;
             margin-bottom: 25px;
@@ -295,7 +288,6 @@
         }
         .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 114, 255, 0.45); }
 
-        /* কপিরাইট ফুটার */
         .card-footer-copyright {
             font-size: 11px;
             color: #a0aec0;
@@ -310,7 +302,6 @@
             gap: 4px;
         }
 
-        /* পপ-আপ মডাল ব্যাকগ্রাউন্ড */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -372,7 +363,6 @@
         .modal-section { text-align: left; }
         .modal-section-title { font-size: 13px; color: var(--text-sub); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
 
-        /* কালারফুল মেনু বাটন */
         .menu-btn {
             width: 100%;
             color: white;
@@ -401,7 +391,6 @@
         .menu-btn-left i { color: #ffffff; font-size: 16px; }
         .menu-btn .fa-arrow-right { color: #ffffff !important; font-size: 13px; }
 
-        /* সাব-পেজের ওভারলে ব্যাকগ্রাউন্ড */
         .sub-page-overlay {
             position: fixed;
             top: 0; left: 100%; 
@@ -418,7 +407,6 @@
         .back-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .sub-page-body { padding: 25px 20px; overflow-y: auto; flex-grow: 1; width: 100%; max-width: 600px; margin: 0 auto; }
 
-        /* ল্যাঙ্গুয়েজ বাটন */
         .news-lang-container { display: flex; justify-content: flex-end; padding: 0 0 15px 0; }
         .news-lang-btn {
             background: linear-gradient(135deg, #00f0ff, #0072ff, #ff007f);
@@ -443,7 +431,6 @@
 
         .news-title-accent { display: block; height: 5px; width: 50px; border-radius: 10px; margin-top: 8px; margin-bottom: 2px; }
 
-        /* নিউজ আর্টিকেল কার্ড */
         .news-item {
             border: 1px solid var(--border-color);
             border-radius: 16px;
@@ -468,7 +455,6 @@
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
         .news-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 12px 0; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
-        /* টেবিল ডিজাইন */
         .table-responsive { padding: 5px 0; overflow-x: auto; }
         .academic-table-container { background: var(--card-bg); padding: 18px; border-radius: 20px; box-shadow: 0 12px 32px rgba(13, 27, 42, 0.08); border: 1px solid var(--border-color); }
         .academic-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; min-width: 420px; }
@@ -479,7 +465,6 @@
         .badge-NU { color: #00a8ff; font-weight: 700; }
         .badge-board { color: #ff3366; font-weight: 700; }
 
-        /* সার্টিফিকেট লিঙ্ক বাটন */
         .cert-btn-container { display: flex; flex-direction: column; gap: 14px; }
         .cert-btn {
             display: flex; align-items: center; justify-content: space-between;
@@ -495,13 +480,11 @@
 </head>
 <body>
 
-    <!-- ডার্ক মোড টগল বাটন (Feature 6) -->
     <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
         <i class="fa-solid fa-moon" id="themeIcon"></i>
     </button>
 
     <div class="profile-card">
-        <!-- এক্সপ্লোর মেনু বাটন - টেক্সট লেবেল সহ (Feature 1) -->
         <button class="quick-access-btn" onclick="openModal()" title="Explore Menu">
             <i class="fa-solid fa-compass"></i>
             <span>EXPLORE MENU</span>
@@ -516,21 +499,21 @@
         <div class="card-body">
             <h2>Parthib Das</h2>
             
-            <!-- টাইপিং ইফেক্ট কন্টেইনার (Feature 4) -->
             <div class="designation-container">
                 <div class="designation" id="typewriter"></div>
             </div>
             
             <div class="divider"></div>
             
-            <div class="contact-info">
-                <a href="mailto:parthibdas.eco@gmail.com" class="contact-item">
+            <!-- আপডেট করা কন্টাক্ট ইনফো সেকশন (হোয়াটসঅ্যাপ ডিরেক্ট লিঙ্ক সহ) -->
+            <div class="contact-info" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 10px;">
+                <a href="mailto:parthibdas.eco@gmail.com" class="contact-item" style="margin: 0;">
                     <i class="fa-regular fa-envelope"></i>
                     <span>parthibdas.eco@gmail.com</span>
                 </a>
-                <a href="tel:01406903532" class="contact-item">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <span>01406903532</span>
+                <a href="https://wa.me/8801406903532" class="contact-item" style="margin: 0;" target="_blank">
+                    <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 16px;"></i>
+                    <span>+8801406903532</span>
                 </a>
             </div>
             
@@ -541,7 +524,6 @@
                 <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank"><i class="fa-brands fa-threads" style="color: black !important; font-size: 19px;"></i></a>
             </div>
 
-            <!-- About Me সেকশন -->
             <div class="about-section">
                 <div class="section-title"><i class="fa-solid fa-user"></i> About Me</div>
                 <p class="about-text">
@@ -549,7 +531,6 @@
                 </p>
             </div>
 
-            <!-- ইন্টারেক্টিভ কন্টাক্ট ফর্ম (Feature 5) -->
             <div class="contact-form-container">
                 <div class="form-title"><i class="fa-solid fa-paper-plane"></i> Send Me a Message</div>
                 <form action="https://formspree.io/f/xyzkvypb" method="POST">
@@ -566,7 +547,6 @@
                 </form>
             </div>
 
-            <!-- কপিরাইট ফুটার -->
             <div class="card-footer-copyright">
                 <i class="fa-regular fa-copyright"></i> 2026 Parthib Das. All Rights Reserved.
             </div>
@@ -709,7 +689,6 @@
             'linear-gradient(90deg, #ff9966, #ff5e62)'
         ];
 
-        // টাইপিং ইফেক্ট স্ক্রিপ্ট (Feature 4)
         const text = "I am a Data Entry Expert.";
         let textIndex = 0;
         function typeWriter() {
@@ -720,7 +699,6 @@
             }
         }
 
-        // ডার্ক মোড টগল স্ক্রিপ্ট (Feature 6)
         function toggleTheme() {
             const currentTheme = document.body.getAttribute('data-theme');
             const icon = document.getElementById('themeIcon');
@@ -910,10 +888,9 @@
             });
         }
 
-        // App Initialization
         window.addEventListener('DOMContentLoaded', () => {
             fetchNews();
-            setTimeout(typeWriter, 500); // লোড হওয়ার পর টাইপরাইটার শুরু হবে
+            setTimeout(typeWriter, 500);
         });
     </script>
 </body>

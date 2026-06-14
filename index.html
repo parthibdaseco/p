@@ -476,7 +476,7 @@
         .cert-btn-left i { color: #ffbc00; font-size: 18px; }
         .loading { text-align: center; color: #718096; font-size: 13px; padding: 20px 0; }
 
-        /* টাইটেলের কালার অনবরত ঢেউয়ের মতো নড়াচড়া করার অ্যানিমেশন */
+        /* টাইটেলের কালার অনবরত ঢেউয়ের মতো নড়াচড়া করার অ্যানিমেশন */
         @keyframes textMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -538,7 +538,8 @@
 
             <div class="contact-form-container">
                 <div class="form-title"><i class="fa-solid fa-paper-plane"></i> Send Me a Message</div>
-                <form action="https://formspree.io/f/xyzkvypb" method="POST">
+                <!-- এখানে সঠিক এবং কার্যকর Formspree লিঙ্কটি বসিয়ে দেওয়া হয়েছে -->
+                <form action="https://formspree.io/f/xvgjejpy" method="POST">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                     </div>
@@ -558,6 +559,7 @@
         </div>
     </div>
 
+    <!-- Quick Access Menu Modal -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
             <div class="modal-header">
@@ -596,6 +598,7 @@
         </div>
     </div>
 
+    <!-- Academic Background Sub-page -->
     <div class="sub-page-overlay" id="academicSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -639,6 +642,7 @@
         </div>
     </div>
 
+    <!-- Skills & Certificates Sub-page -->
     <div class="sub-page-overlay" id="skillsSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('skillsSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -662,6 +666,7 @@
         </div>
     </div>
 
+    <!-- Research Portal Sub-page -->
     <div class="sub-page-overlay" id="researchSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -831,7 +836,6 @@
             }
         }
 
-        /* আরজিবি কালার মোভিং অ্যানিমেশন সহ রেন্ডার নিউজ ফাংশন */
         function renderNews() {
             const container = document.getElementById('news-list-container');
             container.innerHTML = ''; 

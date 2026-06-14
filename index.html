@@ -32,7 +32,7 @@
             font-family: 'Hind Siliguri', sans-serif !important;
         }
 
-        /* প্রোফাইলカードের ডিজাইন */
+        /* প্রোফাইল কার্ডের ডিজাইন */
         .profile-card {
             background: white;
             border-radius: 30px;
@@ -53,12 +53,12 @@
             border-bottom-right-radius: 50% 20%;
         }
 
-        /* ==================== কুইক এক্সেস বাটন (ক্লিক সমস্যা ফিক্সড) ==================== */
+        /* কুইক এক্সেস বাটন */
         .quick-access-btn {
             position: absolute;
-            top: 20px; /* প্যাডিং বৃদ্ধি করা হলো যাতে বর্ডারের ভেতর সেফ জোনে থাকে */
+            top: 20px;
             left: 20px;
-            width: 50px; /* মোবাইল টাচ রেসপন্স ভালো করার জন্য সাইজ একটু বড় করা হলো */
+            width: 50px;
             height: 50px;
             background: linear-gradient(135deg, #00c6ff, #0072ff, #f35588, #ff3366);
             background-size: 300% 300%;
@@ -73,8 +73,8 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: all 0.2s ease-in-out;
-            z-index: 99; /* কার্ডের সব এলিমেন্টের উপরে থাকার জন্য ইনডেক্স বৃদ্ধি */
-            -webkit-tap-highlight-color: transparent; /* মোবাইলে এক্সট্রা ফ্ল্যাশ রিমুভ */
+            z-index: 99;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .quick-access-btn span {
@@ -84,14 +84,8 @@
             letter-spacing: 0.3px;
         }
 
-        .quick-access-btn i {
-            font-size: 14px;
-        }
-
-        .quick-access-btn:active {
-            transform: scale(0.92); /* টাচ করলে বাটন সামান্য দেবে যাবে, যা রেসপন্স নিশ্চিত করে */
-            opacity: 0.9;
-        }
+        .quick-access-btn i { font-size: 14px; }
+        .quick-access-btn:active { transform: scale(0.92); opacity: 0.9; }
 
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
@@ -154,7 +148,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999; /* সবচেয়ে উপরে রাখার জন্য */
+            z-index: 9999;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease-in-out;
@@ -314,14 +308,15 @@
         }
         @keyframes lightShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* টাইটেল অ্যাকসেন্ট শেপ */
+        /* ==================== ফিক্সড টাইটেল রিবন (শুধু ব্যাকগ্রাউন্ড কালার, ওপারসিটি নাই) ==================== */
         .news-title-accent {
-            display: inline-block;
-            height: 4px;
-            width: 45px;
+            display: block; /* পুরোপুরি শেপ আকারে দেখার জন্য block */
+            height: 5px; /* মার্ক করা জায়গার মতো থিকনেস */
+            width: 50px;
             border-radius: 10px;
-            margin-top: 6px;
+            margin-top: 8px; /* টাইটেলের নিচে প্যাডিং */
             margin-bottom: 2px;
+            opacity: 1 !important; /* লেখা পড়ার সুবিধার্থে কোনোভাবেই স্বচ্ছ হবে না */
         }
 
         .news-item {
@@ -349,20 +344,42 @@
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
         .news-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 12px 0; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
-        /* টেবিল ক্যাটাগরি শ্যাডো ডিজাইন */
+        /* ==================== ফিক্সড কালারফুল শ্যাডো একাডেমিক টেবিল ডিজাইন ==================== */
         .table-responsive { padding: 5px 0; overflow-x: auto; }
         .academic-table-container {
             background: white;
             padding: 15px;
             border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(13, 27, 42, 0.08);
+            box-shadow: 0 10px 30px rgba(13, 27, 42, 0.08); /* গর্জিয়াস সফট শ্যাডো */
             border: 1px solid #e2e8f0;
         }
 
         .academic-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; min-width: 380px; }
-        .academic-table th { background-color: #0d1b2a; color: #ffffff; padding: 14px 12px; font-weight: 700; border: 1px solid #1e2d3d; text-transform: uppercase; font-size: 11px; }
-        .academic-table td { padding: 14px 12px; border: 1px solid #cbd5e1; color: #2d3748; background: #ffffff; }
-        .academic-table tr:nth-child(even) td { background-color: #f8fafc; }
+        
+        /* কালারফুল টেবিল হেডার */
+        .academic-table th {
+            background-color: #0d1b2a;
+            color: #ffffff;
+            padding: 14px 12px;
+            font-weight: 700;
+            border: 2px solid #1e2d3d; /* হেডার বর্ডার */
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        /* ==================== ফিক্সড গাড়ো রঙিন বর্ডার (মার্ক করা অনুযায়ী) ==================== */
+        .academic-table td {
+            padding: 14px 12px;
+            border: 2px solid #0d1b2a; /* পুরো টেবিলের বর্ডার হবে হেডার কালারের মতোই গাড়ো */
+            color: #2d3748;
+            background: #ffffff;
+            font-weight: 500;
+        }
+
+        /* গাড়ো বর্ডার দেওয়ার পর অল্টারনেট কালার রিমুভ (পরিচ্ছন্নতার জন্য) */
+        .academic-table tr:nth-child(even) td { background-color: #ffffff; }
+        .academic-table tr:hover td { background-color: #f1f5f9; }
+
         .badge-NU { color: #00c6ff; font-weight: bold; }
         .badge-board { color: #ff3366; font-weight: bold; }
 

@@ -322,15 +322,59 @@
             gap: 5px;
         }
 
-        .news-lang-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 12px rgba(0, 114, 255, 0.4);
-        }
-
-        /* নিউজ কার্ড এবং দুই ইমেজের ডিজাইন */
+        /* কলাপসিবল নিউজ কার্ড ডিজাইন */
         .news-item {
             border-bottom: 1px solid #e2e8f0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* হেডার পার্ট (যেখানে চাপ দিলে ওপেন হবে) */
+        .news-toggle-header {
             padding: 15px;
+            cursor: pointer;
+            background: #ffffff;
+            transition: background 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .news-toggle-header:hover {
+            background: #f8f9fa;
+        }
+
+        .news-title-text {
+            font-size: 14px;
+            color: #0d1b2a;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .news-toggle-icon {
+            font-size: 12px;
+            color: #718096;
+            transition: transform 0.3s ease;
+        }
+
+        /* বিস্তারিত বডি পার্ট (ডিফল্ট অবস্থায় বন্ধ থাকবে) */
+        .news-collapse-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 15px;
+            background: #fafafa;
+        }
+
+        /* একটি ক্লাস যা অ্যাক্টিভ হলে নিউজ ওপেন দেখাবে */
+        .news-item.open .news-collapse-body {
+            padding-bottom: 15px;
+        }
+
+        .news-item.open .news-toggle-icon {
+            transform: rotate(180deg);
+            color: #0072ff;
         }
         
         .news-img {
@@ -373,14 +417,7 @@
             line-height: 1.4;
         }
 
-        .academic-table tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .badge-NU { color: #00c6ff; font-weight: bold; }
-        .badge-board { color: #ff3366; font-weight: bold; }
-
-        /* স্কিল ও সার্টিফিকেট বাটন ডিজাইন */
+        /* স্কিল বাটন */
         .cert-btn-container {
             display: flex;
             flex-direction: column;
@@ -586,8 +623,8 @@
     </div>
 
     <script>
-        let newsLang = 'en'; // নিউজের ডিফল্ট ভাষা ইংরেজি
-        let globalNewsData = []; // শিট থেকে আসা সম্পূর্ণ ডাটা স্টোর করার অ্যারে
+        let newsLang = 'en'; 
+        let globalNewsData = []; 
 
         function openModal() {
             document.getElementById('modalOverlay').classList.add('active');
@@ -618,7 +655,6 @@
             }
         }
 
-        // বাটন টিপলে নতুন করে ডাটা ফেচ হবে না, মেমোরি থেকে সাথে সাথে চেঞ্জ হবে
         function toggleNewsLanguage(event) {
             event.stopPropagation();
             newsLang = newsLang === 'en' ? 'bn' : 'en';
@@ -634,10 +670,31 @@
                 container.classList.add('bn-font');
             }
             
-            renderNews(); // রেন্ডার ফাংশন কল করে ডাটা শো করা
+            renderNews(); 
         }
 
-        // অ্যাডভান্সড CSV পার্সার (যা কন্টেন্টের ভেতরের কমা বা কোটেশন নষ্ট করবে না)
+        // হেডলাইনে চাপ দিলে নিউজ এক্সপ্যান্ড বা কলাপ্স করার নতুন ফাংশন
+        function toggleNewsCollapse(headerElement) {
+            const newsItem = headerElement.parentElement;
+            const collapseBody = newsItem.querySelector('.news-collapse-body');
+            
+            // যদি ক্লিক করা আইটেমটি অলরেডি ওপেন থাকে, তবে বন্ধ করো
+            if (newsItem.classList.contains('open')) {
+                newsItem.classList.remove('open');
+                collapseBody.style.maxHeight = null;
+            } else {
+                // অন্য সব ওপেন থাকা নিউজ ক্লোজ করে দেওয়ার জন্য (অপশনাল, সুন্দর দেখায়)
+                document.querySelectorAll('.news-item.open').forEach(openItem => {
+                    openItem.classList.remove('open');
+                    openItem.querySelector('.news-collapse-body').style.maxHeight = null;
+                });
+
+                // কারেন্ট নিউজ ওপেন করো
+                newsItem.classList.add('open');
+                collapseBody.style.maxHeight = collapseBody.scrollHeight + "px";
+            }
+        }
+
         function parseCSV(text) {
             let r = [];
             let q = false; 
@@ -663,23 +720,21 @@
         const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
         const SHEET_NAME = 'Sheet1'; 
 
-        // শিট থেকে শুধু একবার ডাটা লোড করার মেইন ফাংশন
         async function fetchNews() {
             try {
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
                 
-                globalNewsData = parseCSV(csvText).slice(1); // গ্লোবাল ভ্যারিয়েবলে ডাটা সেভ রাখা হলো
-                renderNews(); // প্রথমবার রেন্ডার করা হলো
+                globalNewsData = parseCSV(csvText).slice(1); 
+                renderNews(); 
 
             } catch (error) {
                 console.error('Error fetching news:', error);
-                document.getElementById('news-list-container').innerHTML = '<div class="loading" style="color: red;">Failed to load articles from Google Sheet.</div>';
+                document.getElementById('news-list-container').innerHTML = '<div class="loading" style="color: red;">Failed to load articles.</div>';
             }
         }
 
-        // এইচটিএমএল এ নিউজ জেনারেট করার ডাইনামিক ফাংশন
         function renderNews() {
             const container = document.getElementById('news-list-container');
             container.innerHTML = ''; 
@@ -689,28 +744,21 @@
                 return;
             }
 
-            globalNewsData.forEach(cols => {
-                // কলাম লেন্থ চেক করা (আপনার শিটে মোট ৭টি কলাম বা জিপিএ অবজেক্টস আছে)
+            globalNewsData.forEach((cols, index) => {
                 if (cols.length < 3 || !cols[0]) return; 
 
                 const date = cols[0].trim() || '';
-                
-                // কলাম কন্ডিশন সেটিং (স্ক্রিনশট অনুযায়ী)
-                // newsLang 'en' হলে কলাম D এবং E দেখাবে, আর 'bn' হলে কলাম B এবং C দেখাবে
                 let headline = newsLang === 'en' ? (cols[3] || '') : (cols[1] || '');
                 let content = newsLang === 'en' ? (cols[4] || '') : (cols[2] || '');
                 
-                // ইমেজ কলাম F (ইনডেক্স ৫) এবং G (ইনডেক্স ৬)
                 const imgUrlFirst = cols[5] ? cols[5].trim() : ''; 
                 const imgUrlMiddle = cols[6] ? cols[6].trim() : '';
 
-                // ১ম ছবি জেনারেশন লজিক (হেডলাইনের নিচে)
                 let firstImgHTML = '';
                 if (imgUrlFirst && imgUrlFirst.startsWith('http')) {
                     firstImgHTML = `<img src="${imgUrlFirst}" class="news-img" alt="Headline Image">`;
                 }
 
-                // ২য় ছবি জেনারেশন লজিক (কন্টেন্টের ঠিক মাঝখানে প্যারাগ্রাফ না ভেঙে)
                 let updatedContent = content;
                 if (imgUrlMiddle && imgUrlMiddle.startsWith('http') && content.length > 50) {
                     const middleIdx = Math.floor(content.length / 2);
@@ -725,15 +773,25 @@
                     }
                 }
 
+                // নতুন স্ট্রাকচার: কলাপসিবল লেআউট জেনারেশন
                 const newsItemHTML = `
                     <div class="news-item">
-                        <div style="font-size: 11px; color: #718096; margin-bottom: 5px;">
-                            <i class="fa-regular fa-calendar-days"></i> ${date}
+                        <div class="news-toggle-header" onclick="toggleNewsCollapse(this)">
+                            <div>
+                                <div style="font-size: 10px; color: #718096; margin-bottom: 2px;">
+                                    <i class="fa-regular fa-calendar-days"></i> ${date}
+                                </div>
+                                <div class="news-title-text">${headline}</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down news-toggle-icon"></i>
                         </div>
-                        <h3 style="font-size: 14px; color: #0d1b2a; margin-bottom: 5px; font-weight: 700;">${headline}</h3>
                         
-                        ${firstImgHTML} <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.6; margin-top: 5px; white-space: pre-line;">
-                            ${updatedContent} </p>
+                        <div class="news-collapse-body">
+                            ${firstImgHTML}
+                            <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.6; margin-top: 8px; white-space: pre-line;">
+                                ${updatedContent}
+                            </p>
+                        </div>
                     </div>
                 `;
                 container.innerHTML += newsItemHTML;

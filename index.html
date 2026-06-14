@@ -442,10 +442,9 @@
         }
         .news-item:hover { transform: translateY(-2px); }
         .news-toggle-header { padding: 20px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        
         .news-title-text { 
             font-size: 16px; font-weight: 700; line-height: 1.45;
-            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         #news-list-container.bn-font .news-title-text { font-family: 'Galada', cursive !important; font-size: 20px; }
@@ -476,6 +475,13 @@
         .cert-btn-left { display: flex; align-items: center; gap: 10px; }
         .cert-btn-left i { color: #ffbc00; font-size: 18px; }
         .loading { text-align: center; color: #718096; font-size: 13px; padding: 20px 0; }
+
+        /* টাইটেলের কালার অনবরত ঢেউয়ের মতো নড়াচড়া করার অ্যানিমেশন */
+        @keyframes textMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
     </style>
 </head>
 <body>
@@ -505,7 +511,6 @@
             
             <div class="divider"></div>
             
-            <!-- আপডেট করা কন্টাক্ট ইনফো সেকশন (হোয়াটসঅ্যাপ ডিরেক্ট লিঙ্ক সহ) -->
             <div class="contact-info" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 10px;">
                 <a href="mailto:parthibdas.eco@gmail.com" class="contact-item" style="margin: 0;">
                     <i class="fa-regular fa-envelope"></i>
@@ -553,7 +558,6 @@
         </div>
     </div>
 
-    <!-- Quick Access Menu Modal -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
             <div class="modal-header">
@@ -592,7 +596,6 @@
         </div>
     </div>
 
-    <!-- Academic Background Sub-page -->
     <div class="sub-page-overlay" id="academicSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -636,7 +639,6 @@
         </div>
     </div>
 
-    <!-- Skills & Certificates Sub-page -->
     <div class="sub-page-overlay" id="skillsSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('skillsSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -660,7 +662,6 @@
         </div>
     </div>
 
-    <!-- Research Portal Sub-page -->
     <div class="sub-page-overlay" id="researchSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -830,6 +831,7 @@
             }
         }
 
+        /* আরজিবি কালার মোভিং অ্যানিমেশন সহ রেন্ডার নিউজ ফাংশন */
         function renderNews() {
             const container = document.getElementById('news-list-container');
             container.innerHTML = ''; 
@@ -871,8 +873,8 @@
                                 <div style="font-size: 10px; color: #718096; margin-bottom: 2px;">
                                     <i class="fa-regular fa-calendar-days"></i> ${date}
                                 </div>
-                                <div class="news-title-text">${headline}</div>
-                                <div class="news-title-accent" style="background: ${currentGradient};"></div>
+                                <div class="news-title-text" style="background: ${currentGradient}; background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: textMove 4s linear infinite;">${headline}</div>
+                                <div class="news-title-accent" style="background: ${currentGradient}; background-size: 200% auto; animation: textMove 4s linear infinite;"></div>
                             </div>
                             <i class="fa-solid fa-chevron-down news-toggle-icon"></i>
                         </div>

@@ -2,72 +2,84 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Economic Research & Insights</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-color: #f3f4f6; --card-bg: #0d1b2a; --accent-color: #c5a880; --text-color: #ffffff; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); padding: 20px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 600px; }
-        .news-item { background: var(--card-bg); color: var(--text-color); margin-bottom: 15px; border-radius: 15px; overflow: hidden; }
+        :root { --bg-color: #f3f4f6; --card-bg: #0d1b2a; --accent-color: #c5a880; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); padding: 20px; display: flex; flex-direction: column; align-items: center; }
         
-        /* টাইটেল বাটন স্টাইল */
-        .news-header { padding: 20px; cursor: pointer; display: flex; flex-direction: column; }
-        .news-date { color: var(--accent-color); font-size: 12px; font-weight: 700; margin-bottom: 5px; }
-        h3 { margin: 0; font-family: 'Hind Siliguri', sans-serif; font-size: 17px; }
+        /* স্টাইলিশ বাটন */
+        .lang-btn {
+            background: linear-gradient(45deg, #c5a880, #8e44ad);
+            color: white; border: none; padding: 10px 25px; border-radius: 25px;
+            font-weight: 700; cursor: pointer; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
-        /* কন্টেন্ট স্টাইল যা ক্লিক করলে খুলবে */
-        .news-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #ffffff; color: #333; }
-        .content-inner { padding: 20px; font-family: 'Hind Siliguri', sans-serif; line-height: 1.6; }
-        img { width: 100%; border-radius: 10px; margin-top: 10px; }
+        .container { width: 100%; max-width: 600px; }
+        .news-item { background: var(--card-bg); color: white; margin-bottom: 20px; border-radius: 15px; overflow: hidden; }
+        .news-header { padding: 20px; cursor: pointer; }
+        .news-content { max-height: 0; overflow: hidden; transition: 0.4s; background: white; color: #333; }
+        .content-inner { padding: 20px; font-family: 'Hind Siliguri', sans-serif; }
+        
+        img { width: 100%; border-radius: 10px; margin: 10px 0; }
     </style>
 </head>
 <body>
 
-<div class="container" id="news-list">আর্টিকেল লোড হচ্ছে...</div>
+<button class="lang-btn" onclick="toggleLang()" id="lang-btn">English</button>
+<div class="container" id="news-list">লোড হচ্ছে...</div>
 
 <script>
     const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY';
     const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+    let lang = 'BN'; 
+    let dataCache = [];
 
     async function loadData() {
         const res = await fetch(URL);
         const text = await res.text();
         const json = JSON.parse(text.substring(47, text.length - 2));
+        dataCache = json.table.rows;
+        render();
+    }
+
+    function render() {
         const container = document.getElementById('news-list');
         container.innerHTML = '';
-
-        json.table.rows.reverse().forEach(row => {
+        dataCache.reverse().forEach(row => {
             const date = row.c[0]?.v || '';
-            const title = row.c[1]?.v || '';
-            const body = row.c[2]?.v || '';
-            const img = row.c[5]?.v || '';
+            const head = lang === 'BN' ? (row.c[1]?.v || '') : (row.c[3]?.v || '');
+            const body = lang === 'BN' ? (row.c[2]?.v || '') : (row.c[4]?.v || '');
+            const img1 = row.c[5]?.v || ''; // প্রথম ছবি
+            const img2 = row.c[6]?.v || ''; // দ্বিতীয় ছবি
 
-            const item = document.createElement('div');
-            item.className = 'news-item';
-            item.innerHTML = `
-                <div class="news-header" onclick="toggleContent(this)">
-                    <span class="news-date">${date}</span>
-                    <h3>${title} ▼</h3>
-                </div>
-                <div class="news-content">
-                    <div class="content-inner">
-                        <p>${body}</p>
-                        ${img ? `<img src="${img}">` : ''}
+            container.innerHTML += `
+                <div class="news-item">
+                    <div class="news-header" onclick="toggle(this)">
+                        <small style="color:var(--accent-color)">${date}</small>
+                        <h3>${head} ▼</h3>
+                    </div>
+                    <div class="news-content">
+                        <div class="content-inner">
+                            ${img1 ? `<img src="${img1}">` : ''}
+                            <p>${body}</p>
+                            ${img2 ? `<img src="${img2}">` : ''}
+                        </div>
                     </div>
                 </div>
             `;
-            container.appendChild(item);
         });
     }
 
-    function toggleContent(element) {
-        const content = element.nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
+    function toggle(el) {
+        const content = el.nextElementSibling;
+        content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+    }
+
+    function toggleLang() {
+        lang = lang === 'BN' ? 'EN' : 'BN';
+        document.getElementById('lang-btn').innerText = lang === 'BN' ? 'English' : 'বাংলা';
+        render();
     }
 
     loadData();

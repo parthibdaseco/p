@@ -167,7 +167,6 @@
             padding-bottom: 20px;
             display: flex;
             flex-direction: column;
-            overflow: hidden; 
         }
 
         .modal-overlay.active .modal-content {
@@ -182,8 +181,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
-            z-index: 5;
         }
 
         .modal-header-title {
@@ -215,7 +212,6 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            position: relative;
         }
 
         .modal-section {
@@ -231,7 +227,7 @@
             margin-bottom: 12px;
         }
 
-        /* ড্রপডাউন/মেনু বাটন স্টাইল */
+        /* মেনু বাটন স্টাইল */
         .menu-btn {
             width: 100%;
             background: #f8f9fa;
@@ -265,38 +261,39 @@
             font-size: 16px;
         }
 
-        /* ফুল-স্ক্রিন সাব-পেজ লেআউট অ্যানিমেশন */
+        /* ==================== ফিক্সড ফুল-স্ক্রিন সাব-পেজ লেআউট ==================== */
         .sub-page-overlay {
-            position: absolute;
+            position: fixed; /* মডালের বাইরে পুরো উইন্ডো জুড়ে লক করার জন্য fixed */
             top: 0;
             left: 100%; 
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            background: #f3f4f6; /* পুরো পেজের ব্যাকগ্রাউন্ড ম্যাচিং */
+            z-index: 200; /* মডালের (100) এর চেয়ে বেশি যাতে সম্পূর্ণ উপরে চলে আসে */
             display: flex;
             flex-direction: column;
-            transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .sub-page-overlay.active {
-            left: 0; 
+            left: 0; /* ফুল স্ক্রিন কাভার করবে */
         }
 
         .sub-page-header {
             background-color: #0d1b2a;
             color: white;
-            padding: 15px 20px;
+            padding: 18px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
 
         .back-btn {
             background: none;
             border: none;
             color: white;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -310,13 +307,16 @@
             padding: 20px;
             overflow-y: auto;
             flex-grow: 1;
+            width: 100%;
+            max-width: 600px; /* ডেক্সটপ বা বড় স্ক্রিনেও যাতে সুন্দর টেক্সট রিডিউস দেখায় */
+            margin: 0 auto;
         }
 
         /* ডিজিটাল রঙিন নিয়ন গ্লো ল্যাঙ্গুয়েজ বাটন */
         .news-lang-container {
             display: flex;
             justify-content: flex-end;
-            padding: 0 0 12px 0;
+            padding: 0 0 15px 0;
         }
 
         .news-lang-btn {
@@ -353,15 +353,15 @@
         /* কলাপসিবল নিউজ কার্ড ডিজাইন */
         .news-item {
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            margin-bottom: 12px;
+            border-radius: 14px;
+            margin-bottom: 15px;
             overflow: hidden;
             background: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
         .news-toggle-header {
-            padding: 15px;
+            padding: 18px 15px;
             cursor: pointer;
             background: #ffffff;
             transition: background 0.2s ease;
@@ -374,14 +374,14 @@
         .news-toggle-header:hover { background: #f8f9fa; }
 
         .news-title-text {
-            font-size: 14px;
+            font-size: 15px;
             color: #0d1b2a;
             font-weight: 700;
-            line-height: 1.4;
+            line-height: 1.45;
         }
 
         .news-toggle-icon {
-            font-size: 12px;
+            font-size: 13px;
             color: #718096;
             transition: transform 0.3s ease;
         }
@@ -391,48 +391,52 @@
             overflow: hidden;
             transition: max-height 0.4s ease-out;
             padding: 0 15px;
-            background: #fafafa;
+            background: #ffffff;
         }
 
-        .news-item.open .news-collapse-body { padding-bottom: 15px; }
+        .news-item.open .news-collapse-body { padding-bottom: 18px; border-top: 1px solid #f1f5f9; padding-top: 10px; }
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
         
         .news-img {
             width: 100%;
-            max-height: 220px;
+            max-height: 250px;
             object-fit: cover;
-            border-radius: 10px;
-            margin: 10px 0;
+            border-radius: 12px;
+            margin: 12px 0;
             display: block;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         /* টেবিল স্টাইল */
         .table-responsive {
             padding: 5px 0;
             overflow-x: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
         }
 
         .academic-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 12px;
             text-align: left;
             min-width: 380px; 
-            border: 2px solid #e2e8f0;
         }
 
         .academic-table th {
-            background-color: #f7fafc;
+            background-color: #f8fafc;
             color: #4a5568;
-            padding: 12px 10px;
-            font-weight: 600;
-            border: 1px solid #e2e8f0;
+            padding: 14px 10px;
+            font-weight: 700;
+            border-bottom: 2px solid #e2e8f0;
         }
 
         .academic-table td {
-            padding: 12px 10px;
-            border: 1px solid #e2e8f0;
+            padding: 14px 10px;
+            border-bottom: 1px solid #f1f5f9;
             color: #2d3748;
             line-height: 1.4;
         }
@@ -453,11 +457,12 @@
             justify-content: space-between;
             background: #0d1b2a;
             color: white;
-            padding: 14px 15px;
-            border-radius: 12px;
+            padding: 16px 15px;
+            border-radius: 14px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(13, 27, 42, 0.15);
             transition: all 0.3s ease;
         }
 
@@ -476,14 +481,14 @@
 
         .cert-btn-left i {
             color: #c5a880;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .loading {
             text-align: center;
             color: #718096;
             font-size: 13px;
-            padding: 15px 0;
+            padding: 20px 0;
         }
     </style>
 </head>
@@ -580,87 +585,87 @@
                     </button>
                 </div>
 
-                <div class="sub-page-overlay" id="academicSubPage">
-                    <div class="sub-page-header">
-                        <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
-                        <div style="font-size: 16px; font-weight: 700;">Academic Background</div>
-                    </div>
-                    <div class="sub-page-body">
-                        <div class="table-responsive">
-                            <table class="academic-table">
-                                <thead>
-                                    <tr>
-                                        <th>Degree / Group</th>
-                                        <th>Year</th>
-                                        <th>Institution</th>
-                                        <th>Board / Uni</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>BSS in Economics</strong></td>
-                                        <td>Ongoing</td>
-                                        <td>Govt. Gopalganj College</td>
-                                        <td><span class="badge-NU">National University</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>HSC (Humanities)</strong></td>
-                                        <td>2022</td>
-                                        <td>Haji Lalmia City College</td>
-                                        <td><span class="badge-board">Dhaka Board</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>SSC (Science)</strong></td>
-                                        <td>2020</td>
-                                        <td>G B D High School</td>
-                                        <td><span class="badge-board">Jessore Board</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="sub-page-overlay" id="skillsSubPage">
-                    <div class="sub-page-header">
-                        <button class="back-btn" onclick="closeSubPage('skillsSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
-                        <div style="font-size: 16px; font-weight: 700;">Skills & Certificates</div>
-                    </div>
-                    <div class="sub-page-body">
-                        <div class="cert-btn-container">
-                            <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
-                                <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>Basics of Artificial Intelligence</div><i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
-                                <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>Data Entry</div><i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-btn" target="_blank">
-                                <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>Presentation & Public Speaking</div><i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-btn" target="_blank">
-                                <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>CV Writing & Interview</div><i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    <div class="sub-page-overlay" id="academicSubPage">
+        <div class="sub-page-header">
+            <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
+            <div style="font-size: 16px; font-weight: 700;">Academic Background</div>
+        </div>
+        <div class="sub-page-body">
+            <div class="table-responsive">
+                <table class="academic-table">
+                    <thead>
+                        <tr>
+                            <th>Degree / Group</th>
+                            <th>Year</th>
+                            <th>Institution</th>
+                            <th>Board / Uni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>BSS in Economics</strong></td>
+                            <td>Ongoing</td>
+                            <td>Govt. Gopalganj College</td>
+                            <td><span class="badge-NU">National University</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>HSC (Humanities)</strong></td>
+                            <td>2022</td>
+                            <td>Haji Lalmia City College</td>
+                            <td><span class="badge-board">Dhaka Board</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SSC (Science)</strong></td>
+                            <td>2020</td>
+                            <td>G B D High School</td>
+                            <td><span class="badge-board">Jessore Board</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-                <div class="sub-page-overlay" id="researchSubPage">
-                    <div class="sub-page-header">
-                        <button class="back-btn" onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
-                        <div style="font-size: 16px; font-weight: 700;">Economic Research Portal</div>
-                    </div>
-                    <div class="sub-page-body">
-                        <div class="news-lang-container">
-                            <button class="news-lang-btn" onclick="toggleNewsLanguage(event)">
-                                <i class="fa-solid fa-language"></i> <span id="newsLangBtnText">Translate to বাংলা</span>
-                            </button>
-                        </div>
-                        <div id="news-list-container" class="news-list">
-                            <div class="loading">Loading articles, please wait...</div>
-                        </div>
-                    </div>
-                </div>
+    <div class="sub-page-overlay" id="skillsSubPage">
+        <div class="sub-page-header">
+            <button class="back-btn" onclick="closeSubPage('skillsSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
+            <div style="font-size: 16px; font-weight: 700;">Skills & Certificates</div>
+        </div>
+        <div class="sub-page-body">
+            <div class="cert-btn-container">
+                <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
+                    <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>Basics of Artificial Intelligence</div><i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
+                    <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>Data Entry</div><i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-btn" target="_blank">
+                    <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>Presentation & Public Speaking</div><i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-btn" target="_blank">
+                    <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>CV Writing & Interview</div><i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
+    <div class="sub-page-overlay" id="researchSubPage">
+        <div class="sub-page-header">
+            <button class="back-btn" onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
+            <div style="font-size: 16px; font-weight: 700;">Economic Research Portal</div>
+        </div>
+        <div class="sub-page-body">
+            <div class="news-lang-container">
+                <button class="news-lang-btn" onclick="toggleNewsLanguage(event)">
+                    <i class="fa-solid fa-language"></i> <span id="newsLangBtnText">Translate to বাংলা</span>
+                </button>
+            </div>
+            <div id="news-list-container" class="news-list">
+                <div class="loading">Loading articles, please wait...</div>
             </div>
         </div>
     </div>
@@ -675,7 +680,7 @@
         }
 
         function closeModal() {
-            // মডাল বন্ধ হলে সব খোলা সাব-পেজ একসাথে রিমুভ হবে
+            // মডাল ক্লোজ হলে ব্যাকগ্রাউন্ডে সব সাব-পেজও রিসেট হয়ে যাবে
             closeSubPage('academicSubPage');
             closeSubPage('skillsSubPage');
             closeSubPage('researchSubPage');
@@ -689,7 +694,7 @@
             }
         }
 
-        // ডাইনামিক সাব-পেজ ওপেন ও ক্লোজ ফাংশন
+        // ডাইনামিক ১০০% ফুল-স্ক্রিন সাব-পেজ কন্ট্রোল
         function openSubPage(pageId) {
             document.getElementById(pageId).classList.add('active');
         }
@@ -763,7 +768,6 @@
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
                 
-                // .reverse() যুক্ত রাখা আছে যাতে লেটেস্ট আপডেট সবার উপরে দেখায়
                 globalNewsData = parseCSV(csvText).slice(1).reverse(); 
                 renderNews(); 
 

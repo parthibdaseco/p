@@ -52,7 +52,7 @@
             border-bottom-right-radius: 50% 20%;
         }
 
-        /* ছোট ও গোল কুইক এক্সেস বাটন */
+        /* কুইক এক্সেস বাটন */
         .quick-access-btn {
             position: absolute;
             top: 15px;
@@ -298,11 +298,11 @@
             display: block;
         }
 
-        /* নিউজ ল্যাঙ্গুয়েজ চেঞ্জার বাটন (রঙিন ও গর্জিয়াস) */
+        /* নিউজ ল্যাঙ্গুয়েজ চেঞ্জার বাটন */
         .news-lang-container {
             display: flex;
             justify-content: flex-end;
-            padding: 10px 15px 0 0;
+            padding: 12px 15px 5px 0;
             background: #ffffff;
         }
 
@@ -310,7 +310,7 @@
             background: linear-gradient(135deg, #00c6ff, #0072ff);
             color: white;
             border: none;
-            padding: 5px 12px;
+            padding: 6px 14px;
             font-size: 11px;
             font-weight: bold;
             border-radius: 15px;
@@ -325,6 +325,22 @@
         .news-lang-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 5px 12px rgba(0, 114, 255, 0.4);
+        }
+
+        /* নিউজ কার্ড এবং দুই ইমেজের ডিজাইন */
+        .news-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px;
+        }
+        
+        .news-img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         /* টেবিল স্টাইল */
@@ -571,6 +587,7 @@
 
     <script>
         let newsLang = 'en'; // নিউজের ডিফল্ট ভাষা ইংরেজি
+        let globalNewsData = []; // শিট থেকে আসা সম্পূর্ণ ডাটা স্টোর করার অ্যারে
 
         function openModal() {
             document.getElementById('modalOverlay').classList.add('active');
@@ -578,7 +595,6 @@
         }
 
         function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('remove');
             document.getElementById('modalOverlay').classList.remove('active');
             document.body.style.overflow = ''; 
         }
@@ -596,15 +612,15 @@
             section.classList.toggle('active');
             
             if (section.classList.contains('active')) {
-                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.maxHeight = "none"; 
             } else {
                 content.style.maxHeight = null;
             }
         }
 
-        // শুধুমাত্র নিউজের ভাষা পরিবর্তনের ফাংশন
+        // বাটন টিপলে নতুন করে ডাটা ফেচ হবে না, মেমোরি থেকে সাথে সাথে চেঞ্জ হবে
         function toggleNewsLanguage(event) {
-            event.stopPropagation(); // ড্রপডাউন বন্ধ হওয়া আটকানোর জন্য
+            event.stopPropagation();
             newsLang = newsLang === 'en' ? 'bn' : 'en';
             
             const btnText = document.getElementById('newsLangBtnText');
@@ -618,12 +634,12 @@
                 container.classList.add('bn-font');
             }
             
-            fetchNews(); // নতুন ভাষা অনুযায়ী শিট থেকে ডেটা লোড হবে
+            renderNews(); // রেন্ডার ফাংশন কল করে ডাটা শো করা
         }
 
-        // CSV কমা হ্যান্ডেলিং পার্সার (টেক্সটের কমা ফিক্স করার জন্য)
+        // অ্যাডভান্সড CSV পার্সার (যা কন্টেন্টের ভেতরের কমা বা কোটেশন নষ্ট করবে না)
         function parseCSV(text) {
-            let p = '', r = [];
+            let r = [];
             let q = false; 
             let row = [''];
             for (let i = 0; i < text.length; i++) {
@@ -644,56 +660,84 @@
             return r;
         }
 
-        // আপনার গুগল শিটের আইডি ও শিটের নাম 
         const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
         const SHEET_NAME = 'Sheet1'; 
 
+        // শিট থেকে শুধু একবার ডাটা লোড করার মেইন ফাংশন
         async function fetchNews() {
-            const container = document.getElementById('news-list-container');
-            container.innerHTML = newsLang === 'en' ? '<div class="loading">Loading articles, please wait...</div>' : '<div class="loading">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>';
-
             try {
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
                 
-                const rows = parseCSV(csvText).slice(1); 
-                container.innerHTML = ''; 
-
-                rows.forEach(cols => {
-                    if (cols.length < 2 || !cols[0]) return; 
-
-                    const date = cols[0] || '';
-                    const headline = cols[1] || '';
-                    const content = cols[2] || '';
-
-                    const newsItemHTML = `
-                        <div style="border-bottom: 1px solid #e2e8f0; padding: 15px;">
-                            <div style="font-size: 11px; color: #718096; margin-bottom: 5px;">
-                                <i class="fa-regular fa-calendar-days"></i> ${date}
-                            </div>
-                            <h3 style="font-size: 14px; color: #0d1b2a; margin-bottom: 5px; font-weight: 700;">${headline}</h3>
-                            <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.5;">${content}</p>
-                        </div>
-                    `;
-                    container.innerHTML += newsItemHTML;
-                });
-
-                if (rows.length === 0) {
-                    container.innerHTML = newsLang === 'en' ? '<div class="loading">No articles found.</div>' : '<div class="loading">কোনো আর্টিকেল পাওয়া যায়নি।</div>';
-                }
-
-                // যদি ড্রপডাউন খোলা থাকে তবে হাইট অ্যাডজাস্ট করার জন্য
-                const section = document.getElementById('researchSection');
-                if (section.classList.contains('active')) {
-                    const contentDiv = section.querySelector('.dropdown-content');
-                    contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
-                }
+                globalNewsData = parseCSV(csvText).slice(1); // গ্লোবাল ভ্যারিয়েবলে ডাটা সেভ রাখা হলো
+                renderNews(); // প্রথমবার রেন্ডার করা হলো
 
             } catch (error) {
                 console.error('Error fetching news:', error);
-                container.innerHTML = newsLang === 'en' ? '<div class="loading" style="color: red;">Failed to load articles.</div>' : '<div class="loading" style="color: red;">আর্টিকেল লোড করতে সমস্যা হয়েছে।</div>';
+                document.getElementById('news-list-container').innerHTML = '<div class="loading" style="color: red;">Failed to load articles from Google Sheet.</div>';
             }
+        }
+
+        // এইচটিএমএল এ নিউজ জেনারেট করার ডাইনামিক ফাংশন
+        function renderNews() {
+            const container = document.getElementById('news-list-container');
+            container.innerHTML = ''; 
+
+            if (globalNewsData.length === 0) {
+                container.innerHTML = newsLang === 'en' ? '<div class="loading">No articles found.</div>' : '<div class="loading">কোনো আর্টিকেল পাওয়া যায়নি।</div>';
+                return;
+            }
+
+            globalNewsData.forEach(cols => {
+                // কলাম লেন্থ চেক করা (আপনার শিটে মোট ৭টি কলাম বা জিপিএ অবজেক্টস আছে)
+                if (cols.length < 3 || !cols[0]) return; 
+
+                const date = cols[0].trim() || '';
+                
+                // কলাম কন্ডিশন সেটিং (স্ক্রিনশট অনুযায়ী)
+                // newsLang 'en' হলে কলাম D এবং E দেখাবে, আর 'bn' হলে কলাম B এবং C দেখাবে
+                let headline = newsLang === 'en' ? (cols[3] || '') : (cols[1] || '');
+                let content = newsLang === 'en' ? (cols[4] || '') : (cols[2] || '');
+                
+                // ইমেজ কলাম F (ইনডেক্স ৫) এবং G (ইনডেক্স ৬)
+                const imgUrlFirst = cols[5] ? cols[5].trim() : ''; 
+                const imgUrlMiddle = cols[6] ? cols[6].trim() : '';
+
+                // ১ম ছবি জেনারেশন লজিক (হেডলাইনের নিচে)
+                let firstImgHTML = '';
+                if (imgUrlFirst && imgUrlFirst.startsWith('http')) {
+                    firstImgHTML = `<img src="${imgUrlFirst}" class="news-img" alt="Headline Image">`;
+                }
+
+                // ২য় ছবি জেনারেশন লজিক (কন্টেন্টের ঠিক মাঝখানে প্যারাগ্রাফ না ভেঙে)
+                let updatedContent = content;
+                if (imgUrlMiddle && imgUrlMiddle.startsWith('http') && content.length > 50) {
+                    const middleIdx = Math.floor(content.length / 2);
+                    const spaceIdx = content.indexOf(' ', middleIdx);
+                    
+                    if (spaceIdx !== -1) {
+                        const firstHalf = content.substring(0, spaceIdx);
+                        const secondHalf = content.substring(spaceIdx);
+                        const middleImgHTML = `<img src="${imgUrlMiddle}" class="news-img" alt="Middle Content Image">`;
+                        
+                        updatedContent = `${firstHalf} ${middleImgHTML} ${secondHalf}`;
+                    }
+                }
+
+                const newsItemHTML = `
+                    <div class="news-item">
+                        <div style="font-size: 11px; color: #718096; margin-bottom: 5px;">
+                            <i class="fa-regular fa-calendar-days"></i> ${date}
+                        </div>
+                        <h3 style="font-size: 14px; color: #0d1b2a; margin-bottom: 5px; font-weight: 700;">${headline}</h3>
+                        
+                        ${firstImgHTML} <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.6; margin-top: 5px; white-space: pre-line;">
+                            ${updatedContent} </p>
+                    </div>
+                `;
+                container.innerHTML += newsItemHTML;
+            });
         }
 
         window.onload = fetchNews;

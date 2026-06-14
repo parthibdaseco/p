@@ -8,16 +8,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Galada&family=Hind_Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* মূল স্টাইল এবং বডি */
+        /* মূল স্টাইল এবং গ্লোবাল ভেরিয়েবল (ডার্ক মোডের জন্য) */
+        :root {
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #0d1b2a;
+            --text-sub: #4a5568;
+            --input-bg: #f8f9fa;
+            --border-color: #edf2f7;
+            --modal-gradient: linear-gradient(135deg, #eef2f7 0%, #dfe9f3 100%);
+            --table-td-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0b132b;
+            --card-bg: #1c2541;
+            --text-main: #f1f5f9;
+            --text-sub: #cbd5e1;
+            --input-bg: #111827;
+            --border-color: #334155;
+            --modal-gradient: linear-gradient(135deg, #1c2541 0%, #0b132b 100%);
+            --table-td-bg: #1e293b;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
             font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: #f3f4f6;
+            background-color: var(--bg-color);
             min-height: 100vh;
             display: flex;
             flex-direction: column; 
@@ -32,9 +55,29 @@
             font-family: 'Hind Siliguri', sans-serif !important;
         }
 
+        /* ডার্ক মোড টগল বাটন */
+        .theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
         /* প্রোফাইল কার্ডের ডিজাইন */
         .profile-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 30px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             text-align: center;
@@ -53,23 +96,23 @@
             border-bottom-right-radius: 50% 20%;
         }
 
-        /* কুইক এক্সেস বাটন */
+        /* কুইক এক্সেস বাটন - টেক্সট লেবেল সহ (Feature 1) */
         .quick-access-btn {
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 50px;
-            height: 50px;
+            padding: 0 15px;
+            height: 45px;
             background: linear-gradient(135deg, #00c6ff, #0072ff, #f35588, #ff3366);
             background-size: 300% 300%;
             animation: gradientMove 6s ease infinite;
             border: 2px solid rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
+            border-radius: 25px;
             color: white;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 8px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: all 0.2s ease-in-out;
@@ -78,10 +121,9 @@
         }
 
         .quick-access-btn span {
-            font-size: 9px;
-            font-weight: 700;
-            margin-top: 1px;
-            letter-spacing: 0.3px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
         }
 
         .quick-access-btn i { font-size: 14px; }
@@ -101,7 +143,7 @@
             width: 170px;
             height: 170px;
             border-radius: 50%;
-            background: white;
+            background: var(--card-bg);
             padding: 6px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
@@ -117,12 +159,34 @@
             padding: 0 25px;
         }
 
-        h2 { font-size: 30px; color: #0d1b2a; font-weight: 700; margin-bottom: 5px; }
-        .designation { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #c5a880; font-weight: 600; margin-bottom: 15px; }
-        .divider { width: 40px; height: 2px; background-color: #0d1b2a; margin: 0 auto 20px auto; }
+        h2 { font-size: 30px; color: var(--text-main); font-weight: 700; margin-bottom: 5px; }
+        
+        /* টাইপিং ইফেক্ট স্টাইল (Feature 4) */
+        .designation-container {
+            height: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .designation { 
+            font-size: 13px; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            color: #c5a880; 
+            font-weight: 700; 
+            border-right: 2px solid #c5a880;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blink 0.75s step-end infinite;
+        }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #c5a880; } }
 
-        .contact-info { margin-bottom: 25px; background: #f8f9fa; padding: 12px; border-radius: 15px; }
-        .contact-item { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 6px 0; color: #4a5568; font-size: 14px; text-decoration: none; }
+        .divider { width: 40px; height: 2px; background-color: #0d1b2a; margin: 0 auto 20px auto; }
+        [data-theme="dark"] .divider { background-color: #c5a880; }
+
+        .contact-info { margin-bottom: 25px; background: var(--input-bg); padding: 12px; border-radius: 15px; }
+        .contact-item { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 6px 0; color: var(--text-sub); font-size: 14px; text-decoration: none; }
         .contact-item i { color: #c5a880; font-size: 15px; }
 
         .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; }
@@ -133,12 +197,13 @@
         .instagram { background-color: #E1306C; }
         .linkedin { background-color: #0077B5; }
         .threads { background-color: #ffffff; border: 1px solid #ccd1d9; }
+        [data-theme="dark"] .threads { background-color: #111827; border-color: #334155; }
 
         /* About Me সেকশন */
         .about-section { 
             text-align: left; 
             margin-bottom: 25px; 
-            background: #ffffff; 
+            background: var(--card-bg); 
             border-left: 5px solid transparent;
             border-image: linear-gradient(to bottom, #00c6ff, #0072ff, #ff3366) 1 100%;
             padding: 18px; 
@@ -172,15 +237,71 @@
             -webkit-text-fill-color: transparent;
         }
         
-        .about-text { font-size: 13.5px; color: #4a5568; line-height: 1.6; text-align: justify; }
+        .about-text { font-size: 13.5px; color: var(--text-sub); line-height: 1.6; text-align: justify; }
 
-        /* কাস্টম কপিরাইট ফুটার ডিজাইন (image_53e324.png এর সমাধান) */
+        /* কাস্টম 'Contact Me' ফর্ম স্টাইল (Feature 5) */
+        .contact-form-container {
+            text-align: left;
+            margin-bottom: 25px;
+            background: var(--input-bg);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .form-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .form-title i { color: #ff3366; }
+        .form-group { margin-bottom: 12px; }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 13px;
+            outline: none;
+            font-family: inherit;
+        }
+        .form-control:focus {
+            border-color: #0072ff;
+            box-shadow: 0 0 8px rgba(0, 114, 255, 0.2);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #0072ff, #ff3366);
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 114, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 114, 255, 0.45); }
+
+        /* কপিরাইট ফুটার */
         .card-footer-copyright {
             font-size: 11px;
             color: #a0aec0;
             font-weight: 500;
             letter-spacing: 0.5px;
-            border-top: 1px solid #edf2f7;
+            border-top: 1px solid var(--border-color);
             padding-top: 15px;
             margin-top: 5px;
             display: flex;
@@ -205,13 +326,10 @@
             backdrop-filter: blur(6px);
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
 
         .modal-content {
-            background: linear-gradient(135deg, #eef2f7 0%, #dfe9f3 100%); 
+            background: var(--modal-gradient); 
             width: 90%;
             max-width: 450px;
             max-height: 90vh;
@@ -225,9 +343,7 @@
             flex-direction: column;
         }
 
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
 
         .modal-header {
             background-color: #0d1b2a;
@@ -239,14 +355,7 @@
             justify-content: space-between;
         }
 
-        .modal-header-title {
-            font-size: 18px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .modal-header-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         .modal-header-title i { color: #c5a880; }
         .close-modal-btn { background: none; border: none; color: rgba(255, 255, 255, 0.8); font-size: 22px; cursor: pointer; }
         .close-modal-btn:hover { color: white; }
@@ -261,9 +370,9 @@
         }
 
         .modal-section { text-align: left; }
-        .modal-section-title { font-size: 13px; color: #4a5568; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .modal-section-title { font-size: 13px; color: var(--text-sub); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
 
-        /* কালারফুল মেনু বাটন এবং গ্লো ইফেক্ট */
+        /* কালারফুল মেনু বাটন */
         .menu-btn {
             width: 100%;
             color: white;
@@ -279,45 +388,25 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .btn-academic {
-            background: linear-gradient(135deg, #0072ff, #00c6ff);
-            box-shadow: 0 6px 16px rgba(0, 114, 255, 0.4);
-        }
-        .btn-academic:hover {
-            box-shadow: 0 8px 25px rgba(0, 114, 255, 0.65);
-            transform: translateX(4px) scale(1.01);
-        }
+        .btn-academic { background: linear-gradient(135deg, #0072ff, #00c6ff); box-shadow: 0 6px 16px rgba(0, 114, 255, 0.4); }
+        .btn-academic:hover { box-shadow: 0 8px 25px rgba(0, 114, 255, 0.65); transform: translateX(4px) scale(1.01); }
 
-        .btn-skills {
-            background: linear-gradient(135deg, #da4453, #89216b);
-            box-shadow: 0 6px 16px rgba(218, 68, 83, 0.4);
-        }
-        .btn-skills:hover {
-            box-shadow: 0 8px 25px rgba(218, 68, 83, 0.65);
-            transform: translateX(4px) scale(1.01);
-        }
+        .btn-skills { background: linear-gradient(135deg, #da4453, #89216b); box-shadow: 0 6px 16px rgba(218, 68, 83, 0.4); }
+        .btn-skills:hover { box-shadow: 0 8px 25px rgba(218, 68, 83, 0.65); transform: translateX(4px) scale(1.01); }
 
-        .btn-research {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-            box-shadow: 0 6px 16px rgba(17, 153, 142, 0.4);
-        }
-        .btn-research:hover {
-            box-shadow: 0 8px 25px rgba(17, 153, 142, 0.65);
-            transform: translateX(4px) scale(1.01);
-        }
+        .btn-research { background: linear-gradient(135deg, #11998e, #38ef7d); box-shadow: 0 6px 16px rgba(17, 153, 142, 0.4); }
+        .btn-research:hover { box-shadow: 0 8px 25px rgba(17, 153, 142, 0.65); transform: translateX(4px) scale(1.01); }
 
         .menu-btn-left { display: flex; align-items: center; gap: 10px; }
         .menu-btn-left i { color: #ffffff; font-size: 16px; }
         .menu-btn .fa-arrow-right { color: #ffffff !important; font-size: 13px; }
 
-        /* প্রতিটি সাব-পেজের ব্যাকগ্রাউন্ড */
+        /* সাব-পেজের ওভারলে ব্যাকগ্রাউন্ড */
         .sub-page-overlay {
             position: fixed;
-            top: 0;
-            left: 100%; 
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, #eef2f7 0%, #dfe9f3 100%); 
+            top: 0; left: 100%; 
+            width: 100vw; height: 100vh;
+            background: var(--modal-gradient); 
             z-index: 10000;
             display: flex;
             flex-direction: column;
@@ -325,36 +414,9 @@
         }
 
         .sub-page-overlay.active { left: 0; }
-
-        .sub-page-header {
-            background-color: #0d1b2a;
-            color: white;
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
-        }
-
-        .back-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sub-page-body {
-            padding: 25px 20px;
-            overflow-y: auto;
-            flex-grow: 1;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .sub-page-header { background-color: #0d1b2a; color: white; padding: 18px 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 3px 12px rgba(0,0,0,0.2); }
+        .back-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .sub-page-body { padding: 25px 20px; overflow-y: auto; flex-grow: 1; width: 100%; max-width: 600px; margin: 0 auto; }
 
         /* ল্যাঙ্গুয়েজ বাটন */
         .news-lang-container { display: flex; justify-content: flex-end; padding: 0 0 15px 0; }
@@ -379,98 +441,53 @@
         }
         @keyframes lightShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* টাইটেল অ্যাকসেন্ট শেপ */
-        .news-title-accent {
-            display: block;
-            height: 5px;
-            width: 50px;
-            border-radius: 10px;
-            margin-top: 8px;
-            margin-bottom: 2px;
-        }
+        .news-title-accent { display: block; height: 5px; width: 50px; border-radius: 10px; margin-top: 8px; margin-bottom: 2px; }
 
-        /* নিউজের আর্টিকেলের সাদা কার্ড */
+        /* নিউজ আর্টিকেল কার্ড */
         .news-item {
-            border: 1px solid rgba(0, 114, 255, 0.1);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             margin-bottom: 18px;
             overflow: hidden;
-            background: #ffffff;
+            background: var(--card-bg);
             box-shadow: 0 6px 18px rgba(13, 27, 42, 0.06);
             transition: transform 0.3s ease;
         }
-        .news-item:hover {
-            transform: translateY(-2px);
-        }
-
-        .news-toggle-header {
-            padding: 20px 18px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .news-item:hover { transform: translateY(-2px); }
+        .news-toggle-header { padding: 20px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
         .news-title-text { 
-            font-size: 16px; 
-            font-weight: 700; 
-            line-height: 1.45;
+            font-size: 16px; font-weight: 700; line-height: 1.45;
             background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        #news-list-container.bn-font .news-title-text {
-            font-family: 'Galada', cursive !important;
-            font-size: 20px; 
-        }
-
+        #news-list-container.bn-font .news-title-text { font-family: 'Galada', cursive !important; font-size: 20px; }
         .news-toggle-icon { font-size: 13px; color: #718096; transition: transform 0.3s ease; }
         .news-collapse-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 18px; }
-        .news-item.open .news-collapse-body { padding-bottom: 20px; border-top: 1px solid #f1f5f9; padding-top: 12px; }
+        .news-item.open .news-collapse-body { padding-bottom: 20px; border-top: 1px solid var(--border-color); padding-top: 12px; }
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
         .news-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 12px 0; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
-        /* টেবিল রেসপনসিভ কন্টেইনার */
+        /* টেবিল ডিজাইন */
         .table-responsive { padding: 5px 0; overflow-x: auto; }
-        .academic-table-container {
-            background: white;
-            padding: 18px;
-            border-radius: 20px;
-            box-shadow: 0 12px 32px rgba(13, 27, 42, 0.08);
-            border: 1px solid rgba(13, 27, 42, 0.05);
-        }
-
+        .academic-table-container { background: var(--card-bg); padding: 18px; border-radius: 20px; box-shadow: 0 12px 32px rgba(13, 27, 42, 0.08); border: 1px solid var(--border-color); }
         .academic-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; min-width: 420px; }
         .academic-table th { background-color: #0d1b2a; color: #ffffff; padding: 15px 12px; font-weight: 700; border: 2px solid #1e2d3d; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
-        .academic-table td { padding: 15px 12px; border: 2px solid #0d1b2a; color: #2d3748; background: #ffffff; font-weight: 600; }
-        .academic-table tr:hover td { background-color: #f8fafc; }
-
+        .academic-table td { padding: 15px 12px; border: 2px solid #0d1b2a; color: var(--text-main); background: var(--table-td-bg); font-weight: 600; }
+        [data-theme="dark"] .academic-table td { border-color: #334155; }
+        .academic-table tr:hover td { background-color: var(--input-bg); }
         .badge-NU { color: #00a8ff; font-weight: 700; }
         .badge-board { color: #ff3366; font-weight: 700; }
 
         /* সার্টিফিকেট লিঙ্ক বাটন */
         .cert-btn-container { display: flex; flex-direction: column; gap: 14px; }
         .cert-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, #1f4068, #162447);
-            color: white;
-            padding: 18px 16px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 6px 18px rgba(22, 36, 71, 0.25);
-            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: space-between;
+            background: linear-gradient(135deg, #1f4068, #162447); color: white;
+            padding: 18px 16px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 14px;
+            box-shadow: 0 6px 18px rgba(22, 36, 71, 0.25); transition: all 0.3s ease;
         }
-        .cert-btn:hover { 
-            background: linear-gradient(135deg, #e43f5a, #162447); 
-            box-shadow: 0 8px 25px rgba(228, 63, 90, 0.45);
-            transform: translateX(4px); 
-        }
+        .cert-btn:hover { background: linear-gradient(135deg, #e43f5a, #162447); box-shadow: 0 8px 25px rgba(228, 63, 90, 0.45); transform: translateX(4px); }
         .cert-btn-left { display: flex; align-items: center; gap: 10px; }
         .cert-btn-left i { color: #ffbc00; font-size: 18px; }
         .loading { text-align: center; color: #718096; font-size: 13px; padding: 20px 0; }
@@ -478,10 +495,16 @@
 </head>
 <body>
 
+    <!-- ডার্ক মোড টগল বাটন (Feature 6) -->
+    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+
     <div class="profile-card">
-        <button class="quick-access-btn" onclick="openModal()" title="Quick Access Menu">
+        <!-- এক্সপ্লোর মেনু বাটন - টেক্সট লেবেল সহ (Feature 1) -->
+        <button class="quick-access-btn" onclick="openModal()" title="Explore Menu">
             <i class="fa-solid fa-compass"></i>
-            <span>Q.A.</span>
+            <span>EXPLORE MENU</span>
         </button>
 
         <div class="card-header"></div>
@@ -492,7 +515,12 @@
         
         <div class="card-body">
             <h2>Parthib Das</h2>
-            <div class="designation">Data Entry Expert</div>
+            
+            <!-- টাইপিং ইফেক্ট কন্টেইনার (Feature 4) -->
+            <div class="designation-container">
+                <div class="designation" id="typewriter"></div>
+            </div>
+            
             <div class="divider"></div>
             
             <div class="contact-info">
@@ -521,7 +549,24 @@
                 </p>
             </div>
 
-            <!-- কাস্টম কপিরাইট ফুটার (image_53e324.png এর রিকোয়েস্ট অনুযায়ী) -->
+            <!-- ইন্টারেক্টিভ কন্টাক্ট ফর্ম (Feature 5) -->
+            <div class="contact-form-container">
+                <div class="form-title"><i class="fa-solid fa-paper-plane"></i> Send Me a Message</div>
+                <form action="https://formspree.io/f/xyzkvypb" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" rows="3" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+                </form>
+            </div>
+
+            <!-- কপিরাইট ফুটার -->
             <div class="card-footer-copyright">
                 <i class="fa-regular fa-copyright"></i> 2026 Parthib Das. All Rights Reserved.
             </div>
@@ -663,6 +708,30 @@
             'linear-gradient(90deg, #11ffbd, #abff99)',
             'linear-gradient(90deg, #ff9966, #ff5e62)'
         ];
+
+        // টাইপিং ইফেক্ট স্ক্রিপ্ট (Feature 4)
+        const text = "I am a Data Entry Expert.";
+        let textIndex = 0;
+        function typeWriter() {
+            if (textIndex < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(textIndex);
+                textIndex++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // ডার্ক মোড টগল স্ক্রিপ্ট (Feature 6)
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const icon = document.getElementById('themeIcon');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                icon.className = 'fa-solid fa-moon';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                icon.className = 'fa-solid fa-sun';
+            }
+        }
 
         function openModal() {
             document.getElementById('modalOverlay').classList.add('active');
@@ -831,7 +900,7 @@
                         </div>
                         <div class="news-collapse-body">
                             ${firstImgHTML}
-                            <div style="font-size: 14px; color: #2d3748; line-height: 1.6; text-align: justify; white-space: pre-line;">
+                            <div style="font-size: 14px; color: var(--text-main); line-height: 1.6; text-align: justify; white-space: pre-line;">
                                 ${updatedContent}
                             </div>
                         </div>
@@ -842,7 +911,10 @@
         }
 
         // App Initialization
-        window.addEventListener('DOMContentLoaded', fetchNews);
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchNews();
+            setTimeout(typeWriter, 500); // লোড হওয়ার পর টাইপরাইটার শুরু হবে
+        });
     </script>
 </body>
 </html>

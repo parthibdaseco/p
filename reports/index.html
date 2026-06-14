@@ -43,13 +43,11 @@
             const img1 = row.c[5]?.v || ''; 
             const img2 = row.c[6]?.v || ''; 
 
-            const midpoint = Math.floor(body.length / 2);
-            const part1 = body.substring(0, midpoint);
-            const part2 = body.substring(midpoint);
-
             const item = document.createElement('div');
             item.className = 'news-item';
             item.style.backgroundColor = colors[i % colors.length];
+            
+            // ছবি ১ উপরে, তারপর পুরো প্যারাগ্রাফ (body), তারপর ছবি ২ শেষে
             item.innerHTML = `
                 <div class="news-header" onclick="toggle(this)">
                     <small style="color:#c5a880">${date}</small>
@@ -58,9 +56,8 @@
                 <div class="news-content">
                     <div class="inner">
                         ${img1 ? `<img src="${img1}">` : ''}
-                        <p>${part1}</p>
+                        <p>${body}</p>
                         ${img2 ? `<img src="${img2}">` : ''}
-                        <p>${part2}</p>
                     </div>
                 </div>
             `;

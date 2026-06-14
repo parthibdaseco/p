@@ -30,124 +30,865 @@
             --table-td-bg: #1e293b;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; gap: 30px; }
-        .bn-font { font-family: 'Hind Siliguri', sans-serif !important; }
-        .theme-toggle-btn { position: absolute; top: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; background: var(--card-bg); border: 2px solid var(--border-color); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 999; }
-        .profile-card { background: var(--card-bg); border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 430px; overflow: hidden; padding-bottom: 20px; position: relative; }
-        .card-header { background-color: #0d1b2a; height: 160px; position: relative; border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%; }
-        .quick-access-btn { position: absolute; top: 20px; left: 20px; padding: 0 15px; height: 45px; background: linear-gradient(135deg, #00c6ff, #0072ff, #f35588, #ff3366); border-radius: 25px; color: white; display: flex; align-items: center; gap: 8px; cursor: pointer; border: none; }
-        .img-container { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 170px; height: 170px; border-radius: 50%; background: var(--card-bg); padding: 6px; }
-        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .card-body { margin-top: 65px; padding: 0 25px; }
-        h2 { font-size: 30px; color: var(--text-main); margin-bottom: 5px; }
-        .designation { font-size: 13px; text-transform: uppercase; color: #c5a880; font-weight: 700; margin-bottom: 15px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            gap: 30px;
+            overflow-x: hidden;
+        }
+
+        .bn-font {
+            font-family: 'Hind Siliguri', sans-serif !important;
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 430px;
+            overflow: hidden;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .card-header {
+            background-color: #0d1b2a;
+            height: 160px;
+            position: relative;
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+        }
+
+        .quick-access-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 0 15px;
+            height: 45px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff, #f35588, #ff3366);
+            background-size: 300% 300%;
+            animation: gradientMove 6s ease infinite;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.2s ease-in-out;
+            z-index: 99;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .quick-access-btn span {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+        }
+
+        .quick-access-btn i { font-size: 14px; }
+        .quick-access-btn:active { transform: scale(0.92); opacity: 0.9; }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .img-container {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            padding: 6px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .profile-img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            margin-top: 65px;
+            padding: 0 25px;
+        }
+
+        h2 { font-size: 30px; color: var(--text-main); font-weight: 700; margin-bottom: 5px; }
+        
+        .designation-container {
+            height: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .designation { 
+            font-size: 13px; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            color: #c5a880; 
+            font-weight: 700; 
+            border-right: 2px solid #c5a880;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
         .divider { width: 40px; height: 2px; background-color: #0d1b2a; margin: 0 auto 20px auto; }
-        .contact-info { margin-bottom: 25px; background: var(--input-bg); padding: 12px; border-radius: 15px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        [data-theme="dark"] .divider { background-color: #c5a880; }
+
+        .contact-info { margin-bottom: 25px; background: var(--input-bg); padding: 12px; border-radius: 15px; }
+        .contact-item { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 6px 0; color: var(--text-sub); font-size: 14px; text-decoration: none; }
+        .contact-item i { color: #c5a880; font-size: 15px; }
+
         .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; }
-        .social-btn { height: 40px; border-radius: 10px; color: white; display: flex; align-items: center; justify-content: center; text-decoration: none; }
-        .about-section { text-align: left; margin-bottom: 25px; padding: 18px; border-radius: 15px; border-left: 5px solid #0072ff; background: var(--input-bg); }
-        .contact-form-container { text-align: left; background: var(--input-bg); padding: 20px; border-radius: 20px; }
-        .form-control { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); }
-        .submit-btn { width: 100%; padding: 12px; background: linear-gradient(135deg, #0072ff, #ff3366); color: white; border: none; border-radius: 10px; cursor: pointer; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(5px); }
-        .modal-overlay.active { display: flex; }
-        .modal-content { background: var(--card-bg); width: 90%; max-width: 400px; padding: 20px; border-radius: 25px; }
-        .menu-btn { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 10px; border: none; color: white; cursor: pointer; display: flex; justify-content: space-between; }
-        .sub-page-overlay { position: fixed; top: 0; left: 100%; width: 100%; height: 100%; background: var(--bg-color); z-index: 1001; transition: left 0.3s; padding: 20px; overflow-y: auto; }
+        .social-btn { display: flex; align-items: center; justify-content: center; height: 40px; border-radius: 10px; color: white; text-decoration: none; font-size: 18px; transition: all 0.3s ease; }
+        .social-btn:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+
+        .facebook { background-color: #1877F2; }
+        .instagram { background-color: #E1306C; }
+        .linkedin { background-color: #0077B5; }
+        .threads { background-color: #ffffff; border: 1px solid #ccd1d9; }
+        [data-theme="dark"] .threads { background-color: #111827; border-color: #334155; }
+
+        .about-section { 
+            text-align: left; 
+            margin-bottom: 25px; 
+            background: var(--card-bg); 
+            border-left: 5px solid transparent;
+            border-image: linear-gradient(to bottom, #00c6ff, #0072ff, #ff3366) 1 100%;
+            padding: 18px; 
+            border-radius: 4px 15px 15px 4px;
+            box-shadow: 0 4px 20px rgba(0, 114, 255, 0.12), 0 4px 20px rgba(255, 51, 102, 0.08);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .about-section:hover {
+            box-shadow: 0 6px 25px rgba(0, 114, 255, 0.25), 0 6px 25px rgba(255, 51, 102, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .section-title { 
+            font-size: 16px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            background: linear-gradient(135deg, #0072ff, #ff3366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title i { 
+            background: linear-gradient(135deg, #0072ff, #ff3366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .about-text { font-size: 13.5px; color: var(--text-sub); line-height: 1.6; text-align: justify; }
+
+        .contact-form-container {
+            text-align: left;
+            margin-bottom: 25px;
+            background: var(--input-bg);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .form-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .form-title i { color: #ff3366; }
+        .form-group { margin-bottom: 12px; }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 13px;
+            outline: none;
+            font-family: inherit;
+        }
+        .form-control:focus {
+            border-color: #0072ff;
+            box-shadow: 0 0 8px rgba(0, 114, 255, 0.2);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #0072ff, #ff3366);
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 114, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 114, 255, 0.45); }
+        .submit-btn:disabled { background: #a0aec0; cursor: not-allowed; box-shadow: none; }
+
+        /* সাকসেস মেসেজ স্টাইল */
+        .form-message {
+            display: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .form-message.success { display: block; background: #e6fffa; color: #234e52; border: 1px solid #b2f5ea; }
+        .form-message.error { display: block; background: #fff5f5; color: #742a2a; border: 1px solid #fed7d7; }
+
+        .card-footer-copyright {
+            font-size: 11px;
+            color: #a0aec0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(13, 27, 42, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            background: var(--modal-gradient); 
+            width: 90%;
+            max-width: 450px;
+            max-height: 90vh;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            position: relative;
+            transform: scale(0.8);
+            transition: all 0.3s ease-in-out;
+            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .modal-header {
+            background-color: #0d1b2a;
+            color: white;
+            padding: 20px;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-header-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .modal-header-title i { color: #c5a880; }
+        .close-modal-btn { background: none; border: none; color: rgba(255, 255, 255, 0.8); font-size: 22px; cursor: pointer; }
+        .close-modal-btn:hover { color: white; }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .modal-section { text-align: left; }
+        .modal-section-title { font-size: 13px; color: var(--text-sub); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
+        .menu-btn {
+            width: 100%;
+            color: white;
+            padding: 16px 15px;
+            border-radius: 14px;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-academic { background: linear-gradient(135deg, #0072ff, #00c6ff); box-shadow: 0 6px 16px rgba(0, 114, 255, 0.4); }
+        .btn-academic:hover { box-shadow: 0 8px 25px rgba(0, 114, 255, 0.65); transform: translateX(4px) scale(1.01); }
+
+        .btn-skills { background: linear-gradient(135deg, #da4453, #89216b); box-shadow: 0 6px 16px rgba(218, 68, 83, 0.4); }
+        .btn-skills:hover { box-shadow: 0 8px 25px rgba(218, 68, 83, 0.65); transform: translateX(4px) scale(1.01); }
+
+        .btn-research { background: linear-gradient(135deg, #11998e, #38ef7d); box-shadow: 0 6px 16px rgba(17, 153, 142, 0.4); }
+        .btn-research:hover { box-shadow: 0 8px 25px rgba(17, 153, 142, 0.65); transform: translateX(4px) scale(1.01); }
+
+        .menu-btn-left { display: flex; align-items: center; gap: 10px; }
+        .menu-btn-left i { color: #ffffff; font-size: 16px; }
+        .menu-btn .fa-arrow-right { color: #ffffff !important; font-size: 13px; }
+
+        .sub-page-overlay {
+            position: fixed;
+            top: 0; left: 100%; 
+            width: 100vw; height: 100vh;
+            background: var(--modal-gradient); 
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .sub-page-overlay.active { left: 0; }
-        .news-item { background: var(--card-bg); border: 1px solid var(--border-color); padding: 15px; margin-bottom: 15px; border-radius: 15px; cursor: pointer; }
-        .news-collapse-body { display: none; padding-top: 10px; }
-        .news-item.open .news-collapse-body { display: block; }
+        .sub-page-header { background-color: #0d1b2a; color: white; padding: 18px 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 3px 12px rgba(0,0,0,0.2); }
+        .back-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .sub-page-body { padding: 25px 20px; overflow-y: auto; flex-grow: 1; width: 100%; max-width: 600px; margin: 0 auto; }
+
+        .news-lang-container { display: flex; justify-content: flex-end; padding: 0 0 15px 0; }
+        .news-lang-btn {
+            background: linear-gradient(135deg, #00f0ff, #0072ff, #ff007f);
+            background-size: 200% auto;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+            transition: all 0.3s ease;
+            animation: lightShine 4s linear infinite;
+        }
+        @keyframes lightShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .news-title-accent { display: block; height: 5px; width: 50px; border-radius: 10px; margin-top: 8px; margin-bottom: 2px; }
+
+        .news-item {
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            background: var(--card-bg);
+            box-shadow: 0 6px 18px rgba(13, 27, 42, 0.06);
+            transition: transform 0.3s ease;
+        }
+        .news-item:hover { transform: translateY(-2px); }
+        .news-toggle-header { padding: 20px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        
+        .news-title-text { 
+            font-size: 16px; font-weight: 700; line-height: 1.45;
+        }
+
+        #news-list-container.bn-font .news-title-text { font-family: 'Galada', cursive !important; font-size: 20px; }
+        .news-toggle-icon { font-size: 13px; color: #718096; transition: transform 0.3s ease; }
+        .news-collapse-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 18px; }
+        .news-item.open .news-collapse-body { padding-bottom: 20px; border-top: 1px solid var(--border-color); padding-top: 12px; }
+        .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
+
+        .table-responsive { padding: 5px 0; overflow-x: auto; }
+        .academic-table-container { background: var(--card-bg); padding: 18px; border-radius: 20px; box-shadow: 0 12px 32px rgba(13, 27, 42, 0.08); border: 1px solid var(--border-color); }
+        .academic-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; min-width: 420px; }
+        .academic-table th { background-color: #0d1b2a; color: #ffffff; padding: 15px 12px; font-weight: 700; border: 2px solid #1e2d3d; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+        .academic-table td { padding: 15px 12px; border: 2px solid #0d1b2a; color: var(--text-main); background: var(--table-td-bg); font-weight: 600; }
+        [data-theme="dark"] .academic-table td { border-color: #334155; }
+        .academic-table tr:hover td { background-color: var(--input-bg); }
+        .badge-NU { color: #00a8ff; font-weight: 700; }
+        .badge-board { color: #ff3366; font-weight: 700; }
+
+        .cert-btn-container { display: flex; flex-direction: column; gap: 14px; }
+        .cert-btn {
+            display: flex; align-items: center; justify-content: space-between;
+            background: linear-gradient(135deg, #1f4068, #162447); color: white;
+            padding: 18px 16px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 14px;
+            box-shadow: 0 6px 18px rgba(22, 36, 71, 0.25); transition: all 0.3s ease;
+        }
+        .cert-btn:hover { background: linear-gradient(135deg, #e43f5a, #162447); box-shadow: 0 8px 25px rgba(228, 63, 90, 0.45); transform: translateX(4px); }
+        .cert-btn-left { display: flex; align-items: center; gap: 10px; }
+        .cert-btn-left i { color: #ffbc00; font-size: 18px; }
+        .loading { text-align: center; color: #718096; font-size: 13px; padding: 20px 0; }
     </style>
 </head>
 <body>
 
-    <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
 
     <div class="profile-card">
-        <button class="quick-access-btn" onclick="openModal()"><i class="fa-solid fa-compass"></i><span>EXPLORE MENU</span></button>
+        <button class="quick-access-btn" onclick="openModal()" title="Explore Menu">
+            <i class="fa-solid fa-compass"></i>
+            <span>EXPLORE MENU</span>
+        </button>
+
         <div class="card-header"></div>
-        <div class="img-container"><img src="https://i.ibb.co.com/N6QZR81Q/IMG-20260608-WA0009.jpg" class="profile-img"></div>
+        
+        <div class="img-container">
+            <img src="https://i.ibb.co.com/N6QZR81Q/IMG-20260608-WA0009.jpg" alt="Parthib Das" class="profile-img">
+        </div>
         
         <div class="card-body">
             <h2>Parthib Das</h2>
-            <div class="designation" id="typewriter"></div>
+            
+            <div class="designation-container">
+                <div class="designation" id="typewriter"></div>
+            </div>
+            
             <div class="divider"></div>
-            <div class="contact-info">
-                <a href="mailto:parthibdas.eco@gmail.com" class="contact-item"><i class="fa-regular fa-envelope"></i></a>
-                <a href="https://wa.me/8801406903532" class="contact-item"><i class="fa-brands fa-whatsapp"></i></a>
+            
+            <div class="contact-info" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 10px;">
+                <a href="mailto:parthibdas.eco@gmail.com" class="contact-item" style="margin: 0;">
+                    <i class="fa-regular fa-envelope"></i>
+                    <span>parthibdas.eco@gmail.com</span>
+                </a>
+                <a href="https://wa.me/8801406903532" class="contact-item" style="margin: 0;" target="_blank">
+                    <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 16px;"></i>
+                    <span>+8801406903532</span>
+                </a>
             </div>
+            
             <div class="social-grid">
-                <a href="#" class="social-btn" style="background:#1877F2"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="social-btn" style="background:#E1306C"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="social-btn" style="background:#0077B5"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="social-btn" style="background:#333"><i class="fa-brands fa-threads"></i></a>
+                <a href="https://www.facebook.com/parthibdas2023" class="social-btn facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/parthib_2023" class="social-btn instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/parthib-das" class="social-btn linkedin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank"><i class="fa-brands fa-threads" style="color: black !important; font-size: 19px;"></i></a>
             </div>
+
             <div class="about-section">
-                <p>Hi, I am Parthib Das. Expert in Data Entry, Web Research, and Economic Analysis.</p>
+                <div class="section-title"><i class="fa-solid fa-user"></i> About Me</div>
+                <p class="about-text">
+                    Hi, I am Parthib Das. As an Economics background student, I am naturally driven by data, structure, and quantitative analysis. I leverage this analytical mindset as a detail-oriented Data Entry Specialist. Expert in web research, data mining, and organizing data using MS Excel and Google Sheets. My primary goal is to deliver 100% accurate, error-free work within deadlines. I look forward to contributing to research-driven global opportunities.
+                </p>
             </div>
+
             <div class="contact-form-container">
+                <div class="form-title"><i class="fa-solid fa-paper-plane"></i> Send Me a Message</div>
+                
+                <!-- ফর্ম সাবমিট জাভাস্ক্রিপ্ট হ্যান্ডেল করবে তাই অ্যাকশন এখানে ফাকা রাখা হয়েছে -->
                 <form id="g-sheet-form">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-                    <input type="email" name="email" class="form-control" placeholder="Your Email" required>
-                    <textarea name="message" class="form-control" placeholder="Message"></textarea>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" rows="3" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="submit-btn">Send Message <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+                    
+                    <!-- সাকসেস/এরর মেসেজ দেখানোর এরিয়া -->
+                    <div id="formStatus" class="form-message"></div>
                 </form>
             </div>
+
+            <div class="card-footer-copyright">
+                <i class="fa-regular fa-copyright"></i> 2026 Parthib Das. All Rights Reserved.
+            </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="modalOverlay">
+    <!-- Quick Access Menu Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
-            <button class="menu-btn" style="background:#0072ff" onclick="openSubPage('researchSubPage')">Economic Research & Articles</button>
-            <button class="submit-btn" style="background:#555" onclick="closeModal()">Close</button>
+            <div class="modal-header">
+                <div class="modal-header-title">
+                    <i class="fa-solid fa-compass"></i>
+                    <span>Quick Access Menu</span>
+                </div>
+                <button class="close-modal-btn" onclick="closeModal()">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="modal-section-title">Education</div>
+                    <button class="menu-btn btn-academic" onclick="openSubPage('academicSubPage', 'academic')">
+                        <div class="menu-btn-left"><i class="fa-solid fa-graduation-cap"></i><span>Academic Background</span></div>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Qualifications & Certificates</div>
+                    <button class="menu-btn btn-skills" onclick="openSubPage('skillsSubPage', 'skills')">
+                        <div class="menu-btn-left"><i class="fa-solid fa-laptop-code"></i><span>Skills & Certificates</span></div>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Research</div>
+                    <button class="menu-btn btn-research" onclick="openSubPage('researchSubPage', 'reports')">
+                        <div class="menu-btn-left"><i class="fa-solid fa-microscope"></i><span>Economic Research & Articles</span></div>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Academic Background Sub-page -->
+    <div class="sub-page-overlay" id="academicSubPage">
+        <div class="sub-page-header">
+            <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
+            <div style="font-size: 16px; font-weight: 700;">Academic Background</div>
+        </div>
+        <div class="sub-page-body">
+            <div class="table-responsive">
+                <div class="academic-table-container">
+                    <table class="academic-table">
+                        <thead>
+                            <tr>
+                                <th>Degree / Group</th>
+                                <th>Year</th>
+                                <th>Institution</th>
+                                <th>Board / Uni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>BSS in Economics</strong></td>
+                                <td>Ongoing</td>
+                                <td>Govt. Gopalganj College</td>
+                                <td><span class="badge-NU">National University</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>HSC (Humanities)</strong></td>
+                                <td>2022</td>
+                                <td>Haji Lalmia City College</td>
+                                <td><span class="badge-board">Dhaka Board</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>SSC (Science)</strong></td>
+                                <td>2020</td>
+                                <td>G B D High School</td>
+                                <td><span class="badge-board">Jessore Board</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills & Certificates Sub-page -->
+    <div class="sub-page-overlay" id="skillsSubPage">
+        <div class="sub-page-header">
+            <button class="back-btn" onclick="closeSubPage('skillsSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
+            <div style="font-size: 16px; font-weight: 700;">Skills & Certificates</div>
+        </div>
+        <div class="sub-page-body">
+            <div class="cert-btn-container">
+                <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
+                    <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>Basics of Artificial Intelligence</div><i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
+                    <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>Data Entry</div><i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-btn" target="_blank">
+                    <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>Presentation & Public Speaking</div><i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-btn" target="_blank">
+                    <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>CV Writing & Interview</div><i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Portal Sub-page -->
     <div class="sub-page-overlay" id="researchSubPage">
-        <button onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i> Back</button>
-        <div id="news-list-container">Loading...</div>
+        <div class="sub-page-header">
+            <button class="back-btn" onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
+            <div style="font-size: 16px; font-weight: 700;">Economic Research Portal</div>
+        </div>
+        <div class="sub-page-body">
+            <div class="news-lang-container">
+                <button class="news-lang-btn" onclick="toggleNewsLanguage(event)">
+                    <i class="fa-solid fa-language"></i> <span id="newsLangBtnText">Translate to বাংলা</span>
+                </button>
+            </div>
+            <div id="news-list-container" class="news-list">
+                <div class="loading">Loading articles, please wait...</div>
+            </div>
+        </div>
     </div>
 
     <script>
-        let globalNewsData = [];
-        // টাইপরাইটার ইফেক্ট
+        let newsLang = 'en'; 
+        let globalNewsData = []; 
+
+        const shapeGradients = [
+            'linear-gradient(90deg, #ff007f, #ff758c)',
+            'linear-gradient(90deg, #00f0ff, #0072ff)',
+            'linear-gradient(90deg, #11ffbd, #abff99)',
+            'linear-gradient(90deg, #ff9966, #ff5e62)'
+        ];
+
+        // লুপ সহ টাইপরাইটার ইফেক্ট
         const text = "I am a Data Entry Expert.";
-        let i = 0;
+        let textIndex = 0;
+        let isDeleting = false;
+
         function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++;
+            const typewriterElem = document.getElementById("typewriter");
+            if (!typewriterElem) return;
+            
+            if (!isDeleting && textIndex <= text.length) {
+                typewriterElem.innerHTML = text.substring(0, textIndex);
+                textIndex++;
                 setTimeout(typeWriter, 100);
+            } else if (isDeleting && textIndex >= 0) {
+                typewriterElem.innerHTML = text.substring(0, textIndex);
+                textIndex--;
+                setTimeout(typeWriter, 50);
+            } else if (textIndex > text.length) {
+                isDeleting = true;
+                setTimeout(typeWriter, 2000);
+            } else if (textIndex < 0) {
+                isDeleting = false;
+                textIndex = 0;
+                setTimeout(typeWriter, 500);
             }
         }
-        typeWriter();
 
-        // গুগল শিট থেকে ডেটা ফেচ
-        async function fetchNewsData() {
-            const url = "https://docs.google.com/spreadsheets/d/1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY/gviz/tq?tqx=out:json";
-            const response = await fetch(url);
-            const data = await response.text();
-            const json = JSON.parse(data.substring(47, data.length - 2));
-            globalNewsData = json.table.rows.map(row => ({
-                headlineEn: row.c[3]?.v, contentEn: row.c[4]?.v, image: row.c[5]?.v
-            }));
-            const container = document.getElementById('news-list-container');
-            container.innerHTML = globalNewsData.map(n => `
-                <div class="news-item" onclick="this.classList.toggle('open')">
-                    <strong>${n.headlineEn}</strong>
-                    <div class="news-collapse-body"><img src="${n.image}" width="100%"><p>${n.contentEn}</p></div>
-                </div>
-            `).join('');
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const icon = document.getElementById('themeIcon');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                icon.className = 'fa-solid fa-moon';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                icon.className = 'fa-solid fa-sun';
+            }
         }
-        fetchNewsData();
 
-        function toggleTheme() { document.body.setAttribute('data-theme', document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
-        function openModal() { document.getElementById('modalOverlay').classList.add('active'); }
-        function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
-        function openSubPage(id) { document.getElementById(id).classList.add('active'); }
-        function closeSubPage(id) { document.getElementById(id).classList.remove('active'); }
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            closeSubPage('academicSubPage');
+            closeSubPage('skillsSubPage');
+            closeSubPage('researchSubPage');
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = ''; 
+        }
+
+        function closeModalOnOverlay(event) {
+            if (event.target.id === 'modalOverlay') {
+                closeModal();
+            }
+        }
+
+        function openSubPage(pageId, type) {
+            document.getElementById(pageId).classList.add('active');
+            if (type === 'reports') {
+                fetchResearchArticles();
+            }
+        }
+
+        function closeSubPage(pageId) {
+            document.getElementById(pageId).classList.remove('active');
+        }
+
+        function fetchResearchArticles() {
+            globalNewsData = [
+                {
+                    title_en: "Impact of Data Entry Accuracy in Economic Analysis",
+                    title_bn: "অর্থনৈতিক বিশ্লেষণে ডাটা এন্ট্রির নির্ভুলতার প্রভাব",
+                    desc_en: "Accurate data sourcing drives precise policy-making and global research.",
+                    desc_bn: "সঠিক ডাটা সোর্সিং সুনির্দিষ্ট নীতি নির্ধারণ এবং বৈশ্বিক গবেষণাকে চালিত করে।"
+                }
+            ];
+            renderArticles();
+        }
+
+        function renderArticles() {
+            const container = document.getElementById('news-list-container');
+            if (!container) return;
+            if (globalNewsData.length === 0) {
+                container.innerHTML = '<div class="loading">No articles found.</div>';
+                return;
+            }
+
+            let html = '';
+            globalNewsData.forEach((item, index) => {
+                const title = newsLang === 'en' ? item.title_en : item.title_bn;
+                const desc = newsLang === 'en' ? item.desc_en : item.desc_bn;
+                const gradient = shapeGradients[index % shapeGradients.length];
+
+                html += `
+                    <div class="news-item" id="news-${index}">
+                        <div class="news-toggle-header" onclick="this.parentElement.classList.toggle('open')">
+                            <div>
+                                <span class="news-title-text">${title}</span>
+                                <span class="news-title-accent" style="background: ${gradient}"></span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down news-toggle-icon"></i>
+                        </div>
+                        <div class="news-collapse-body">
+                            <p class="about-text" style="padding-top:10px;">${desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function toggleNewsLanguage(event) {
+            event.stopPropagation();
+            const btnText = document.getElementById('newsLangBtnText');
+            const container = document.getElementById('news-list-container');
+
+            if (newsLang === 'en') {
+                newsLang = 'bn';
+                btnText.innerText = "Translate to English";
+                container.classList.add('bn-font');
+            } else {
+                newsLang = 'en';
+                btnText.innerText = "Translate to বাংলা";
+                container.classList.remove('bn-font');
+            }
+            renderArticles();
+        }
+
+        // গুগল শিটে ব্যাকগ্রাউন্ডে ডেটা সাবমিট করার জাভাস্ক্রিপ্ট লজিক
+        document.getElementById('g-sheet-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // পেজ রিলোড বন্ধ করা
+            
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const statusDiv = document.getElementById('formStatus');
+            
+            // বাটন ডিসেবল করা এবং লোডিং টেক্সট দেখানো
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+            
+            // ফর্ম ডেটা তৈরি
+            const formData = new FormData(form);
+            const keyValuePairs = [];
+            for (let pair of formData.entries()) {
+                keyValuePairs.push(encodeURIComponent(pair[0]) + "=" + encodeURIComponent(pair[1]));
+            }
+            const formDataString = keyValuePairs.join("&");
+            
+            // আপনার গুগল শিটের ওয়েব অ্যাপ ইউআরএল
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzBEsdLBTRtfF2S3wgb6SO4S_KpBY3U4TAyL2x0IhtTqvbXqbbP-2t53CwwdeeWr73JEg/exec';
+            
+            // ফেইচ (Fetch) এপিআই দিয়ে ব্যাকগ্রাউন্ডে ডেটা পাঠানো
+            fetch(scriptURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formDataString
+            })
+            .then(response => {
+                statusDiv.textContent = 'Message sent successfully! Check your Google Sheet.';
+                statusDiv.className = 'form-message success';
+                form.reset(); // ফর্ম ইনপুটগুলো খালি করা
+            })
+            .catch(error => {
+                statusDiv.textContent = 'Something went wrong. Please try again.';
+                statusDiv.className = 'form-message error';
+                console.error('Error!', error.message);
+            })
+            .finally(() => {
+                // বাটন আবার আগের অবস্থায় ফিরিয়ে আনা
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-arrow-right-to-bracket"></i>';
+                
+                // ৫ সেকেন্ড পর সাকসেস মেসেজটি স্ক্রিন থেকে গায়েব করে দেওয়া
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                }, 5000);
+            });
+        });
+
+        window.onload = function() {
+            typeWriter();
+        };
     </script>
 </body>
 </html>

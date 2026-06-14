@@ -308,15 +308,15 @@
         }
         @keyframes lightShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ==================== ফিক্সড টাইটেল রিবন (শুধু ব্যাকগ্রাউন্ড কালার, ওপারসিটি নাই) ==================== */
+        /* টাইটেল অ্যাকসেন্ট শেপ (১০০% সলিড কালার, লেখা স্পষ্ট পড়ার জন্য) */
         .news-title-accent {
-            display: block; /* পুরোপুরি শেপ আকারে দেখার জন্য block */
-            height: 5px; /* মার্ক করা জায়গার মতো থিকনেস */
+            display: block;
+            height: 5px;
             width: 50px;
             border-radius: 10px;
-            margin-top: 8px; /* টাইটেলের নিচে প্যাডিং */
+            margin-top: 8px;
             margin-bottom: 2px;
-            opacity: 1 !important; /* লেখা পড়ার সুবিধার্থে কোনোভাবেই স্বচ্ছ হবে না */
+            opacity: 1 !important;
         }
 
         .news-item {
@@ -344,40 +344,21 @@
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
         .news-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 12px 0; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
-        /* ==================== ফিক্সড কালারফুল শ্যাডো একাডেমিক টেবিল ডিজাইন ==================== */
+        /* টেবিল ক্যাটাগরি শ্যাডো ডিজাইন */
         .table-responsive { padding: 5px 0; overflow-x: auto; }
         .academic-table-container {
             background: white;
             padding: 15px;
             border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(13, 27, 42, 0.08); /* গর্জিয়াস সফট শ্যাডো */
+            box-shadow: 0 10px 30px rgba(13, 27, 42, 0.08);
             border: 1px solid #e2e8f0;
         }
 
         .academic-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; min-width: 380px; }
+        .academic-table th { background-color: #0d1b2a; color: #ffffff; padding: 14px 12px; font-weight: 700; border: 2px solid #1e2d3d; text-transform: uppercase; font-size: 11px; }
         
-        /* কালারফুল টেবিল হেডার */
-        .academic-table th {
-            background-color: #0d1b2a;
-            color: #ffffff;
-            padding: 14px 12px;
-            font-weight: 700;
-            border: 2px solid #1e2d3d; /* হেডার বর্ডার */
-            text-transform: uppercase;
-            font-size: 11px;
-        }
-
-        /* ==================== ফিক্সড গাড়ো রঙিন বর্ডার (মার্ক করা অনুযায়ী) ==================== */
-        .academic-table td {
-            padding: 14px 12px;
-            border: 2px solid #0d1b2a; /* পুরো টেবিলের বর্ডার হবে হেডার কালারের মতোই গাড়ো */
-            color: #2d3748;
-            background: #ffffff;
-            font-weight: 500;
-        }
-
-        /* গাড়ো বর্ডার দেওয়ার পর অল্টারনেট কালার রিমুভ (পরিচ্ছন্নতার জন্য) */
-        .academic-table tr:nth-child(even) td { background-color: #ffffff; }
+        /* একাডেমিক টেবিল গাড়ো ৩ডি বর্ডার */
+        .academic-table td { padding: 14px 12px; border: 2px solid #0d1b2a; color: #2d3748; background: #ffffff; font-weight: 500; }
         .academic-table tr:hover td { background-color: #f1f5f9; }
 
         .badge-NU { color: #00c6ff; font-weight: bold; }
@@ -464,7 +445,7 @@
             <div class="modal-body">
                 <div class="modal-section">
                     <div class="modal-section-title">Education</div>
-                    <button class="menu-btn" onclick="openSubPage('academicSubPage')">
+                    <button class="menu-btn" onclick="openSubPage('academicSubPage', 'academic')">
                         <div class="menu-btn-left"><i class="fa-solid fa-graduation-cap"></i><span>Academic Background</span></div>
                         <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
                     </button>
@@ -472,7 +453,7 @@
 
                 <div class="modal-section">
                     <div class="modal-section-title">Qualifications & Certificates</div>
-                    <button class="menu-btn" onclick="openSubPage('skillsSubPage')">
+                    <button class="menu-btn" onclick="openSubPage('skillsSubPage', 'skills')">
                         <div class="menu-btn-left"><i class="fa-solid fa-laptop-code"></i><span>Skills & Certificates</span></div>
                         <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
                     </button>
@@ -480,7 +461,7 @@
 
                 <div class="modal-section">
                     <div class="modal-section-title">Research</div>
-                    <button class="menu-btn" onclick="openSubPage('researchSubPage')">
+                    <button class="menu-btn" onclick="openSubPage('researchSubPage', 'reports')">
                         <div class="menu-btn-left"><i class="fa-solid fa-microscope"></i><span>Economic Research & Articles</span></div>
                         <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
                     </button>
@@ -602,8 +583,41 @@
             }
         }
 
-        function openSubPage(pageId) { document.getElementById(pageId).classList.add('active'); }
-        function closeSubPage(pageId) { document.getElementById(pageId).classList.remove('active'); }
+        // ==================== ফিক্সড হ্যাশ রাউটিং ইঞ্জিন ====================
+        function openSubPage(pageId, routeName) { 
+            document.getElementById(pageId).classList.add('active');
+            window.location.hash = routeName;
+        }
+
+        function closeSubPage(pageId) { 
+            document.getElementById(pageId).classList.remove('active');
+            if(window.location.hash) {
+                history.pushState(null, '', window.location.pathname);
+            }
+        }
+
+        // ব্রাউজার বা মোবাইলের ব্যাক বাটন ট্র্যাকিং লজিক
+        window.onhashchange = function() {
+            const currentHash = window.location.hash;
+            
+            document.getElementById('academicSubPage').classList.remove('active');
+            document.getElementById('skillsSubPage').classList.remove('active');
+            document.getElementById('researchSubPage').classList.remove('active');
+
+            if (currentHash === '#academic') {
+                openModal();
+                document.getElementById('academicSubPage').classList.add('active');
+            } else if (currentHash === '#skills') {
+                openModal();
+                document.getElementById('skillsSubPage').classList.add('active');
+            } else if (currentHash === '#reports') {
+                openModal();
+                document.getElementById('researchSubPage').classList.add('active');
+            } else if (!currentHash) {
+                document.getElementById('modalOverlay').classList.remove('active');
+                document.body.style.overflow = ''; 
+            }
+        };
 
         function toggleNewsLanguage(event) {
             event.stopPropagation();
@@ -661,6 +675,10 @@
                 const csvText = await response.text();
                 globalNewsData = parseCSV(csvText).slice(1).reverse(); 
                 renderNews(); 
+                
+                if(window.location.hash) {
+                    window.onhashchange();
+                }
             } catch (error) {
                 console.error('Error fetching news:', error);
                 document.getElementById('news-list-container').innerHTML = '<div class="loading" style="color: red;">Failed to load articles.</div>';

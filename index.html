@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parthib Das - Portfolio & Economic Research</title>
+    <title>Parthib Das - Portfolio & Quick Access</title>
+    <!-- ফন্ট এবং আইকন লোড করা -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind_Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <meta name="description" content="Parthib Das - Data Entry Expert & Economics Researcher. Explorer of economic insights, trends, and data analysis.">
-    <meta name="keywords" content="Parthib Das, Economics Articles, Data Entry Expert, Economic Research, Parthib Economics, Freelancer Parthib">
-    <meta name="author" content="Parthib Das">
-
     <style>
+        /* মূল স্টাইল এবং বডি */
         * {
             margin: 0;
             padding: 0;
@@ -34,6 +32,7 @@
             font-family: 'Hind Siliguri', sans-serif !important;
         }
 
+        /* প্রোফাইল কার্ডের ডিজাইন */
         .profile-card {
             background: white;
             border-radius: 30px;
@@ -54,7 +53,7 @@
             border-bottom-right-radius: 50% 20%;
         }
 
-        /* --- নতুন ছোট ও কালারফুল কুইক এক্সেস বাটন স্টাইল --- */
+        /* ছোট ও গোল কুইক এক্সেস বাটন */
         .quick-access-btn {
             position: absolute;
             top: 15px;
@@ -82,24 +81,14 @@
             box-shadow: 0 6px 20px rgba(243, 85, 136, 0.5);
         }
 
-        .quick-access-btn i {
-            font-size: 14px;
-            margin-bottom: 1px;
-        }
-
-        .quick-access-btn span {
-            font-size: 8px;
-            font-weight: bold;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-        }
+        .quick-access-btn i { font-size: 14px; margin-bottom: 1px; }
+        .quick-access-btn span { font-size: 8px; font-weight: bold; }
 
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        /* ------------------------------------------------ */
 
         .img-container {
             position: absolute;
@@ -115,8 +104,7 @@
         }
 
         .profile-img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             border-radius: 50%;
             object-fit: cover;
         }
@@ -126,184 +114,194 @@
             padding: 0 25px;
         }
 
-        h2 {
-            font-size: 30px;
-            color: #0d1b2a;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
+        h2 { font-size: 30px; color: #0d1b2a; font-weight: 700; margin-bottom: 5px; }
+        .designation { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #c5a880; font-weight: 600; margin-bottom: 15px; }
+        .divider { width: 40px; height: 2px; background-color: #0d1b2a; margin: 0 auto 20px auto; }
 
-        .designation {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #c5a880; 
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
+        .contact-info { margin-bottom: 25px; background: #f8f9fa; padding: 12px; border-radius: 15px; }
+        .contact-item { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 6px 0; color: #4a5568; font-size: 14px; text-decoration: none; }
+        .contact-item i { color: #c5a880; font-size: 15px; }
 
-        .divider {
-            width: 40px;
-            height: 2px;
-            background-color: #0d1b2a;
-            margin: 0 auto 20px auto;
-        }
-
-        .contact-info {
-            margin-bottom: 25px;
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 6px 0;
-            color: #4a5568;
-            font-size: 14px;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .contact-item:hover {
-            color: #c5a880;
-        }
-
-        .contact-item i {
-            color: #c5a880;
-            font-size: 15px;
-        }
-
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 40px;
-            border-radius: 10px;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            opacity: 0.9;
-        }
+        .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; }
+        .social-btn { display: flex; align-items: center; justify-content: center; height: 40px; border-radius: 10px; color: white; text-decoration: none; font-size: 18px; transition: all 0.3s ease; }
+        .social-btn:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
 
         .facebook { background-color: #1877F2; }
         .instagram { background-color: #E1306C; }
         .linkedin { background-color: #0077B5; }
-        
-        .threads { 
-            background-color: #ffffff !important; 
-            border: 1px solid #ccd1d9 !important;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+        .threads { background-color: #ffffff; border: 1px solid #ccd1d9; }
 
-        .about-section {
-            text-align: left;
-            margin-bottom: 20px;
-            background: #fdfdfd;
-            border-left: 4px solid #c5a880;
-            padding: 15px;
-            border-radius: 0 15px 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
+        .about-section { text-align: left; margin-bottom: 20px; background: #fdfdfd; border-left: 4px solid #c5a880; padding: 15px; border-radius: 0 15px 15px 0; }
+        .section-title { font-size: 16px; color: #0d1b2a; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .section-title i { color: #c5a880; }
+        .about-text { font-size: 13.5px; color: #555; line-height: 1.6; text-align: justify; }
 
-        .section-title {
-            font-size: 16px;
-            color: #0d1b2a;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+        /* পপ-আপ মডাল (Modal) স্টাইল */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+            backdrop-filter: blur(5px);
         }
 
-        .section-title i {
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 450px;
+            max-height: 90vh;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            transform: scale(0.8);
+            transition: all 0.3s ease-in-out;
+            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            background-color: #0d1b2a;
+            color: white;
+            padding: 20px;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-header-title {
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-header-title i {
             color: #c5a880;
         }
 
-        .about-text {
-            font-size: 13.5px;
-            color: #555;
-            line-height: 1.6;
-            text-align: justify;
+        .close-modal-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 22px;
+            cursor: pointer;
+            transition: color 0.2s;
         }
 
-        /* একাডেমিক সেকশন স্টাইল */
-        .academic-dropdown {
-            margin-bottom: 25px;
+        .close-modal-btn:hover {
+            color: white;
+        }
+
+        /* মডাল বডি (পপ-আপের ভেতরের কন্টেন্ট) */
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto; /* কন্টেন্ট বেশি হলে স্ক্রল করার জন্য */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* মডালের ভেতরের বিভিন্ন সেকশন */
+        .modal-section {
             text-align: left;
         }
 
-        .academic-toggle-btn {
+        .modal-section-title {
+            font-size: 14px;
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        /* একাডেমিক ও রিসার্চের ড্রপডাউন স্টাইল */
+        .dropdown-btn {
             width: 100%;
-            background: #0d1b2a;
-            color: white;
+            background: #f8f9fa;
+            color: #2d3748;
             padding: 14px 15px;
             border-radius: 12px;
-            border: 1px solid #0d1b2a;
-            font-weight: 700;
+            border: 1px solid #e2e8f0;
+            font-weight: 600;
             font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
-        .academic-toggle-btn:hover {
-            background: #1b2a4a;
+        .dropdown-btn:hover {
+            border-color: #0d1b2a;
+            background-color: white;
         }
 
-        .academic-toggle-btn .left-side {
+        .dropdown-btn-left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .academic-toggle-btn .left-side i {
+        .dropdown-btn-left i {
             color: #c5a880;
             font-size: 16px;
         }
 
-        .academic-toggle-btn .arrow-icon {
+        .dropdown-arrow {
             transition: transform 0.3s ease;
-            color: #c5a880;
+            color: #718096;
         }
 
-        .academic-dropdown.active .arrow-icon {
-            transform: rotate(180deg);
-        }
-
-        .academic-content {
+        /* ড্রপডাউনের ভেতরের কন্টেন্ট */
+        .dropdown-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease-out;
             background: #ffffff;
             border-radius: 0 0 12px 12px;
-        }
-
-        .academic-dropdown.active .academic-content {
-            border: 2px solid #0d1b2a; 
+            border: 1px solid #e2e8f0;
             border-top: none;
+            margin-top: -10px;
+            position: relative;
+            z-index: 1;
         }
 
+        .modal-section.active .dropdown-btn {
+            border-radius: 12px 12px 0 0;
+            border-color: #0d1b2a;
+        }
+
+        .modal-section.active .dropdown-arrow {
+            transform: rotate(180deg);
+            color: #0d1b2a;
+        }
+
+        .modal-section.active .dropdown-content {
+            display: block;
+        }
+
+        /* টেবিল রেসপন্সিভ */
         .table-responsive {
             padding: 12px;
             overflow-x: auto;
@@ -312,59 +310,42 @@
         .academic-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 11px;
             text-align: left;
             min-width: 380px; 
-            border: 2px solid #0d1b2a;
+            border: 2px solid #e2e8f0;
         }
 
         .academic-table th {
-            background: linear-gradient(135deg, #0d1b2a, #1b2a4a);
-            color: white;
-            padding: 12px 10px;
+            background-color: #f7fafc;
+            color: #4a5568;
+            padding: 10px;
             font-weight: 600;
-            border: 2px solid #0d1b2a; 
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.5px;
+            border: 1px solid #e2e8f0;
         }
 
         .academic-table td {
-            padding: 12px 10px;
-            border: 2px solid #0d1b2a; 
+            padding: 10px;
+            border: 1px solid #e2e8f0;
             color: #2d3748;
             line-height: 1.4;
-            font-weight: 500;
         }
 
-        .academic-table tr:nth-child(even) {
-            background-color: #f7fafc;
-        }
-        
         .academic-table tr:hover {
-            background-color: #edf2f7; 
+            background-color: #f8f9fa;
         }
 
-        .badge-inst-new {
-            font-size: 11px;
-            color: #c5a880; 
-            font-weight: 600;
-        }
+        .badge- NU { color: #00c6ff; font-weight: bold; }
+        .badge-board { color: #ff3366; font-weight: bold; }
 
-        /* স্কিলস ও সার্টিফিকেট সেকশন স্টাইল */
-        .certificate-section {
-            text-align: left;
-            margin-top: 10px;
-        }
-
-        .cert-buttons-container {
+        /* স্কিল ও সার্টিফিকেট বাটন ডিজাইন */
+        .cert-btn-container {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 10px;
         }
 
-        .cert-button {
+        .cert-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -374,193 +355,43 @@
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 13.5px;
+            font-size: 13px;
             transition: all 0.3s ease;
-            border: 1px solid #0d1b2a;
         }
 
-        .cert-button:hover {
-            background: white;
+        .cert-btn:hover {
+            background-color: white;
             color: #0d1b2a;
             border: 1px solid #0d1b2a;
             transform: translateX(4px);
         }
 
-        .cert-left {
+        .cert-btn-left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .cert-left i {
+        .cert-btn-left i {
             color: #c5a880;
             font-size: 16px;
         }
 
-        .cert-button .fa-arrow-right {
-            font-size: 12px;
-            opacity: 0.7;
-        }
-
-        /* রিসার্চ অ্যান্ড ইকোনমিক ইনসাইটস সেকশন স্টাইল */
-        .news-container {
-            width: 100%;
-            max-width: 430px;
-            background: white;
-            border-radius: 25px;
-            padding: 24px 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            position: relative;
-        }
-
-        .news-header-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 2px solid #f3f4f6;
-            padding-bottom: 10px;
-            margin-bottom: 18px;
-        }
-
-        .news-section-title {
-            font-size: 18px;
-            color: #0d1b2a;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .news-section-title i {
-            color: #c5a880; 
-        }
-
-        .lang-switch-btn {
-            background: #0d1b2a;
-            color: white;
-            border: 1px solid #c5a880;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .lang-switch-btn:hover {
-            background: #c5a880;
-            color: #0d1b2a;
-            border-color: #0d1b2a;
-        }
-
-        .lang-switch-btn i {
-            font-size: 13px;
-        }
-
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .news-item {
-            background: #ffffff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
-            border: 1px solid #eef0f2;
-            transition: all 0.3s ease;
-        }
-
-        .news-header-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #0d1b2a, #1b2a4a); 
-            color: white;
-            border: none;
-            padding: 16px;
-            text-align: left;
-            font-size: 14.5px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            position: relative;
-            transition: background 0.3s;
-        }
-
-        .news-header-btn:hover {
-            background: linear-gradient(135deg, #1b2a4a, #0d1b2a);
-        }
-
-        .news-date {
-            font-size: 11px;
-            color: #c5a880;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: 500;
-        }
-
-        .news-headline {
-            padding-right: 25px;
-            line-height: 1.45;
-        }
-
-        .news-header-btn::after {
-            content: '\f107';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: transform 0.3s ease;
-            color: #c5a880;
-            font-size: 16px;
-        }
-
-        .news-item.active .news-header-btn::after {
-            transform: translateY(-50%) rotate(180deg);
-        }
-
-        .news-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #fdfdfd;
-        }
-
-        .news-content-inner {
-            padding: 18px;
-            font-size: 13.5px;
-            color: #4a5568;
-            line-height: 1.65;
-            text-align: justify;
-            border-top: 1px solid #eef0f2;
-            white-space: pre-line; 
-        }
-
+        /* রিসার্চ সেকশনের লোডিং */
         .loading {
             text-align: center;
             color: #718096;
-            font-size: 14px;
+            font-size: 13px;
             padding: 15px 0;
         }
     </style>
 </head>
 <body>
 
+    <!-- মূল প্রোফাইল কার্ড -->
     <div class="profile-card">
-        <!-- কুইক এক্সেস বাটন যুক্ত করা হলো -->
-        <button class="quick-access-btn" onclick="quickAccess()" title="Quick Access">
+        <!-- কুইক এক্সেস বাটন -->
+        <button class="quick-access-btn" onclick="openModal()" title="Quick Access Menu">
             <i class="fa-solid fa-compass"></i>
             <span>Q.A.</span>
         </button>
@@ -588,18 +419,10 @@
             </div>
             
             <div class="social-grid">
-                <a href="https://www.facebook.com/parthibdas2023" class="social-btn facebook" target="_blank" title="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/parthib_2023" class="social-btn instagram" target="_blank" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/parthib-das" class="social-btn linkedin" target="_blank" title="LinkedIn">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-                <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank" title="Threads">
-                    <i class="fa-brands fa-threads" style="color: #000000 !important; font-size: 19px;"></i>
-                </a>
+                <a href="https://www.facebook.com/parthibdas2023" class="social-btn facebook" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/parthib_2023" class="social-btn instagram" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/parthib-das" class="social-btn linkedin" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank" title="Threads"><i class="fa-brands fa-threads" style="color: black !important; font-size: 19px;"></i></a>
             </div>
 
             <div class="about-section">
@@ -607,333 +430,192 @@
                     <i class="fa-solid fa-user"></i> About Me
                 </div>
                 <p class="about-text">
-                    Hi, I am Parthib Das. As an Economics background student, I am naturally driven by data, structure, and quantitative analysis. I leverage this analytical mindset as a detail-oriented Data Entry Specialist. I expert in web research, data mining, and organizing data using MS Excel and Google Sheets. My primary goal is to deliver 100% accurate, error-free work within deadlines while ensuring high data integrity. I am ready to help manage your data efficiently and look forward to contributing to research-driven global opportunities.
+                    Hi, I am Parthib Das. As an Economics background student, I am naturally driven by data, structure, and quantitative analysis. I leverage this analytical mindset as a detail-oriented Data Entry Specialist. Expert in web research, data mining, and organizing data using MS Excel and Google Sheets. My primary goal is to deliver 100% accurate, error-free work within deadlines. I look forward to contributing to research-driven global opportunities.
                 </p>
             </div>
-            
-            <div class="academic-dropdown" id="academicSection">
-                <button class="academic-toggle-btn" onclick="toggleAcademic()">
-                    <div class="left-side">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Academic Background</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
-                </button>
-                <div class="academic-content" id="academicContent">
-                    <div class="table-responsive">
-                        <table class="academic-table">
-                            <thead>
-                                <tr>
-                                    <th>Degree / Group</th>
-                                    <th>Year</th>
-                                    <th>Institution</th>
-                                    <th>Board / Uni</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>BSS in Economics</strong></td>
-                                    <td>Current</td>
-                                    <td>Government Gopalgonj College</td>
-                                    <td><span class="badge-inst-new">National University</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>HSC</strong><br><span style="font-size:10px; color:#718096; font-weight:bold;">Humanities</span></td>
-                                    <td>2022</td>
-                                    <td>Haji Lal mia city College</td>
-                                    <td><span class="badge-inst-new">Dhaka Board</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>SSC</strong><br><span style="font-size:10px; color:#718096; font-weight:bold;">Science</span></td>
-                                    <td>2020</td>
-                                    <td>G B D High School</td>
-                                    <td><span class="badge-inst-new">Jessore Board</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="certificate-section" id="skillsSection">
-                <div class="section-title">
-                    <i class="fa-solid fa-laptop-code"></i> Skills & Certificates
-                </div>
-                <div class="cert-buttons-container">
-                    <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-comments"></i>
-                            <span>Presentation & Public Speaking</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    
-                    <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-keyboard"></i>
-                            <span>Data Entry Freelancing</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    
-                    <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-brain"></i>
-                            <span>Basics of Artificial Intelligence</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-file-invoice"></i>
-                            <span>CV Writing</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1C57GVL3uAr4_gd1nlL4p2TvL-hzM6Sax/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-envelope-open-text"></i>
-                            <span>Email Writing</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1dfvQ8MzzcJARV1m-Soo56sJpPnMqb4VS/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-bullhorn"></i>
-                            <span>News Presentation</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/14kDHSjccoKs8CR7PyTG-nWIojQzU5VLD/view?usp=drivesdk" class="cert-button" target="_blank">
-                        <div class="cert-left">
-                            <i class="fa-solid fa-language"></i>
-                            <span>Pronunciation Mistakes Mastery</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <div class="news-container" id="researchContainer">
-        <div class="news-header-wrapper">
-            <div class="news-section-title" id="sec-title">
-                <i class="fa-solid fa-microscope"></i> Research & Economic Insights
+    <!-- পপ-আপ মডাল ওভারলে -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-title">
+                    <i class="fa-solid fa-compass"></i>
+                    <span>Quick Access Menu</span>
+                </div>
+                <button class="close-modal-btn" onclick="closeModal()">&times;</button>
             </div>
-            <button class="lang-switch-btn" onclick="toggleLanguage()">
-                <i class="fa-solid fa-earth-americas"></i> <span id="lang-btn-text">বাংলা</span>
-            </button>
-        </div>
-        <div id="news-list-container" class="news-list">
-            <div class="loading bn-font" id="loading-msg">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+
+            <div class="modal-body">
+                <!-- ১. একাডেমিক সেকশন -->
+                <div class="modal-section" id="academicSection">
+                    <div class="modal-section-title bn-font">পড়ালেখা</div>
+                    <button class="dropdown-btn" onclick="toggleDropdown('academicSection')">
+                        <div class="dropdown-btn-left">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span class="bn-font">একাডেমিক ব্যাকগ্রাউন্ড</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="table-responsive">
+                            <table class="academic-table bn-font">
+                                <thead>
+                                    <tr>
+                                        <th>ডিগ্রি / গ্রুপ</th>
+                                        <th>সাল</th>
+                                        <th>প্রতিষ্ঠান</th>
+                                        <th>বোর্ড / ইউনি</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>অর্থনীতিতে বিএসএস</strong></td>
+                                        <td>চলমান</td>
+                                        <td>সরকারি গোপালগঞ্জ কলেজ</td>
+                                        <td><span class="badge-NU">জাতীয় বিশ্ববিদ্যালয়</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>এইচএসসি (মানবিক)</strong></td>
+                                        <td>২০২২</td>
+                                        <td>হাজী লালমিয়া সিটি কলেজ</td>
+                                        <td><span class="badge-board">ঢাকা বোর্ড</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>এসএসসি (বিজ্ঞান)</strong></td>
+                                        <td>২০২০</td>
+                                        <td>জি বি ডি হাই স্কুল</td>
+                                        <td><span class="badge-board">যশোর বোর্ড</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ২. স্কিল ও সার্টিফিকেট সেকশন -->
+                <div class="modal-section">
+                    <div class="modal-section-title bn-font">যোগ্যতা ও প্রমাণপত্র</div>
+                    <div class="section-title bn-font" style="font-size: 13px;">
+                        <i class="fa-solid fa-laptop-code"></i> স্কিলস ও সার্টিফিকেট
+                    </div>
+                    <div class="cert-btn-container bn-font">
+                        <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>প্রেজেন্টেশন ও পাবলিক স্পিকিং</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>ডেটা এন্ট্রি ফ্রিল্যান্সিং</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>কৃত্রিম বুদ্ধিমত্তা (AI) এর মৌলিক ধারণা</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>সিভি (CV) রাইটিং</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ৩. অর্থনৈতিক গবেষণা সেকশন -->
+                <div class="modal-section" id="researchSection">
+                    <div class="modal-section-title bn-font">গবেষণা</div>
+                    <button class="dropdown-btn bn-font" onclick="toggleDropdown('researchSection')">
+                        <div class="dropdown-btn-left">
+                            <i class="fa-solid fa-microscope"></i>
+                            <span>অর্থনৈতিক গবেষণা ও প্রবন্ধ</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <div id="news-list-container" class="news-list">
+                            <div class="loading bn-font" id="loading-msg">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
-        const SHEET_NAME = 'Sheet1'; 
-
-        let allArticles = [];
-        let currentLang = 'EN'; 
-
-        // কুইক এক্সেস বাটনের মূল লজিক ফাংশন
-        function quickAccess() {
-            // ১. একাডেমিক ড্রপডাউনটি ওপেন করা
-            const dropdown = document.getElementById('academicSection');
-            const content = document.getElementById('academicContent');
-            
-            if (!dropdown.classList.contains('active')) {
-                dropdown.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-
-            // ২. স্ক্রল করে স্মুথভাবে সেই সেকশনগুলোতে নিয়ে যাওয়া
-            document.getElementById('academicSection').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        // পপ-আপ মডাল খোলা ও বন্ধ করার ফাংশন
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden'; // পেজের স্ক্রলিং বন্ধ
         }
 
-        function toggleAcademic() {
-            const dropdown = document.getElementById('academicSection');
-            const content = document.getElementById('academicContent');
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = ''; // পেজের স্ক্রলিং চালু
+        }
+
+        function closeModalOnOverlay(event) {
+            if (event.target === document.getElementById('modalOverlay')) {
+                closeModal();
+            }
+        }
+
+        // ড্রপডাউন খোলা ও বন্ধ করার ফাংশন
+        function toggleDropdown(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.dropdown-content');
             
-            dropdown.classList.toggle('active');
-            if (dropdown.classList.contains('active')) {
+            section.classList.toggle('active');
+            
+            if (section.classList.contains('active')) {
                 content.style.maxHeight = content.scrollHeight + "px";
             } else {
                 content.style.maxHeight = null;
             }
         }
 
-        function isBengali(text) {
-            const banglaRegex = /[\u0980-\u09FF]/;
-            return banglaRegex.test(text);
-        }
-
-        function toggleLanguage() {
-            currentLang = (currentLang === 'EN') ? 'BN' : 'EN';
-            document.getElementById('lang-btn-text').innerText = (currentLang === 'EN') ? 'বাংলা' : 'English';
-            
-            const titleDiv = document.getElementById('sec-title');
-            if(currentLang === 'BN') {
-                titleDiv.innerHTML = `<i class="fa-solid fa-microscope"></i> অর্থনৈতিক গবেষণা ও প্রবন্ধ`;
-                titleDiv.classList.add('bn-font');
-            } else {
-                titleDiv.innerHTML = `<i class="fa-solid fa-microscope"></i> Research & Economic Insights`;
-                titleDiv.classList.remove('bn-font');
-            }
-            
-            renderArticles(); 
-        }
+        // গুগল শিট থেকে আর্টিকেল লোড করার জন্য ডেটা (আপনার আগের কোডের মতই)
+        const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
+        const SHEET_NAME = 'Sheet1'; 
 
         async function fetchNews() {
             try {
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
-                
-                allArticles = []; 
+                const rows = csvText.split('\n').slice(1); // প্রথম সারি বাদে বাকি সব
 
-                let arrMatches = [];
-                let strDelimiter = ",";
-                let objPattern = new RegExp((
-                    "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-                    "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-                    "([^\"\\" + strDelimiter + "\\r\\n]*))"
-                ), "gi");
+                const newsListContainer = document.getElementById('news-list-container');
+                newsListContainer.innerHTML = ''; 
 
-                let arrData = [[]];
-                let arrMatchesArray = null;
+                rows.forEach(row => {
+                    const cols = row.split(','); // কমা দিয়ে ভাগ
+                    if (cols.length < 2) return; // ডেটা না থাকলে বাদ
 
-                while (arrMatchesArray = objPattern.exec(csvText)) {
-                    let strMatchedDelimiter = arrMatchesArray[1];
-                    if (strMatchedDelimiter.length && strMatchedDelimiter !== strDelimiter) {
-                        arrData.push([]);
-                    }
-                    let strMatchedValue;
-                    if (arrMatchesArray[2]) {
-                        strMatchedValue = arrMatchesArray[2].replace(new RegExp("\"\"", "g"), "\"");
-                    } else {
-                        strMatchedValue = arrMatchesArray[3];
-                    }
-                    arrData[arrData.length - 1].push(strMatchedValue);
+                    const date = cols[0] || 'তারিখ নেই';
+                    const headline = cols[1] || 'শিরোনাম নেই';
+                    const content = cols[2] || 'কন্টেন্ট নেই';
+
+                    // এইচটিএমএল তৈরি (আপনার আগের ডিজাইনের মতই, কিন্তু মডালের জন্য ছোট)
+                    const newsItemHTML = `
+                        <div style="border-bottom: 1px solid #e2e8f0; padding: 15px; font-family: 'Hind Siliguri', sans-serif;">
+                            <div style="font-size: 11px; color: #718096; margin-bottom: 5px;">
+                                <i class="fa-regular fa-calendar-days"></i> ${date}
+                            </div>
+                            <h3 style="font-size: 14px; color: #0d1b2a; margin-bottom: 5px;">${headline}</h3>
+                            <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.5;">${content}</p>
+                        </div>
+                    `;
+                    newsListContainer.innerHTML += newsItemHTML;
+                });
+
+                if (rows.length === 0) {
+                    newsListContainer.innerHTML = '<div class="loading bn-font">কোনো আর্টিকেল পাওয়া যায়নি।</div>';
                 }
-
-                for (let i = 1; i < arrData.length; i++) {
-                    const row = arrData[i];
-                    if (!row || row.length < 3) continue;
-
-                    let dateVal = row[0] || '';
-                    let hlBN = row[1] || '';
-                    let ctBN = row[2] || '';
-                    let hlEN = row[3] || '';
-                    let ctEN = row[4] || '';
-                    let im1 = row[5] || '';
-                    let im2 = row[6] || '';
-
-                    if (dateVal.toLowerCase().includes('date') || (!hlBN && !hlEN)) continue;
-
-                    allArticles.push({
-                        date: dateVal,
-                        headlineBN: hlBN,
-                        contentBN: ctBN,
-                        headlineEN: hlEN,
-                        contentEN: ctEN,
-                        img1: im1,
-                        img2: im2
-                    });
-                }
-
-                renderArticles();
 
             } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('news-list-container').innerHTML = '<div class="loading bn-font" style="color:red;">আর্টিকেল লোড করতে সমস্যা হয়েছে! শিটের সেটিংস চেক করুন।</div>';
+                console.error('Error fetching news:', error);
+                document.getElementById('news-list-container').innerHTML = '<div class="loading bn-font" style="color: red;">আর্টিকেল লোড করতে সমস্যা হয়েছে! শিটের সেটিংস চেক করুন।</div>';
             }
         }
 
-        function renderArticles() {
-            const newsListContainer = document.getElementById('news-list-container');
-            newsListContainer.innerHTML = ''; 
-
-            if(allArticles.length === 0) {
-                newsListContainer.innerHTML = currentLang === 'BN' ? 
-                    '<div class="loading bn-font">কোনো আর্টিকেল পাওয়া যায়নি।</div>' : 
-                    '<div class="loading">No articles found.</div>';
-                return;
-            }
-
-            for (let i = allArticles.length - 1; i >= 0; i--) {
-                const art = allArticles[i];
-                
-                let displayHeadline = currentLang === 'BN' ? art.headlineBN : (art.headlineEN || art.headlineBN);
-                let displayContent = currentLang === 'BN' ? art.contentBN : (art.contentEN || art.contentBN);
-
-                const headlineClass = isBengali(displayHeadline) ? 'bn-font' : '';
-                const contentClass = isBengali(displayContent) ? 'bn-font' : '';
-                const dateClass = isBengali(art.date) ? 'bn-font' : '';
-
-                let imageTag1 = '';
-                if (art.img1 && art.img1.trim() !== '') {
-                    imageTag1 = `<img src="${art.img1}" alt="Research Image 1" style="width:100%; max-height:220px; object-fit:cover; border-radius:8px; margin-bottom:14px; display:block;">`;
-                }
-
-                let imageTag2 = '';
-                if (art.img2 && art.img2.trim() !== '') {
-                    imageTag2 = `<img src="${art.img2}" alt="Research Image 2" style="width:100%; max-height:220px; object-fit:cover; border-radius:8px; margin-top:14px; display:block;">`;
-                }
-
-                const autoKeywords = displayHeadline.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(" ").join(", ");
-
-                const newsItem = document.createElement('div');
-                newsItem.className = 'news-item';
-                newsItem.setAttribute('data-keywords', autoKeywords);
-                
-                newsItem.innerHTML = `
-                    <button class="news-header-btn" onclick="toggleNews(this)">
-                        <span class="news-date ${dateClass}"><i class="fa-regular fa-calendar-days"></i> ${art.date}</span>
-                        <h3 class="news-headline ${headlineClass}" style="font-size: 14.5px; font-weight: 600;">${displayHeadline}</h3>
-                    </button>
-                    <div class="news-content">
-                        <div class="news-content-inner ${contentClass}">
-                            ${imageTag1}
-                            <p>${displayContent}</p>
-                            ${imageTag2}
-                        </div>
-                    </div>
-                `;
-                
-                newsListContainer.appendChild(newsItem);
-            }
-        }
-
-        function toggleNews(button) {
-            const newsItem = button.parentElement;
-            const content = button.nextElementSibling;
-            
-            document.querySelectorAll('.news-item').forEach(item => {
-                if (item !== newsItem && item.classList.contains('active')) {
-                    item.classList.remove('active');
-                    item.querySelector('.news-content').style.maxHeight = null;
-                }
-            });
-
-            newsItem.classList.toggle('active');
-            if (newsItem.classList.contains('active')) {
-                content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-                content.style.maxHeight = null;
-            }
-        }
-
+        // পেজ লোড হওয়ার পর ডেটা লোড করা
         window.onload = fetchNews;
     </script>
+
 </body>
 </html>

@@ -167,7 +167,7 @@
             padding-bottom: 20px;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* ইনার সাব-পেজের জন্য ওভারফ্লো হাইড */
+            overflow: hidden; 
         }
 
         .modal-overlay.active .modal-content {
@@ -194,9 +194,7 @@
             gap: 10px;
         }
 
-        .modal-header-title i {
-            color: #c5a880;
-        }
+        .modal-header-title i { color: #c5a880; }
 
         .close-modal-btn {
             background: none;
@@ -207,9 +205,7 @@
             transition: color 0.2s;
         }
 
-        .close-modal-btn:hover {
-            color: white;
-        }
+        .close-modal-btn:hover { color: white; }
 
         /* মডাল বডি */
         .modal-body {
@@ -235,12 +231,12 @@
             margin-bottom: 12px;
         }
 
-        /* ড্রপডাউন স্টাইল */
-        .dropdown-btn {
+        /* ড্রপডাউন/মেনু বাটন স্টাইল */
+        .menu-btn {
             width: 100%;
             background: #f8f9fa;
             color: #2d3748;
-            padding: 14px 15px;
+            padding: 16px 15px;
             border-radius: 12px;
             border: 1px solid #e2e8f0;
             font-weight: 600;
@@ -252,59 +248,28 @@
             transition: all 0.2s ease;
         }
 
-        .dropdown-btn:hover {
+        .menu-btn:hover {
             border-color: #0d1b2a;
             background-color: white;
+            transform: translateX(2px);
         }
 
-        .dropdown-btn-left {
+        .menu-btn-left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .dropdown-btn-left i {
+        .menu-btn-left i {
             color: #c5a880;
             font-size: 16px;
         }
 
-        .dropdown-arrow {
-            transition: transform 0.3s ease;
-            color: #718096;
-        }
-
-        .dropdown-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background: #ffffff;
-            border-radius: 0 0 12px 12px;
-            border: 1px solid #e2e8f0;
-            border-top: none;
-            margin-top: -10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .modal-section.active .dropdown-btn {
-            border-radius: 12px 12px 0 0;
-            border-color: #0d1b2a;
-        }
-
-        .modal-section.active .dropdown-arrow {
-            transform: rotate(180deg);
-            color: #0d1b2a;
-        }
-
-        .modal-section.active .dropdown-content {
-            display: block;
-        }
-
-        /* ফুল-স্ক্রিন সাব-পেজ লেআউট (Economics Research Portal এর জন্য) */
+        /* ফুল-স্ক্রিন সাব-পেজ লেআউট অ্যানিমেশন */
         .sub-page-overlay {
             position: absolute;
             top: 0;
-            left: 100%; /* শুরুতে ডানদিকে স্ক্রিনের বাইরে থাকবে */
+            left: 100%; 
             width: 100%;
             height: 100%;
             background: white;
@@ -315,7 +280,7 @@
         }
 
         .sub-page-overlay.active {
-            left: 0; /* একটিভ হলে স্লাইড করে ভেতরে আসবে */
+            left: 0; 
         }
 
         .sub-page-header {
@@ -444,7 +409,7 @@
 
         /* টেবিল স্টাইল */
         .table-responsive {
-            padding: 12px;
+            padding: 5px 0;
             overflow-x: auto;
         }
 
@@ -460,13 +425,13 @@
         .academic-table th {
             background-color: #f7fafc;
             color: #4a5568;
-            padding: 10px;
+            padding: 12px 10px;
             font-weight: 600;
             border: 1px solid #e2e8f0;
         }
 
         .academic-table td {
-            padding: 10px;
+            padding: 12px 10px;
             border: 1px solid #e2e8f0;
             color: #2d3748;
             line-height: 1.4;
@@ -479,7 +444,7 @@
         .cert-btn-container {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .cert-btn {
@@ -488,7 +453,7 @@
             justify-content: space-between;
             background: #0d1b2a;
             color: white;
-            padding: 12px 15px;
+            padding: 14px 15px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
@@ -581,16 +546,46 @@
             </div>
 
             <div class="modal-body">
-                <div class="modal-section" id="academicSection">
+                
+                <div class="modal-section">
                     <div class="modal-section-title">Education</div>
-                    <button class="dropdown-btn" onclick="toggleDropdown('academicSection')">
-                        <div class="dropdown-btn-left">
+                    <button class="menu-btn" onclick="openSubPage('academicSubPage')">
+                        <div class="menu-btn-left">
                             <i class="fa-solid fa-graduation-cap"></i>
                             <span>Academic Background</span>
                         </div>
-                        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
                     </button>
-                    <div class="dropdown-content">
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Qualifications & Certificates</div>
+                    <button class="menu-btn" onclick="openSubPage('skillsSubPage')">
+                        <div class="menu-btn-left">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <span>Skills & Certificates</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
+                    </button>
+                </div>
+
+                <div class="modal-section">
+                    <div class="modal-section-title">Research</div>
+                    <button class="menu-btn" onclick="openSubPage('researchSubPage')">
+                        <div class="menu-btn-left">
+                            <i class="fa-solid fa-microscope"></i>
+                            <span>Economic Research & Articles</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
+                    </button>
+                </div>
+
+                <div class="sub-page-overlay" id="academicSubPage">
+                    <div class="sub-page-header">
+                        <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
+                        <div style="font-size: 16px; font-weight: 700;">Academic Background</div>
+                    </div>
+                    <div class="sub-page-body">
                         <div class="table-responsive">
                             <table class="academic-table">
                                 <thead>
@@ -626,41 +621,32 @@
                     </div>
                 </div>
 
-                <div class="modal-section">
-                    <div class="modal-section-title">Qualifications & Certificates</div>
-                    <div class="section-title" style="font-size: 13px;">
-                        <i class="fa-solid fa-laptop-code"></i> Skills & Certificates
+                <div class="sub-page-overlay" id="skillsSubPage">
+                    <div class="sub-page-header">
+                        <button class="back-btn" onclick="closeSubPage('skillsSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
+                        <div style="font-size: 16px; font-weight: 700;">Skills & Certificates</div>
                     </div>
-                    <div class="cert-btn-container">
-                        <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>Basics of Artificial Intelligence</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>Data Entry</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>Presentation & Public Speaking</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>CV Writing & Interview</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="modal-section">
-                    <div class="modal-section-title">Research</div>
-                    <button class="dropdown-btn" onclick="openSubPage()">
-                        <div class="dropdown-btn-left">
-                            <i class="fa-solid fa-microscope"></i>
-                            <span>Economic Research & Articles</span>
+                    <div class="sub-page-body">
+                        <div class="cert-btn-container">
+                            <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
+                                <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>Basics of Artificial Intelligence</div><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
+                                <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>Data Entry</div><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-btn" target="_blank">
+                                <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>Presentation & Public Speaking</div><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-btn" target="_blank">
+                                <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>CV Writing & Interview</div><i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
-                        <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
-                    </button>
+                    </div>
                 </div>
 
                 <div class="sub-page-overlay" id="researchSubPage">
                     <div class="sub-page-header">
-                        <button class="back-btn" onclick="closeSubPage()"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button class="back-btn" onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
                         <div style="font-size: 16px; font-weight: 700;">Economic Research Portal</div>
                     </div>
                     <div class="sub-page-body">
@@ -689,7 +675,10 @@
         }
 
         function closeModal() {
-            closeSubPage(); // মডাল বন্ধ হলে সাব-পেজও যেন বন্ধ হয়ে রিসেট হয়
+            // মডাল বন্ধ হলে সব খোলা সাব-পেজ একসাথে রিমুভ হবে
+            closeSubPage('academicSubPage');
+            closeSubPage('skillsSubPage');
+            closeSubPage('researchSubPage');
             document.getElementById('modalOverlay').classList.remove('active');
             document.body.style.overflow = ''; 
         }
@@ -700,24 +689,13 @@
             }
         }
 
-        function toggleDropdown(sectionId) {
-            const section = document.getElementById(sectionId);
-            const content = section.querySelector('.dropdown-content');
-            section.classList.toggle('active');
-            if (section.classList.contains('active')) {
-                content.style.maxHeight = "none"; 
-            } else {
-                content.style.maxHeight = null;
-            }
+        // ডাইনামিক সাব-পেজ ওপেন ও ক্লোজ ফাংশন
+        function openSubPage(pageId) {
+            document.getElementById(pageId).classList.add('active');
         }
 
-        // সাব-পেজ ওপেন ও ক্লোজ করার লজিক
-        function openSubPage() {
-            document.getElementById('researchSubPage').classList.add('active');
-        }
-
-        function closeSubPage() {
-            document.getElementById('researchSubPage').classList.remove('active');
+        function closeSubPage(pageId) {
+            document.getElementById(pageId).classList.remove('active');
         }
 
         function toggleNewsLanguage(event) {
@@ -785,7 +763,7 @@
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
                 
-                // .slice(1) করার পর .reverse() করা হয়েছে, যাতে নিচের নতুন রো বা আপডেট সবার উপরে দেখায়!
+                // .reverse() যুক্ত রাখা আছে যাতে লেটেস্ট আপডেট সবার উপরে দেখায়
                 globalNewsData = parseCSV(csvText).slice(1).reverse(); 
                 renderNews(); 
 

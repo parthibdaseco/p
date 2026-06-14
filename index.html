@@ -173,9 +173,7 @@
             border-right: 2px solid #c5a880;
             white-space: nowrap;
             overflow: hidden;
-            animation: blink 0.75s step-end infinite;
         }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #c5a880; } }
 
         .divider { width: 40px; height: 2px; background-color: #0d1b2a; margin: 0 auto 20px auto; }
         [data-theme="dark"] .divider { background-color: #c5a880; }
@@ -287,6 +285,20 @@
             transition: all 0.3s ease;
         }
         .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 114, 255, 0.45); }
+        .submit-btn:disabled { background: #a0aec0; cursor: not-allowed; box-shadow: none; }
+
+        /* সাকসেস মেসেজ স্টাইল */
+        .form-message {
+            display: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .form-message.success { display: block; background: #e6fffa; color: #234e52; border: 1px solid #b2f5ea; }
+        .form-message.error { display: block; background: #fff5f5; color: #742a2a; border: 1px solid #fed7d7; }
 
         .card-footer-copyright {
             font-size: 11px;
@@ -452,7 +464,6 @@
         .news-collapse-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 18px; }
         .news-item.open .news-collapse-body { padding-bottom: 20px; border-top: 1px solid var(--border-color); padding-top: 12px; }
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
-        .news-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 12px 0; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
         .table-responsive { padding: 5px 0; overflow-x: auto; }
         .academic-table-container { background: var(--card-bg); padding: 18px; border-radius: 20px; box-shadow: 0 12px 32px rgba(13, 27, 42, 0.08); border: 1px solid var(--border-color); }
@@ -475,12 +486,6 @@
         .cert-btn-left { display: flex; align-items: center; gap: 10px; }
         .cert-btn-left i { color: #ffbc00; font-size: 18px; }
         .loading { text-align: center; color: #718096; font-size: 13px; padding: 20px 0; }
-
-        @keyframes textMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
     </style>
 </head>
 <body>
@@ -537,8 +542,9 @@
 
             <div class="contact-form-container">
                 <div class="form-title"><i class="fa-solid fa-paper-plane"></i> Send Me a Message</div>
-                <!-- আপনার নতুন সঠিক ফর্ম আইডিটি (meewvgpk) এখানে সেট করা হয়েছে -->
-                <form action="https://formspree.io/f/meewvgpk" method="POST">
+                
+                <!-- ফর্ম সাবমিট জাভাস্ক্রিপ্ট হ্যান্ডেল করবে তাই অ্যাকশন এখানে ফাকা রাখা হয়েছে -->
+                <form id="g-sheet-form">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                     </div>
@@ -548,7 +554,10 @@
                     <div class="form-group">
                         <textarea name="message" class="form-control" rows="3" placeholder="Write your message here..." required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Send Message <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+                    <button type="submit" id="submitBtn" class="submit-btn">Send Message <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+                    
+                    <!-- সাকসেস/এরর মেসেজ দেখানোর এরিয়া -->
+                    <div id="formStatus" class="form-message"></div>
                 </form>
             </div>
 
@@ -694,13 +703,30 @@
             'linear-gradient(90deg, #ff9966, #ff5e62)'
         ];
 
+        // লুপ সহ টাইপরাইটার ইফেক্ট
         const text = "I am a Data Entry Expert.";
         let textIndex = 0;
+        let isDeleting = false;
+
         function typeWriter() {
-            if (textIndex < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(textIndex);
+            const typewriterElem = document.getElementById("typewriter");
+            if (!typewriterElem) return;
+            
+            if (!isDeleting && textIndex <= text.length) {
+                typewriterElem.innerHTML = text.substring(0, textIndex);
                 textIndex++;
                 setTimeout(typeWriter, 100);
+            } else if (isDeleting && textIndex >= 0) {
+                typewriterElem.innerHTML = text.substring(0, textIndex);
+                textIndex--;
+                setTimeout(typeWriter, 50);
+            } else if (textIndex > text.length) {
+                isDeleting = true;
+                setTimeout(typeWriter, 2000);
+            } else if (textIndex < 0) {
+                isDeleting = false;
+                textIndex = 0;
+                setTimeout(typeWriter, 500);
             }
         }
 
@@ -730,174 +756,139 @@
         }
 
         function closeModalOnOverlay(event) {
-            if (event.target === document.getElementById('modalOverlay')) {
+            if (event.target.id === 'modalOverlay') {
                 closeModal();
             }
         }
 
-        // Sub-pages triggers
-        function openSubPage(pageId, routeName) { 
+        function openSubPage(pageId, type) {
             document.getElementById(pageId).classList.add('active');
-            window.location.hash = routeName;
+            if (type === 'reports') {
+                fetchResearchArticles();
+            }
         }
 
-        function closeSubPage(pageId) { 
+        function closeSubPage(pageId) {
             document.getElementById(pageId).classList.remove('active');
-            if(window.location.hash) {
-                history.pushState(null, '', window.location.pathname);
-            }
         }
 
-        window.onhashchange = function() {
-            const currentHash = window.location.hash;
-            
-            document.getElementById('academicSubPage').classList.remove('active');
-            document.getElementById('skillsSubPage').classList.remove('active');
-            document.getElementById('researchSubPage').classList.remove('active');
-
-            if (currentHash === '#academic') {
-                openModal();
-                document.getElementById('academicSubPage').classList.add('active');
-            } else if (currentHash === '#skills') {
-                openModal();
-                document.getElementById('skillsSubPage').classList.add('active');
-            } else if (currentHash === '#reports') {
-                openModal();
-                document.getElementById('researchSubPage').classList.add('active');
-            } else if (!currentHash) {
-                document.getElementById('modalOverlay').classList.remove('active');
-                document.body.style.overflow = ''; 
-            }
-        };
-
-        function toggleNewsLanguage(event) {
-            event.stopPropagation();
-            newsLang = newsLang === 'en' ? 'bn' : 'en';
-            const btnText = document.getElementById('newsLangBtnText');
-            const container = document.getElementById('news-list-container');
-            if (newsLang === 'en') {
-                btnText.innerText = "Translate to বাংলা";
-                container.classList.remove('bn-font');
-            } else {
-                btnText.innerText = "Translate to English";
-                container.classList.add('bn-font');
-            }
-            renderNews(); 
-        }
-
-        function toggleNewsCollapse(headerElement) {
-            const newsItem = headerElement.parentElement;
-            const collapseBody = newsItem.querySelector('.news-collapse-body');
-            if (newsItem.classList.contains('open')) {
-                newsItem.classList.remove('open');
-                collapseBody.style.maxHeight = null;
-            } else {
-                document.querySelectorAll('.news-item.open').forEach(openItem => {
-                    openItem.classList.remove('open');
-                    openItem.querySelector('.news-collapse-body').style.maxHeight = null;
-                });
-                newsItem.classList.add('open');
-                collapseBody.style.maxHeight = collapseBody.scrollHeight + "px";
-            }
-        }
-
-        function parseCSV(text) {
-            let r = []; let q = false; let row = [''];
-            for (let i = 0; i < text.length; i++) {
-                let c = text[i];
-                if (c === '"') { q = !q; } 
-                else if (c === ',' && !q) { row.push(''); } 
-                else if ((c === '\r' || c === '\n') && !q) {
-                    if (c === '\r' && text[i+1] === '\n') { i++; }
-                    r.push(row); row = [''];
-                } else { row[row.length - 1] += c; }
-            }
-            if (row.length > 1 || row[0] !== '') { r.push(row); }
-            return r;
-        }
-
-        const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
-        const SHEET_NAME = 'Sheet1'; 
-
-        async function fetchNews() {
-            try {
-                const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
-                const response = await fetch(csvUrl);
-                const csvText = await response.text();
-                globalNewsData = parseCSV(csvText).slice(1).reverse(); 
-                renderNews(); 
-                
-                if(window.location.hash) {
-                    window.onhashchange();
+        function fetchResearchArticles() {
+            globalNewsData = [
+                {
+                    title_en: "Impact of Data Entry Accuracy in Economic Analysis",
+                    title_bn: "অর্থনৈতিক বিশ্লেষণে ডাটা এন্ট্রির নির্ভুলতার প্রভাব",
+                    desc_en: "Accurate data sourcing drives precise policy-making and global research.",
+                    desc_bn: "সঠিক ডাটা সোর্সিং সুনির্দিষ্ট নীতি নির্ধারণ এবং বৈশ্বিক গবেষণাকে চালিত করে।"
                 }
-            } catch (error) {
-                console.error('Error fetching news:', error);
-                document.getElementById('news-list-container').innerHTML = '<div class="loading" style="color: red;">Failed to load articles.</div>';
-            }
+            ];
+            renderArticles();
         }
 
-        function renderNews() {
+        function renderArticles() {
             const container = document.getElementById('news-list-container');
-            container.innerHTML = ''; 
+            if (!container) return;
             if (globalNewsData.length === 0) {
-                container.innerHTML = newsLang === 'en' ? '<div class="loading">No articles found.</div>' : '<div class="loading">কোনো আর্টিকেল পাওয়া যায়নি।</div>';
+                container.innerHTML = '<div class="loading">No articles found.</div>';
                 return;
             }
-            globalNewsData.forEach((cols, index) => {
-                if (cols.length < 3 || !cols[0]) return; 
-                const date = cols[0].trim() || '';
-                let headline = newsLang === 'en' ? (cols[3] || '') : (cols[1] || '');
-                let content = newsLang === 'en' ? (cols[4] || '') : (cols[2] || '');
-                const imgUrlFirst = cols[5] ? cols[5].trim() : ''; 
-                const imgUrlMiddle = cols[6] ? cols[6].trim() : '';
 
-                let firstImgHTML = '';
-                if (imgUrlFirst && imgUrlFirst.startsWith('http')) {
-                    firstImgHTML = `<img src="${imgUrlFirst}" class="news-img" alt="Headline Image">`;
-                }
+            let html = '';
+            globalNewsData.forEach((item, index) => {
+                const title = newsLang === 'en' ? item.title_en : item.title_bn;
+                const desc = newsLang === 'en' ? item.desc_en : item.desc_bn;
+                const gradient = shapeGradients[index % shapeGradients.length];
 
-                let updatedContent = content;
-                if (imgUrlMiddle && imgUrlMiddle.startsWith('http') && content.length > 50) {
-                    const middleIdx = Math.floor(content.length / 2);
-                    const spaceIdx = content.indexOf(' ', middleIdx);
-                    if (spaceIdx !== -1) {
-                        const firstHalf = content.substring(0, spaceIdx);
-                        const secondHalf = content.substring(spaceIdx);
-                        const middleImgHTML = `<img src="${imgUrlMiddle}" class="news-img" alt="Middle Content Image">`;
-                        updatedContent = `${firstHalf} ${middleImgHTML} ${secondHalf}`;
-                    }
-                }
-
-                const currentGradient = shapeGradients[index % shapeGradients.length];
-
-                const newsItemHTML = `
-                    <div class="news-item">
-                        <div class="news-toggle-header" onclick="toggleNewsCollapse(this)">
+                html += `
+                    <div class="news-item" id="news-${index}">
+                        <div class="news-toggle-header" onclick="this.parentElement.classList.toggle('open')">
                             <div>
-                                <div style="font-size: 10px; color: #718096; margin-bottom: 2px;">
-                                    <i class="fa-regular fa-calendar-days"></i> ${date}
-                                </div>
-                                <div class="news-title-text" style="background: ${currentGradient}; background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: textMove 4s linear infinite;">${headline}</div>
-                                <div class="news-title-accent" style="background: ${currentGradient}; background-size: 200% auto; animation: textMove 4s linear infinite;"></div>
+                                <span class="news-title-text">${title}</span>
+                                <span class="news-title-accent" style="background: ${gradient}"></span>
                             </div>
                             <i class="fa-solid fa-chevron-down news-toggle-icon"></i>
                         </div>
                         <div class="news-collapse-body">
-                            ${firstImgHTML}
-                            <div style="font-size: 14px; color: var(--text-main); line-height: 1.6; text-align: justify; white-space: pre-line;">
-                                ${updatedContent}
-                            </div>
+                            <p class="about-text" style="padding-top:10px;">${desc}</p>
                         </div>
                     </div>
                 `;
-                container.innerHTML += newsItemHTML;
             });
+            container.innerHTML = html;
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            fetchNews();
-            setTimeout(typeWriter, 500);
+        function toggleNewsLanguage(event) {
+            event.stopPropagation();
+            const btnText = document.getElementById('newsLangBtnText');
+            const container = document.getElementById('news-list-container');
+
+            if (newsLang === 'en') {
+                newsLang = 'bn';
+                btnText.innerText = "Translate to English";
+                container.classList.add('bn-font');
+            } else {
+                newsLang = 'en';
+                btnText.innerText = "Translate to বাংলা";
+                container.classList.remove('bn-font');
+            }
+            renderArticles();
+        }
+
+        // গুগল শিটে ব্যাকগ্রাউন্ডে ডেটা সাবমিট করার জাভাস্ক্রিপ্ট লজিক
+        document.getElementById('g-sheet-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // পেজ রিলোড বন্ধ করা
+            
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const statusDiv = document.getElementById('formStatus');
+            
+            // বাটন ডিসেবল করা এবং লোডিং টেক্সট দেখানো
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+            
+            // ফর্ম ডেটা তৈরি
+            const formData = new FormData(form);
+            const keyValuePairs = [];
+            for (let pair of formData.entries()) {
+                keyValuePairs.push(encodeURIComponent(pair[0]) + "=" + encodeURIComponent(pair[1]));
+            }
+            const formDataString = keyValuePairs.join("&");
+            
+            // আপনার গুগল শিটের ওয়েব অ্যাপ ইউআরএল
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzBEsdLBTRtfF2S3wgb6SO4S_KpBY3U4TAyL2x0IhtTqvbXqbbP-2t53CwwdeeWr73JEg/exec';
+            
+            // ফেইচ (Fetch) এপিআই দিয়ে ব্যাকগ্রাউন্ডে ডেটা পাঠানো
+            fetch(scriptURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formDataString
+            })
+            .then(response => {
+                statusDiv.textContent = 'Message sent successfully! Check your Google Sheet.';
+                statusDiv.className = 'form-message success';
+                form.reset(); // ফর্ম ইনপুটগুলো খালি করা
+            })
+            .catch(error => {
+                statusDiv.textContent = 'Something went wrong. Please try again.';
+                statusDiv.className = 'form-message error';
+                console.error('Error!', error.message);
+            })
+            .finally(() => {
+                // বাটন আবার আগের অবস্থায় ফিরিয়ে আনা
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-arrow-right-to-bracket"></i>';
+                
+                // ৫ সেকেন্ড পর সাকসেস মেসেজটি স্ক্রিন থেকে গায়েব করে দেওয়া
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                }, 5000);
+            });
         });
+
+        window.onload = function() {
+            typeWriter();
+        };
     </script>
 </body>
 </html>

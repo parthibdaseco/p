@@ -1,87 +1,36 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <title>Economic Research & Insights</title>
-    <style>
-        body { font-family: 'Hind Siliguri', sans-serif; background: #f3f4f6; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .container { width: 100%; max-width: 600px; }
+function render() {
+    const container = document.getElementById('news-list');
+    container.innerHTML = '';
+    articles.reverse().forEach((row, i) => {
+        const date = row.c[0]?.f || row.c[0]?.v || '';
+        const head = lang === 'BN' ? (row.c[1]?.v || '') : (row.c[3]?.v || '');
+        const fullBody = lang === 'BN' ? (row.c[2]?.v || '') : (row.c[4]?.v || '');
+        const img1 = row.c[5]?.v || ''; 
+        const img2 = row.c[6]?.v || ''; 
+
+        // লেখাকে মাঝখানে ভাগ করা (অর্ধেক দৈর্ঘ্যে)
+        const midpoint = Math.floor(fullBody.length / 2);
+        const part1 = fullBody.substring(0, midpoint);
+        const part2 = fullBody.substring(midpoint);
+
+        const item = document.createElement('div');
+        item.className = 'news-item';
+        item.style.backgroundColor = colors[i % colors.length];
         
-        #lang-btn { background: linear-gradient(45deg, #ff9a9e, #fad0c4); border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        
-        .news-item { color: white; margin-bottom: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .news-header { padding: 20px; cursor: pointer; }
-        .news-content { max-height: 0; overflow: hidden; transition: 0.4s; background: white; color: #333; }
-        
-        /* এই অংশটি প্যারাগ্রাফ ঠিক রাখবে */
-        .inner { padding: 20px; line-height: 1.8; white-space: pre-line; } 
-        
-        img { width: 100%; border-radius: 10px; margin: 15px 0; display: block; }
-    </style>
-</head>
-<body>
-
-<button id="lang-btn" onclick="toggleLang()">English</button>
-<div class="container" id="news-list">আর্টিকেল লোড হচ্ছে...</div>
-
-<script>
-    const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY';
-    const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-    let lang = 'BN', articles = [];
-    const colors = ['#0d1b2a', '#2c3e50', '#8e44ad', '#c0392b', '#27ae60', '#d35400'];
-
-    async function loadData() {
-        const res = await fetch(URL);
-        const text = await res.text();
-        const json = JSON.parse(text.substring(47, text.length - 2));
-        articles = json.table.rows;
-        render();
-    }
-
-    function render() {
-        const container = document.getElementById('news-list');
-        container.innerHTML = '';
-        articles.reverse().forEach((row, i) => {
-            const date = row.c[0]?.f || row.c[0]?.v || '';
-            const head = lang === 'BN' ? (row.c[1]?.v || '') : (row.c[3]?.v || '');
-            const body = lang === 'BN' ? (row.c[2]?.v || '') : (row.c[4]?.v || '');
-            const img1 = row.c[5]?.v || ''; 
-            const img2 = row.c[6]?.v || ''; 
-
-            const item = document.createElement('div');
-            item.className = 'news-item';
-            item.style.backgroundColor = colors[i % colors.length];
-            
-            // প্যারাগ্রাফ এবং ইমেজ পজিশনিং ঠিক করা হলো
-            item.innerHTML = `
-                <div class="news-header" onclick="toggle(this)">
-                    <small style="color:#c5a880">${date}</small>
-                    <h3>${head} ▼</h3>
+        item.innerHTML = `
+            <div class="news-header" onclick="toggle(this)">
+                <small style="color:#c5a880">${date}</small>
+                <h3>${head} ▼</h3>
+            </div>
+            <div class="news-content">
+                <div class="inner">
+                    ${img1 ? `<img src="${img1}">` : ''}
+                    <p>${part1}</p>
+                    ${img2 ? `<img src="${img2}">` : ''}
+                    <p>${part2}</p>
                 </div>
-                <div class="news-content">
-                    <div class="inner">
-                        ${img1 ? `<img src="${img1}">` : ''}
-                        <p>${body}</p>
-                        ${img2 ? `<img src="${img2}">` : ''}
-                    </div>
-                </div>
-            `;
-            container.appendChild(item);
-        });
-    }
-
-    function toggle(el) {
-        const content = el.nextElementSibling;
-        content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
-    }
-
-    function toggleLang() {
-        lang = lang === 'BN' ? 'EN' : 'BN';
-        document.getElementById('lang-btn').innerText = lang === 'BN' ? 'English' : 'বাংলা';
-        render();
-    }
-
-    loadData();
-</script>
-</body>
-</html>
+            </div>
+        `;
+        container.appendChild(item);
+    });
+}

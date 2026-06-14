@@ -80,9 +80,6 @@
             box-shadow: 0 6px 20px rgba(243, 85, 136, 0.5);
         }
 
-        .quick-access-btn i { font-size: 14px; margin-bottom: 1px; }
-        .quick-access-btn span { font-size: 8px; font-weight: bold; }
-
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -298,28 +295,47 @@
             display: block;
         }
 
-        /* নিউজ ল্যাঙ্গুয়েজ চেঞ্জার বাটন */
+        /* ডিজিটাল রঙিন নিয়ন গ্লো ল্যাঙ্গুয়েজ বাটন */
         .news-lang-container {
             display: flex;
             justify-content: flex-end;
-            padding: 12px 15px 5px 0;
+            padding: 15px 15px 8px 0;
             background: #ffffff;
         }
 
         .news-lang-btn {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            background: linear-gradient(135deg, #00f0ff, #0072ff, #ff007f);
+            background-size: 200% auto;
             color: white;
             border: none;
-            padding: 6px 14px;
+            padding: 8px 16px;
             font-size: 11px;
             font-weight: bold;
-            border-radius: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 20px;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0, 114, 255, 0.2);
-            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            box-shadow: 0 0 10px rgba(0, 114, 255, 0.5), 0 4px 15px rgba(255, 0, 127, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: lightShine 4s linear infinite;
+        }
+
+        .news-lang-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 10px rgba(255, 0, 127, 0.6);
+        }
+
+        .news-lang-btn:active {
+            transform: translateY(1px);
+        }
+
+        @keyframes lightShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* কলাপসিবল নিউজ কার্ড ডিজাইন */
@@ -329,7 +345,6 @@
             overflow: hidden;
         }
 
-        /* হেডার পার্ট (যেখানে চাপ দিলে ওপেন হবে) */
         .news-toggle-header {
             padding: 15px;
             cursor: pointer;
@@ -358,7 +373,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* বিস্তারিত বডি পার্ট (ডিফল্ট অবস্থায় বন্ধ থাকবে) */
         .news-collapse-body {
             max-height: 0;
             overflow: hidden;
@@ -367,7 +381,6 @@
             background: #fafafa;
         }
 
-        /* একটি ক্লাস যা অ্যাক্টিভ হলে নিউজ ওপেন দেখাবে */
         .news-item.open .news-collapse-body {
             padding-bottom: 15px;
         }
@@ -574,26 +587,17 @@
                         <i class="fa-solid fa-laptop-code"></i> Skills & Certificates
                     </div>
                     <div class="cert-btn-container">
+                        <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>Basics of Artificial Intelligence</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>Data Entry</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
                         <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-btn" target="_blank">
                             <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>Presentation & Public Speaking</div><i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>Data Entry Freelancing</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>Fundamentals of AI</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
                         <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>CV Writing</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="#" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-chart-simple"></i>Advanced MS Excel & Sheets</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="#" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-magnifying-glass"></i>Web Research & Data Mining</div><i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="#" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-language"></i>English Communication Skill</div><i class="fa-solid fa-arrow-right"></i>
+                            <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>CV Writing & Interview</div><i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -673,23 +677,19 @@
             renderNews(); 
         }
 
-        // হেডলাইনে চাপ দিলে নিউজ এক্সপ্যান্ড বা কলাপ্স করার নতুন ফাংশন
         function toggleNewsCollapse(headerElement) {
             const newsItem = headerElement.parentElement;
             const collapseBody = newsItem.querySelector('.news-collapse-body');
             
-            // যদি ক্লিক করা আইটেমটি অলরেডি ওপেন থাকে, তবে বন্ধ করো
             if (newsItem.classList.contains('open')) {
                 newsItem.classList.remove('open');
                 collapseBody.style.maxHeight = null;
             } else {
-                // অন্য সব ওপেন থাকা নিউজ ক্লোজ করে দেওয়ার জন্য (অপশনাল, সুন্দর দেখায়)
                 document.querySelectorAll('.news-item.open').forEach(openItem => {
                     openItem.classList.remove('open');
                     openItem.querySelector('.news-collapse-body').style.maxHeight = null;
                 });
 
-                // কারেন্ট নিউজ ওপেন করো
                 newsItem.classList.add('open');
                 collapseBody.style.maxHeight = collapseBody.scrollHeight + "px";
             }
@@ -773,7 +773,6 @@
                     }
                 }
 
-                // নতুন স্ট্রাকচার: কলাপসিবল লেআউট জেনারেশন
                 const newsItemHTML = `
                     <div class="news-item">
                         <div class="news-toggle-header" onclick="toggleNewsCollapse(this)">

@@ -32,7 +32,7 @@
             font-family: 'Hind Siliguri', sans-serif !important;
         }
 
-        /* প্রোফাইলカードের ডিজাইন */
+        /* প্রোফাইল কার্ডের ডিজাইন */
         .profile-card {
             background: white;
             border-radius: 30px;
@@ -161,7 +161,7 @@
         }
 
         .modal-content {
-            background: white;
+            background: #f0f4f8; /* পেজের ব্যাকগ্রাউন্ড হালকা আকর্ষণীয় কালার করা হয়েছে */
             width: 90%;
             max-width: 450px;
             max-height: 90vh;
@@ -211,33 +211,55 @@
         }
 
         .modal-section { text-align: left; }
-        .modal-section-title { font-size: 14px; color: #718096; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .modal-section-title { font-size: 13px; color: #4a5568; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
 
-        /* মেনু বাটন স্টাইল */
+        /* কালারফুল মেনু বাটন এবং গ্লো ইফেক্ট স্টাইল */
         .menu-btn {
             width: 100%;
-            background: #f8f9fa;
-            color: #2d3748;
+            color: white;
             padding: 16px 15px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            border: none;
             font-weight: 600;
             font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .menu-btn:hover {
-            border-color: #0d1b2a;
-            background-color: white;
-            transform: translateX(2px);
+        /* আলাদা আলাদা বাটনের জন্য এক্সক্লুসিভ গ্রেডিয়েন্ট এবং গ্লো শেডো */
+        .btn-academic {
+            background: linear-gradient(135deg, #0072ff, #00c6ff);
+            box-shadow: 0 6px 15px rgba(0, 114, 255, 0.35);
+        }
+        .btn-academic:hover {
+            box-shadow: 0 8px 25px rgba(0, 114, 255, 0.6);
+            transform: translateX(4px) scale(1.01);
+        }
+
+        .btn-skills {
+            background: linear-gradient(135deg, #da4453, #89216b);
+            box-shadow: 0 6px 15px rgba(218, 68, 83, 0.35);
+        }
+        .btn-skills:hover {
+            box-shadow: 0 8px 25px rgba(218, 68, 83, 0.6);
+            transform: translateX(4px) scale(1.01);
+        }
+
+        .btn-research {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            box-shadow: 0 6px 15px rgba(17, 153, 142, 0.35);
+        }
+        .btn-research:hover {
+            box-shadow: 0 8px 25px rgba(17, 153, 142, 0.6);
+            transform: translateX(4px) scale(1.01);
         }
 
         .menu-btn-left { display: flex; align-items: center; gap: 10px; }
-        .menu-btn-left i { color: #c5a880; font-size: 16px; }
+        .menu-btn-left i { color: #ffffff; font-size: 16px; }
+        .menu-btn .fa-arrow-right { color: #ffffff !important; font-size: 13px; }
 
         /* ফুল-স্ক্রিন সাব-পেজ লেআউট */
         .sub-page-overlay {
@@ -246,7 +268,7 @@
             left: 100%; 
             width: 100vw;
             height: 100vh;
-            background: #f8f9fa;
+            background: #eef2f7; /* সাব পেজের ব্যাকগ্রাউন্ড হালকা আকর্ষণীয় কালার করা হয়েছে */
             z-index: 10000;
             display: flex;
             flex-direction: column;
@@ -285,7 +307,7 @@
             margin: 0 auto;
         }
 
-        /* ল্যাঙ্গুয়েজ বাটন */
+        /* ল্যাঙ্গুয়েজ বাটন */
         .news-lang-container { display: flex; justify-content: flex-end; padding: 0 0 15px 0; }
         .news-lang-btn {
             background: linear-gradient(135deg, #00f0ff, #0072ff, #ff007f);
@@ -349,10 +371,10 @@
             animation: titleGlow 4s linear infinite;
         }
 
-        /* বাংলা মোডে স্টাইলিশ ক্যালিগ্রাফি ফন্ট সক্রিয় করার জন্য */
+        /* বাংলা মোডে স্টাইলিশ ক্যালিগ্রাফি ফন্ট সক্রিয় করার জন্য */
         #news-list-container.bn-font .news-title-text {
             font-family: 'Galada', cursive !important;
-            font-size: 20px; /* বাংলা ফন্টের সাইজ একটু বড় করা হয়েছে সুন্দর দেখানোর জন্য */
+            font-size: 20px; 
             font-weight: normal;
         }
 
@@ -386,25 +408,30 @@
         .badge-NU { color: #00c6ff; font-weight: bold; }
         .badge-board { color: #ff3366; font-weight: bold; }
 
-        /* সার্টিফিকেট লিঙ্ক */
+        /* সার্টিফিকেট লিঙ্ক (কালারফুল এবং গ্লো শেডো ডিজাইন) */
         .cert-btn-container { display: flex; flex-direction: column; gap: 12px; }
         .cert-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #0d1b2a;
+            background: linear-gradient(135deg, #1f4068, #162447);
             color: white;
             padding: 16px 15px;
             border-radius: 14px;
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
-            box-shadow: 0 4px 10px rgba(13, 27, 42, 0.15);
+            box-shadow: 0 5px 15px rgba(22, 36, 71, 0.3);
             transition: all 0.3s ease;
         }
-        .cert-btn:hover { background-color: white; color: #0d1b2a; border: 1px solid #0d1b2a; transform: translateX(4px); }
+        .cert-btn:hover { 
+            background: linear-gradient(135deg, #e43f5a, #162447); 
+            color: #ffffff; 
+            box-shadow: 0 8px 25px rgba(228, 63, 90, 0.5);
+            transform: translateX(4px); 
+        }
         .cert-btn-left { display: flex; align-items: center; gap: 10px; }
-        .cert-btn-left i { color: #c5a880; font-size: 18px; }
+        .cert-btn-left i { color: #ffbc00; font-size: 18px; }
         .loading { text-align: center; color: #718096; font-size: 13px; padding: 20px 0; }
     </style>
 </head>
@@ -454,6 +481,7 @@
         </div>
     </div>
 
+    <!-- Quick Access Menu Modal (image_5400cc.png এর উপর ভিত্তি করে তৈরি) -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
             <div class="modal-header">
@@ -467,25 +495,25 @@
             <div class="modal-body">
                 <div class="modal-section">
                     <div class="modal-section-title">Education</div>
-                    <button class="menu-btn" onclick="openSubPage('academicSubPage', 'academic')">
+                    <button class="menu-btn btn-academic" onclick="openSubPage('academicSubPage', 'academic')">
                         <div class="menu-btn-left"><i class="fa-solid fa-graduation-cap"></i><span>Academic Background</span></div>
-                        <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
                 <div class="modal-section">
                     <div class="modal-section-title">Qualifications & Certificates</div>
-                    <button class="menu-btn" onclick="openSubPage('skillsSubPage', 'skills')">
+                    <button class="menu-btn btn-skills" onclick="openSubPage('skillsSubPage', 'skills')">
                         <div class="menu-btn-left"><i class="fa-solid fa-laptop-code"></i><span>Skills & Certificates</span></div>
-                        <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
                 <div class="modal-section">
                     <div class="modal-section-title">Research</div>
-                    <button class="menu-btn" onclick="openSubPage('researchSubPage', 'reports')">
+                    <button class="menu-btn btn-research" onclick="openSubPage('researchSubPage', 'reports')">
                         <div class="menu-btn-left"><i class="fa-solid fa-microscope"></i><span>Economic Research & Articles</span></div>
-                        <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
@@ -753,9 +781,9 @@
                         </div>
                         <div class="news-collapse-body">
                             ${firstImgHTML}
-                            <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.6; margin-top: 8px; white-space: pre-line;">
+                            <div style="font-size: 14px; color: #2d3748; line-height: 1.6; text-align: justify; white-space: pre-line;">
                                 ${updatedContent}
-                            </p>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -763,8 +791,8 @@
             });
         }
 
-        window.onload = fetchNews;
+        // App Initialization
+        window.addEventListener('DOMContentLoaded', fetchNews);
     </script>
-
 </body>
 </html>

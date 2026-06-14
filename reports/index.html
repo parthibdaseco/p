@@ -3,71 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Economic Research & Insights</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-color: #f3f4f6; --card-bg: #0d1b2a; --accent-color: #c5a880; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        
-        /* স্টাইলিশ বাটন */
-        .lang-btn {
-            background: linear-gradient(45deg, #c5a880, #8e44ad);
-            color: white; border: none; padding: 10px 25px; border-radius: 25px;
-            font-weight: 700; cursor: pointer; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
+        body { font-family: 'Hind Siliguri', sans-serif; background: #f3f4f6; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         .container { width: 100%; max-width: 600px; }
-        .news-item { background: var(--card-bg); color: white; margin-bottom: 20px; border-radius: 15px; overflow: hidden; }
-        .news-header { padding: 20px; cursor: pointer; }
-        .news-content { max-height: 0; overflow: hidden; transition: 0.4s; background: white; color: #333; }
-        .content-inner { padding: 20px; font-family: 'Hind Siliguri', sans-serif; }
         
+        /* বাটন স্টাইল */
+        #lang-btn { background: linear-gradient(45deg, #ff9a9e, #fad0c4); border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
+        
+        .news-item { color: white; margin-bottom: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .news-header { padding: 20px; cursor: pointer; display: flex; flex-direction: column; }
+        .news-content { max-height: 0; overflow: hidden; transition: 0.4s; background: white; color: #333; }
+        .inner { padding: 20px; line-height: 1.6; }
         img { width: 100%; border-radius: 10px; margin: 10px 0; }
     </style>
 </head>
 <body>
 
-<button class="lang-btn" onclick="toggleLang()" id="lang-btn">English</button>
-<div class="container" id="news-list">লোড হচ্ছে...</div>
+<button id="lang-btn" onclick="toggleLang()">English</button>
+<div class="container" id="news-list">আর্টিকেল লোড হচ্ছে...</div>
 
 <script>
     const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY';
     const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-    let lang = 'BN'; 
-    let dataCache = [];
+    let lang = 'BN', articles = [];
+
+    // র‍্যান্ডম কালার জেনারেটর
+    const colors = ['#0d1b2a', '#2c3e50', '#8e44ad', '#c0392b', '#27ae60'];
 
     async function loadData() {
         const res = await fetch(URL);
         const text = await res.text();
         const json = JSON.parse(text.substring(47, text.length - 2));
-        dataCache = json.table.rows;
+        articles = json.table.rows;
         render();
     }
 
     function render() {
         const container = document.getElementById('news-list');
         container.innerHTML = '';
-        dataCache.reverse().forEach(row => {
+        articles.reverse().forEach((row, i) => {
             const date = row.c[0]?.v || '';
             const head = lang === 'BN' ? (row.c[1]?.v || '') : (row.c[3]?.v || '');
             const body = lang === 'BN' ? (row.c[2]?.v || '') : (row.c[4]?.v || '');
-            const img1 = row.c[5]?.v || ''; // প্রথম ছবি
-            const img2 = row.c[6]?.v || ''; // দ্বিতীয় ছবি
+            const img1 = row.c[5]?.v || ''; 
+            const img2 = row.c[6]?.v || ''; 
 
-            container.innerHTML += `
-                <div class="news-item">
-                    <div class="news-header" onclick="toggle(this)">
-                        <small style="color:var(--accent-color)">${date}</small>
-                        <h3>${head} ▼</h3>
-                    </div>
-                    <div class="news-content">
-                        <div class="content-inner">
-                            ${img1 ? `<img src="${img1}">` : ''}
-                            <p>${body}</p>
-                            ${img2 ? `<img src="${img2}">` : ''}
-                        </div>
+            const item = document.createElement('div');
+            item.className = 'news-item';
+            item.style.backgroundColor = colors[i % colors.length]; // অটোমেটিক আলাদা কালার
+            item.innerHTML = `
+                <div class="news-header" onclick="toggle(this)">
+                    <small style="color:#c5a880">${date}</small>
+                    <h3>${head} ▼</h3>
+                </div>
+                <div class="news-content">
+                    <div class="inner">
+                        ${img1 ? `<img src="${img1}">` : ''}
+                        <p>${body}</p>
+                        ${img2 ? `<img src="${img2}">` : ''}
                     </div>
                 </div>
             `;
+            container.appendChild(item);
         });
     }
 

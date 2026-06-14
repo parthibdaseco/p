@@ -2,80 +2,52 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Economic Research & Insights</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --accent-color: #c5a880;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
-        .bn-font { font-family: 'Hind Siliguri', sans-serif !important; }
-
-        .news-container { width: 100%; max-width: 430px; background: white; border-radius: 25px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .news-section-title { font-size: 18px; font-weight: 700; color: #0d1b2a; margin-bottom: 20px; }
-        
-        /* প্রতিটি নিউজ কার্ডের স্টাইল */
-        .news-item { margin-bottom: 15px; border-radius: 15px; overflow: hidden; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        
-        /* নিউজ বাটন কালার */
-        .news-header-btn { width: 100%; padding: 18px; border: none; cursor: pointer; color: white; text-align: left; }
-        .news-item:nth-child(even) .news-header-btn { background: linear-gradient(135deg, #0d1b2a, #1b2a4a); }
-        .news-item:nth-child(odd) .news-header-btn { background: linear-gradient(135deg, #8e44ad, #c0392b); }
-
-        .news-headline { font-size: 15px; font-weight: 600; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
-        .news-date { font-size: 11px; color: var(--accent-color); font-weight: 600; display: block; margin-bottom: 5px; }
-
-        .news-content { max-height: 0; overflow: hidden; transition: 0.4s; background: #fff; }
-        .news-content-inner { padding: 20px; font-size: 14px; line-height: 1.6; border: 1px solid #eee; }
+        .news-item { background: #0d1b2a; color: white; padding: 15px; margin: 10px; border-radius: 10px; }
+        .loading { text-align: center; font-family: 'Hind Siliguri', sans-serif; }
     </style>
 </head>
 <body>
 
-    <div class="news-container">
-        <div class="news-section-title" id="sec-title"><i class="fa-solid fa-microscope"></i> Research & Economic Insights</div>
-        <div id="news-list-container"></div>
-    </div>
+<div id="news-list-container" class="loading">আর্টিকেল লোড হচ্ছে...</div>
 
-    <script>
-        const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY';
-        let allArticles = [];
+<script>
+    const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY';
+    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
 
-        async function fetchNews() {
-            const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
-            const response = await fetch(csvUrl);
-            const csvText = await response.text();
-            // ডাটা প্রসেসিং অংশ...
-            // (এখানে আপনার আগের fetchNews ফাংশনটি বসিয়ে দিন)
-            renderArticles();
-        }
-
-        function renderArticles() {
+    async function fetchNews() {
+        try {
+            const response = await fetch(CSV_URL);
+            const data = await response.text();
+            
+            // ডাটা প্রসেসিং
+            const rows = data.split('\n');
             const container = document.getElementById('news-list-container');
-            container.innerHTML = '';
-            allArticles.forEach((art) => {
-                const item = document.createElement('div');
-                item.className = 'news-item';
-                item.innerHTML = `
-                    <button class="news-header-btn" onclick="toggleNews(this)">
-                        <span class="news-date"><i class="fa-regular fa-calendar-days"></i> ${art.date}</span>
-                        <div class="news-headline bn-font">${art.headlineBN}</div>
-                    </button>
-                    <div class="news-content"><div class="news-content-inner bn-font">${art.contentBN}</div></div>
-                `;
-                container.appendChild(item);
+            container.innerHTML = ''; // লোডিং টেক্সট মুছে ফেলা
+
+            rows.forEach((row, index) => {
+                if (index === 0) return; // প্রথম হেডার সারি বাদ দিলাম
+                const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // কমা দিয়ে ভাগ করা
+                if (columns.length > 1) {
+                    const date = columns[0].replace(/"/g, '');
+                    const title = columns[1].replace(/"/g, '');
+                    
+                    container.innerHTML += `
+                        <div class="news-item">
+                            <small>${date}</small>
+                            <h3>${title}</h3>
+                        </div>
+                    `;
+                }
             });
+        } catch (e) {
+            document.getElementById('news-list-container').innerHTML = "দুঃখিত, ডাটা লোড হয়নি। আপনার শিটটি কি 'Publish to web' করা আছে?";
+            console.error(e);
         }
+    }
 
-        function toggleNews(btn) {
-            const content = btn.nextElementSibling;
-            content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
-        }
-
-        window.onload = fetchNews;
-    </script>
+    fetchNews();
+</script>
 </body>
 </html>

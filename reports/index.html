@@ -9,11 +9,14 @@
         
         #lang-btn { background: linear-gradient(45deg, #ff9a9e, #fad0c4); border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         
-        .news-item { color: white; margin-bottom: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s; }
-        .news-header { padding: 20px; cursor: pointer; display: flex; flex-direction: column; }
+        .news-item { color: white; margin-bottom: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .news-header { padding: 20px; cursor: pointer; }
         .news-content { max-height: 0; overflow: hidden; transition: 0.4s; background: white; color: #333; }
-        .inner { padding: 20px; line-height: 1.6; }
-        img { width: 100%; border-radius: 10px; margin: 10px 0; display: block; }
+        
+        /* এই অংশটি প্যারাগ্রাফ ঠিক রাখবে */
+        .inner { padding: 20px; line-height: 1.8; white-space: pre-line; } 
+        
+        img { width: 100%; border-radius: 10px; margin: 15px 0; display: block; }
     </style>
 </head>
 <body>
@@ -28,21 +31,18 @@
     const colors = ['#0d1b2a', '#2c3e50', '#8e44ad', '#c0392b', '#27ae60', '#d35400'];
 
     async function loadData() {
-        try {
-            const res = await fetch(URL);
-            const text = await res.text();
-            const json = JSON.parse(text.substring(47, text.length - 2));
-            articles = json.table.rows;
-            render();
-        } catch(e) { document.getElementById('news-list').innerText = "ডাটা লোড করতে সমস্যা হচ্ছে।"; }
+        const res = await fetch(URL);
+        const text = await res.text();
+        const json = JSON.parse(text.substring(47, text.length - 2));
+        articles = json.table.rows;
+        render();
     }
 
     function render() {
         const container = document.getElementById('news-list');
         container.innerHTML = '';
         articles.reverse().forEach((row, i) => {
-            // শিটের ফরম্যাটেড তারিখ (f) অথবা raw ভ্যালু (v) নেওয়া হয়েছে
-            const date = row.c[0]?.f || row.c[0]?.v || ''; 
+            const date = row.c[0]?.f || row.c[0]?.v || '';
             const head = lang === 'BN' ? (row.c[1]?.v || '') : (row.c[3]?.v || '');
             const body = lang === 'BN' ? (row.c[2]?.v || '') : (row.c[4]?.v || '');
             const img1 = row.c[5]?.v || ''; 
@@ -50,8 +50,9 @@
 
             const item = document.createElement('div');
             item.className = 'news-item';
-            // প্রতিটির জন্য আলাদা কালার
             item.style.backgroundColor = colors[i % colors.length];
+            
+            // প্যারাগ্রাফ এবং ইমেজ পজিশনিং ঠিক করা হলো
             item.innerHTML = `
                 <div class="news-header" onclick="toggle(this)">
                     <small style="color:#c5a880">${date}</small>

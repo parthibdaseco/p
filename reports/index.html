@@ -2,52 +2,94 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Economic Research & Insights</title>
     <style>
-        .news-item { background: #0d1b2a; color: white; padding: 15px; margin: 10px; border-radius: 10px; }
-        .loading { text-align: center; font-family: 'Hind Siliguri', sans-serif; }
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background-color: #f3f4f6; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+        }
+
+        .news-container { 
+            width: 100%; 
+            max-width: 600px; /* কন্টেইনার কিছুটা বাড়িয়ে দিলাম যাতে লেখা সুন্দর দেখায় */
+        }
+
+        .news-item { 
+            background: #0d1b2a; 
+            color: #ffffff; 
+            padding: 25px; 
+            margin-bottom: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            
+            /* এই অংশটুকু লেখা ভাঙা রোধ করবে */
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        .news-item h3 { 
+            margin: 0 0 10px 0; 
+            font-size: 18px; 
+            line-height: 1.5; 
+        }
+
+        .news-item p { 
+            font-size: 15px; 
+            line-height: 1.7; 
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .news-date { 
+            color: #c5a880; 
+            font-size: 13px; 
+            display: block; 
+            margin-bottom: 10px; 
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
 
-<div id="news-list-container" class="loading">আর্টিকেল লোড হচ্ছে...</div>
+<div class="news-container" id="news-list">
+    <!-- এখানে জাভাস্ক্রিপ্ট থেকে ডাটা আসবে -->
+</div>
 
 <script>
     const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY';
-    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+    const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
-    async function fetchNews() {
-        try {
-            const response = await fetch(CSV_URL);
-            const data = await response.text();
-            
-            // ডাটা প্রসেসিং
-            const rows = data.split('\n');
-            const container = document.getElementById('news-list-container');
-            container.innerHTML = ''; // লোডিং টেক্সট মুছে ফেলা
+    fetch(URL)
+        .then(res => res.text())
+        .then(data => {
+            const json = JSON.parse(data.substring(47, data.length - 2));
+            const rows = json.table.rows;
+            const container = document.getElementById('news-list');
+            container.innerHTML = ''; 
 
-            rows.forEach((row, index) => {
-                if (index === 0) return; // প্রথম হেডার সারি বাদ দিলাম
-                const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // কমা দিয়ে ভাগ করা
-                if (columns.length > 1) {
-                    const date = columns[0].replace(/"/g, '');
-                    const title = columns[1].replace(/"/g, '');
-                    
+            rows.forEach(row => {
+                const date = row.c[0]?.v || '';
+                const title = row.c[1]?.v || '';
+                const content = row.c[2]?.v || ''; // যদি কন্টেন্ট থাকে
+                
+                if(title) {
                     container.innerHTML += `
                         <div class="news-item">
-                            <small>${date}</small>
+                            <span class="news-date">${date}</span>
                             <h3>${title}</h3>
+                            <p>${content}</p>
                         </div>
                     `;
                 }
             });
-        } catch (e) {
-            document.getElementById('news-list-container').innerHTML = "দুঃখিত, ডাটা লোড হয়নি। আপনার শিটটি কি 'Publish to web' করা আছে?";
-            console.error(e);
-        }
-    }
-
-    fetchNews();
+        })
+        .catch(err => console.error("Error:", err));
 </script>
 </body>
 </html>

@@ -192,40 +192,8 @@
         }
 
         .modal-header-title i { color: #c5a880; }
-
-        .close-modal-btn {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 22px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
+        .close-modal-btn { background: none; border: none; color: rgba(255, 255, 255, 0.8); font-size: 22px; cursor: pointer; }
         .close-modal-btn:hover { color: white; }
-
-        /* মডাল বডি */
-        .modal-body {
-            padding: 20px;
-            overflow-y: auto;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .modal-section {
-            text-align: left;
-        }
-
-        .modal-section-title {
-            font-size: 14px;
-            color: #718096;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
 
         /* মেনু বাটন স্টাইল */
         .menu-btn {
@@ -250,34 +218,24 @@
             transform: translateX(2px);
         }
 
-        .menu-btn-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .menu-btn-left { display: flex; align-items: center; gap: 10px; }
+        .menu-btn-left i { color: #c5a880; font-size: 16px; }
 
-        .menu-btn-left i {
-            color: #c5a880;
-            font-size: 16px;
-        }
-
-        /* ==================== ফিক্সড ফুল-স্ক্রিন সাব-পেজ লেআউট ==================== */
+        /* ফুল-স্ক্রিন সাব-পেজ লেআউট */
         .sub-page-overlay {
-            position: fixed; /* মডালের বাইরে পুরো উইন্ডো জুড়ে লক করার জন্য fixed */
+            position: fixed;
             top: 0;
             left: 100%; 
             width: 100vw;
             height: 100vh;
-            background: #f3f4f6; /* পুরো পেজের ব্যাকগ্রাউন্ড ম্যাচিং */
-            z-index: 200; /* মডালের (100) এর চেয়ে বেশি যাতে সম্পূর্ণ উপরে চলে আসে */
+            background: #f8f9fa;
+            z-index: 200;
             display: flex;
             flex-direction: column;
             transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .sub-page-overlay.active {
-            left: 0; /* ফুল স্ক্রিন কাভার করবে */
-        }
+        .sub-page-overlay.active { left: 0; }
 
         .sub-page-header {
             background-color: #0d1b2a;
@@ -298,27 +256,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.2s;
         }
-
-        .back-btn:hover { opacity: 0.8; }
 
         .sub-page-body {
             padding: 20px;
             overflow-y: auto;
             flex-grow: 1;
             width: 100%;
-            max-width: 600px; /* ডেক্সটপ বা বড় স্ক্রিনেও যাতে সুন্দর টেক্সট রিডিউস দেখায় */
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        /* ডিজিটাল রঙিন নিয়ন গ্লো ল্যাঙ্গুয়েজ বাটন */
-        .news-lang-container {
-            display: flex;
-            justify-content: flex-end;
-            padding: 0 0 15px 0;
-        }
-
+        /* ডিজিটাল নিয়ন গ্লো ল্যাঙ্গুয়েজ বাটন */
+        .news-lang-container { display: flex; justify-content: flex-end; padding: 0 0 15px 0; }
         .news-lang-btn {
             background: linear-gradient(135deg, #00f0ff, #0072ff, #ff007f);
             background-size: 200% auto;
@@ -338,16 +288,16 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             animation: lightShine 4s linear infinite;
         }
+        @keyframes lightShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .news-lang-btn:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 10px rgba(255, 0, 127, 0.6);
-        }
-
-        @keyframes lightShine {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* ==================== নিউজের টাইটেল অ্যাকসেন্ট শেপ ডিজাইন ==================== */
+        .news-title-accent {
+            display: inline-block;
+            height: 4px;
+            width: 45px;
+            border-radius: 10px;
+            margin-top: 6px;
+            margin-bottom: 2px;
         }
 
         /* কলাপসিবল নিউজ কার্ড ডিজাইন */
@@ -407,14 +357,17 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        /* টেবিল স্টাইল */
+        /* ==================== কালারফুল শ্যাডো একাডেমিক টেবিল ডিজাইন ==================== */
         .table-responsive {
             padding: 5px 0;
             overflow-x: auto;
+        }
+
+        .academic-table-container {
             background: white;
             padding: 15px;
-            border-radius: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(13, 27, 42, 0.08); /* গর্জিয়াস সফট শ্যাডো */
             border: 1px solid #e2e8f0;
         }
 
@@ -426,31 +379,41 @@
             min-width: 380px; 
         }
 
+        /* কালারফুল টেবিল হেডার */
         .academic-table th {
-            background-color: #f8fafc;
-            color: #4a5568;
-            padding: 14px 10px;
+            background-color: #0d1b2a;
+            color: #ffffff;
+            padding: 14px 12px;
             font-weight: 700;
-            border-bottom: 2px solid #e2e8f0;
+            border: 1px solid #1e2d3d;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
         }
 
+        /* স্পষ্ট ৩ডি কালারফুল সেল বর্ডার */
         .academic-table td {
-            padding: 14px 10px;
-            border-bottom: 1px solid #f1f5f9;
+            padding: 14px 12px;
+            border: 1px solid #cbd5e1; /* স্পষ্ট এবং শার্প বর্ডার */
             color: #2d3748;
             line-height: 1.4;
+            background: #ffffff;
+        }
+
+        /* টেবিল রিল্যাক্সিং রো অল্টারনেট কালার */
+        .academic-table tr:nth-child(even) td {
+            background-color: #f8fafc; /* ইন্টারচেঞ্জ ব্যাকগ্রাউন্ড */
+        }
+
+        .academic-table tr:hover td {
+            background-color: #f1f5f9; /* হোভার কালার */
         }
 
         .badge-NU { color: #00c6ff; font-weight: bold; }
         .badge-board { color: #ff3366; font-weight: bold; }
 
         /* স্কিল বাটন */
-        .cert-btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        .cert-btn-container { display: flex; flex-direction: column; gap: 12px; }
         .cert-btn {
             display: flex;
             align-items: center;
@@ -465,31 +428,10 @@
             box-shadow: 0 4px 10px rgba(13, 27, 42, 0.15);
             transition: all 0.3s ease;
         }
-
-        .cert-btn:hover {
-            background-color: white;
-            color: #0d1b2a;
-            border: 1px solid #0d1b2a;
-            transform: translateX(4px);
-        }
-
-        .cert-btn-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cert-btn-left i {
-            color: #c5a880;
-            font-size: 18px;
-        }
-
-        .loading {
-            text-align: center;
-            color: #718096;
-            font-size: 13px;
-            padding: 20px 0;
-        }
+        .cert-btn:hover { background-color: white; color: #0d1b2a; border: 1px solid #0d1b2a; transform: translateX(4px); }
+        .cert-btn-left { display: flex; align-items: center; gap: 10px; }
+        .cert-btn-left i { color: #c5a880; font-size: 18px; }
+        .loading { text-align: center; color: #718096; font-size: 13px; padding: 20px 0; }
     </style>
 </head>
 <body>
@@ -551,7 +493,6 @@
             </div>
 
             <div class="modal-body">
-                
                 <div class="modal-section">
                     <div class="modal-section-title">Education</div>
                     <button class="menu-btn" onclick="openSubPage('academicSubPage')">
@@ -584,7 +525,6 @@
                         <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -596,36 +536,38 @@
         </div>
         <div class="sub-page-body">
             <div class="table-responsive">
-                <table class="academic-table">
-                    <thead>
-                        <tr>
-                            <th>Degree / Group</th>
-                            <th>Year</th>
-                            <th>Institution</th>
-                            <th>Board / Uni</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>BSS in Economics</strong></td>
-                            <td>Ongoing</td>
-                            <td>Govt. Gopalganj College</td>
-                            <td><span class="badge-NU">National University</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>HSC (Humanities)</strong></td>
-                            <td>2022</td>
-                            <td>Haji Lalmia City College</td>
-                            <td><span class="badge-board">Dhaka Board</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>SSC (Science)</strong></td>
-                            <td>2020</td>
-                            <td>G B D High School</td>
-                            <td><span class="badge-board">Jessore Board</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="academic-table-container">
+                    <table class="academic-table">
+                        <thead>
+                            <tr>
+                                <th>Degree / Group</th>
+                                <th>Year</th>
+                                <th>Institution</th>
+                                <th>Board / Uni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>BSS in Economics</strong></td>
+                                <td>Ongoing</td>
+                                <td>Govt. Gopalganj College</td>
+                                <td><span class="badge-NU">National University</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>HSC (Humanities)</strong></td>
+                                <td>2022</td>
+                                <td>Haji Lalmia City College</td>
+                                <td><span class="badge-board">Dhaka Board</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>SSC (Science)</strong></td>
+                                <td>2020</td>
+                                <td>G B D High School</td>
+                                <td><span class="badge-board">Jessore Board</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -674,13 +616,20 @@
         let newsLang = 'en'; 
         let globalNewsData = []; 
 
+        // টাইটেল শেপের জন্য চমৎকার ৪টি নিয়ন গ্রেডিয়েন্ট কালার কম্বিনেশন
+        const shapeGradients = [
+            'linear-gradient(90deg, #ff007f, #ff758c)',
+            'linear-gradient(90deg, #00f0ff, #0072ff)',
+            'linear-gradient(90deg, #11ffbd, #abff99)',
+            'linear-gradient(90deg, #ff9966, #ff5e62)'
+        ];
+
         function openModal() {
             document.getElementById('modalOverlay').classList.add('active');
             document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
-            // মডাল ক্লোজ হলে ব্যাকগ্রাউন্ডে সব সাব-পেজও রিসেট হয়ে যাবে
             closeSubPage('academicSubPage');
             closeSubPage('skillsSubPage');
             closeSubPage('researchSubPage');
@@ -694,14 +643,8 @@
             }
         }
 
-        // ডাইনামিক ১০০% ফুল-স্ক্রিন সাব-পেজ কন্ট্রোল
-        function openSubPage(pageId) {
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        function closeSubPage(pageId) {
-            document.getElementById(pageId).classList.remove('active');
-        }
+        function openSubPage(pageId) { document.getElementById(pageId).classList.add('active'); }
+        function closeSubPage(pageId) { document.getElementById(pageId).classList.remove('active'); }
 
         function toggleNewsLanguage(event) {
             event.stopPropagation();
@@ -738,22 +681,15 @@
         }
 
         function parseCSV(text) {
-            let r = [];
-            let q = false; 
-            let row = [''];
+            let r = []; let q = false; let row = [''];
             for (let i = 0; i < text.length; i++) {
                 let c = text[i];
-                if (c === '"') { 
-                    q = !q; 
-                } else if (c === ',' && !q) { 
-                    row.push(''); 
-                } else if ((c === '\r' || c === '\n') && !q) {
+                if (c === '"') { q = !q; } 
+                else if (c === ',' && !q) { row.push(''); } 
+                else if ((c === '\r' || c === '\n') && !q) {
                     if (c === '\r' && text[i+1] === '\n') { i++; }
-                    r.push(row);
-                    row = [''];
-                } else {
-                    row[row.length - 1] += c;
-                }
+                    r.push(row); row = [''];
+                } else { row[row.length - 1] += c; }
             }
             if (row.length > 1 || row[0] !== '') { r.push(row); }
             return r;
@@ -786,7 +722,7 @@
                 return;
             }
 
-            globalNewsData.forEach((cols) => {
+            globalNewsData.forEach((cols, index) => {
                 if (cols.length < 3 || !cols[0]) return; 
 
                 const date = cols[0].trim() || '';
@@ -809,38 +745,4 @@
                     if (spaceIdx !== -1) {
                         const firstHalf = content.substring(0, spaceIdx);
                         const secondHalf = content.substring(spaceIdx);
-                        const middleImgHTML = `<img src="${imgUrlMiddle}" class="news-img" alt="Middle Content Image">`;
-                        
-                        updatedContent = `${firstHalf} ${middleImgHTML} ${secondHalf}`;
-                    }
-                }
-
-                const newsItemHTML = `
-                    <div class="news-item">
-                        <div class="news-toggle-header" onclick="toggleNewsCollapse(this)">
-                            <div>
-                                <div style="font-size: 10px; color: #718096; margin-bottom: 2px;">
-                                    <i class="fa-regular fa-calendar-days"></i> ${date}
-                                </div>
-                                <div class="news-title-text">${headline}</div>
-                            </div>
-                            <i class="fa-solid fa-chevron-down news-toggle-icon"></i>
-                        </div>
-                        
-                        <div class="news-collapse-body">
-                            ${firstImgHTML}
-                            <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.6; margin-top: 8px; white-space: pre-line;">
-                                ${updatedContent}
-                            </p>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += newsItemHTML;
-            });
-        }
-
-        window.onload = fetchNews;
-    </script>
-
-</body>
-</html>
+                        const middleImgHTML = `

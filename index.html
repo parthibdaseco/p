@@ -54,6 +54,53 @@
             border-bottom-right-radius: 50% 20%;
         }
 
+        /* --- নতুন ছোট ও কালারফুল কুইক এক্সেস বাটন স্টাইল --- */
+        .quick-access-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff, #f35588, #ff3366);
+            background-size: 300% 300%;
+            animation: gradientMove 6s ease infinite;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .quick-access-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(243, 85, 136, 0.5);
+        }
+
+        .quick-access-btn i {
+            font-size: 14px;
+            margin-bottom: 1px;
+        }
+
+        .quick-access-btn span {
+            font-size: 8px;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* ------------------------------------------------ */
+
         .img-container {
             position: absolute;
             top: 40px;
@@ -512,6 +559,12 @@
 <body>
 
     <div class="profile-card">
+        <!-- কুইক এক্সেস বাটন যুক্ত করা হলো -->
+        <button class="quick-access-btn" onclick="quickAccess()" title="Quick Access">
+            <i class="fa-solid fa-compass"></i>
+            <span>Q.A.</span>
+        </button>
+
         <div class="card-header"></div>
         
         <div class="img-container">
@@ -602,7 +655,7 @@
                 </div>
             </div>
             
-            <div class="certificate-section">
+            <div class="certificate-section" id="skillsSection">
                 <div class="section-title">
                     <i class="fa-solid fa-laptop-code"></i> Skills & Certificates
                 </div>
@@ -668,7 +721,7 @@
         </div>
     </div>
 
-    <div class="news-container">
+    <div class="news-container" id="researchContainer">
         <div class="news-header-wrapper">
             <div class="news-section-title" id="sec-title">
                 <i class="fa-solid fa-microscope"></i> Research & Economic Insights
@@ -678,17 +731,34 @@
             </button>
         </div>
         <div id="news-list-container" class="news-list">
-            <div class="loading bn-font" id="loading-msg">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+            <div class="loading bn-font" id="loading-msg">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
         </div>
     </div>
 
     <script>
-        // গুগল শিটের আসল আইডি (আন্ডারস্কোর সম্বলিত) নিশ্চিত করা হয়েছে
         const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
         const SHEET_NAME = 'Sheet1'; 
 
         let allArticles = [];
         let currentLang = 'EN'; 
+
+        // কুইক এক্সেস বাটনের মূল লজিক ফাংশন
+        function quickAccess() {
+            // ১. একাডেমিক ড্রপডাউনটি ওপেন করা
+            const dropdown = document.getElementById('academicSection');
+            const content = document.getElementById('academicContent');
+            
+            if (!dropdown.classList.contains('active')) {
+                dropdown.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+
+            // ২. স্ক্রল করে স্মুথভাবে সেই সেকশনগুলোতে নিয়ে যাওয়া
+            document.getElementById('academicSection').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
 
         function toggleAcademic() {
             const dropdown = document.getElementById('academicSection');
@@ -723,7 +793,6 @@
             renderArticles(); 
         }
 
-        // অ্যাডভান্সড CSV পার্সার ফাংশন যা লেখার ভেতরের সব কমাকে নিখুঁতভাবে হ্যান্ডেল করবে
         async function fetchNews() {
             try {
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
@@ -732,7 +801,6 @@
                 
                 allArticles = []; 
 
-                // টেক্সটের ভেতরের কমা এবং ডাবল কোটেশন ট্র্যাক করার রেগুলার এক্সপ্রেশন
                 let arrMatches = [];
                 let strDelimiter = ",";
                 let objPattern = new RegExp((
@@ -758,7 +826,6 @@
                     arrData[arrData.length - 1].push(strMatchedValue);
                 }
 
-                // প্রথম সারি (Header) বাদ দিয়ে কলাম অনুযায়ী লুপ (A=0, B=1, C=2, D=3, E=4, F=5, G=6)
                 for (let i = 1; i < arrData.length; i++) {
                     const row = arrData[i];
                     if (!row || row.length < 3) continue;
@@ -771,7 +838,6 @@
                     let im1 = row[5] || '';
                     let im2 = row[6] || '';
 
-                    // ডেটা ফিল্টারিং যাতে কোনো ফাঁকা রো বা অতিরিক্ত হেডার অবজেক্ট তৈরি না করে
                     if (dateVal.toLowerCase().includes('date') || (!hlBN && !hlEN)) continue;
 
                     allArticles.push({
@@ -789,7 +855,7 @@
 
             } catch (error) {
                 console.error('Error fetching data:', error);
-                document.getElementById('news-list-container').innerHTML = '<div class="loading bn-font" style="color:red;">আর্টিকেল লোড করতে সমস্যা হয়েছে! শিটের সেটিংস চেক করুন।</div>';
+                document.getElementById('news-list-container').innerHTML = '<div class="loading bn-font" style="color:red;">আর্টিকেল লোড করতে সমস্যা হয়েছে! শিটের সেটিংস চেক করুন।</div>';
             }
         }
 
@@ -799,12 +865,11 @@
 
             if(allArticles.length === 0) {
                 newsListContainer.innerHTML = currentLang === 'BN' ? 
-                    '<div class="loading bn-font">কোনো আর্টিকেল পাওয়া যায়নি।</div>' : 
+                    '<div class="loading bn-font">কোনো আর্টিকেল পাওয়া যায়নি।</div>' : 
                     '<div class="loading">No articles found.</div>';
                 return;
             }
 
-            // নতুন ডেটা সবার ওপরে রেন্ডার করার জন্য উল্টো লুপ
             for (let i = allArticles.length - 1; i >= 0; i--) {
                 const art = allArticles[i];
                 
@@ -870,6 +935,5 @@
 
         window.onload = fetchNews;
     </script>
-
 </body>
 </html>

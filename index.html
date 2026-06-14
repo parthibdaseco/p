@@ -22,11 +22,11 @@
         .card-body { margin-top: 65px; padding: 0 25px; }
         h2 { font-size: 30px; color: var(--text-main); }
         .designation-container { height: 20px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
-        .designation { font-size: 13px; text-transform: uppercase; color: #c5a880; font-weight: 700; border-right: 2px solid #c5a880; }
+        .designation { font-size: 13px; text-transform: uppercase; color: #c5a880; font-weight: 700; border-right: 2px solid #c5a880; white-space: nowrap; overflow: hidden; }
         .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; }
         .social-btn { display: flex; align-items: center; justify-content: center; height: 40px; border-radius: 10px; color: white; text-decoration: none; }
         .facebook { background-color: #1877F2; } .instagram { background-color: #E1306C; } .linkedin { background-color: #0077B5; } .threads { background-color: #ffffff; border: 1px solid #ccd1d9; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 27, 42, 0.6); display: flex; align-items: center; justify-content: center; z-index: 9999; visibility: hidden; opacity: 0; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 27, 42, 0.6); display: flex; align-items: center; justify-content: center; z-index: 9999; visibility: hidden; opacity: 0; transition: all 0.3s ease; }
         .modal-overlay.active { visibility: visible; opacity: 1; }
         .modal-content { background: var(--modal-gradient); width: 90%; max-width: 450px; max-height: 90vh; border-radius: 25px; padding-bottom: 20px; }
         .sub-page-overlay { position: fixed; top: 0; left: 100%; width: 100vw; height: 100vh; background: var(--modal-gradient); z-index: 10000; transition: left 0.35s ease; }
@@ -42,7 +42,7 @@
     <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
 
     <div class="profile-card">
-        <button class="quick-access-btn" onclick="openModal()"><i class="fa-solid fa-compass"></i><span>EXPLORE</span></button>
+        <button class="quick-access-btn" onclick="openModal()"><i class="fa-solid fa-compass"></i><span>MENU</span></button>
         <div class="card-header"></div>
         <div class="img-container"><img src="https://i.ibb.co.com/N6QZR81Q/IMG-20260608-WA0009.jpg" alt="Parthib Das" class="profile-img"></div>
         <div class="card-body">
@@ -57,15 +57,16 @@
         </div>
     </div>
 
+    <!-- Modals -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
-            <div class="modal-header"><h3>Menu</h3><button onclick="closeModal()">&times;</button></div>
-            <div class="modal-body"><button onclick="openSubPage('researchSubPage')">Economic Research</button></div>
+            <div class="modal-header"><h3>Menu</h3><button onclick="closeModal()" style="background:none; border:none; color:white; cursor:pointer;">&times;</button></div>
+            <div class="modal-body"><button onclick="openSubPage('researchSubPage')" style="padding:15px; width:100%;">Economic Research</button></div>
         </div>
     </div>
 
     <div class="sub-page-overlay" id="researchSubPage">
-        <div class="sub-page-header"><button onclick="closeSubPage('researchSubPage')">Back</button></div>
+        <button onclick="closeSubPage('researchSubPage')" style="margin:20px;">Back</button>
         <div class="sub-page-body">
             <button class="news-lang-btn" onclick="toggleNewsLanguage()">Translate</button>
             <div id="news-list-container">Loading...</div>
@@ -78,12 +79,14 @@
         // টাইপরাইটার
         function typeWriter() { const text = "I am a Data Entry Expert."; let i = 0; const el = document.getElementById("typewriter"); setInterval(() => { el.innerHTML = text.substring(0, i++); if(i > text.length) i=0; }, 150); }
         
-        // নিউজ লোড
+        // নিউজ লোড (আপনার গুগল শিট আইডি এখানে সঠিক থাকতে হবে)
         async function fetchNews() {
-            const url = `https://docs.google.com/spreadsheets/d/1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY/gviz/tq?tqx=out:json&gid=0`;
-            const res = await fetch(url); const text = await res.text();
-            globalNewsData = JSON.parse(text.substring(47).slice(0, -2)).table.rows;
-            renderNews();
+            try {
+                const url = `https://docs.google.com/spreadsheets/d/1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY/gviz/tq?tqx=out:json&gid=0`;
+                const res = await fetch(url); const text = await res.text();
+                globalNewsData = JSON.parse(text.substring(47).slice(0, -2)).table.rows;
+                renderNews();
+            } catch(e) { document.getElementById('news-list-container').innerHTML = "Error loading data."; }
         }
 
         function renderNews() {
@@ -103,7 +106,7 @@
         }
 
         function toggleNewsLanguage() { newsLang = newsLang === 'en' ? 'bn' : 'en'; renderNews(); }
-        function toggleTheme() { document.body.toggleAttribute('data-theme'); }
+        function toggleTheme() { document.body.toggleAttribute('data-theme'); document.getElementById('themeIcon').classList.toggle('fa-sun'); }
         function openModal() { document.getElementById('modalOverlay').classList.add('active'); }
         function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
         function closeModalOnOverlay(e) { if(e.target.id === 'modalOverlay') closeModal(); }

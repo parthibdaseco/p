@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parthib Das - Portfolio & Quick Access</title>
-    <!-- ফন্ট এবং আইকন লোড করা -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind_Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -211,17 +210,16 @@
             color: white;
         }
 
-        /* মডাল বডি (পপ-আপের ভেতরের কন্টেন্ট) */
+        /* মডাল বডি */
         .modal-body {
             padding: 20px;
-            overflow-y: auto; /* কন্টেন্ট বেশি হলে স্ক্রল করার জন্য */
+            overflow-y: auto;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* মডালের ভেতরের বিভিন্ন সেকশন */
         .modal-section {
             text-align: left;
         }
@@ -235,7 +233,7 @@
             margin-bottom: 12px;
         }
 
-        /* একাডেমিক ও রিসার্চের ড্রপডাউন স্টাইল */
+        /* ড্রপডাউন স্টাইল */
         .dropdown-btn {
             width: 100%;
             background: #f8f9fa;
@@ -273,7 +271,6 @@
             color: #718096;
         }
 
-        /* ড্রপডাউনের ভেতরের কন্টেন্ট */
         .dropdown-content {
             max-height: 0;
             overflow: hidden;
@@ -301,7 +298,36 @@
             display: block;
         }
 
-        /* টেবিল রেসপন্সিভ */
+        /* নিউজ ল্যাঙ্গুয়েজ চেঞ্জার বাটন (রঙিন ও গর্জিয়াস) */
+        .news-lang-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 15px 0 0;
+            background: #ffffff;
+        }
+
+        .news-lang-btn {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 114, 255, 0.2);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .news-lang-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 12px rgba(0, 114, 255, 0.4);
+        }
+
+        /* টেবিল স্টাইল */
         .table-responsive {
             padding: 12px;
             overflow-x: auto;
@@ -335,7 +361,7 @@
             background-color: #f8f9fa;
         }
 
-        .badge- NU { color: #00c6ff; font-weight: bold; }
+        .badge-NU { color: #00c6ff; font-weight: bold; }
         .badge-board { color: #ff3366; font-weight: bold; }
 
         /* স্কিল ও সার্টিফিকেট বাটন ডিজাইন */
@@ -377,7 +403,6 @@
             font-size: 16px;
         }
 
-        /* রিসার্চ সেকশনের লোডিং */
         .loading {
             text-align: center;
             color: #718096;
@@ -388,9 +413,7 @@
 </head>
 <body>
 
-    <!-- মূল প্রোফাইল কার্ড -->
     <div class="profile-card">
-        <!-- কুইক এক্সেস বাটন -->
         <button class="quick-access-btn" onclick="openModal()" title="Quick Access Menu">
             <i class="fa-solid fa-compass"></i>
             <span>Q.A.</span>
@@ -436,7 +459,6 @@
         </div>
     </div>
 
-    <!-- পপ-আপ মডাল ওভারলে -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
             <div class="modal-header">
@@ -448,45 +470,44 @@
             </div>
 
             <div class="modal-body">
-                <!-- ১. একাডেমিক সেকশন -->
                 <div class="modal-section" id="academicSection">
-                    <div class="modal-section-title bn-font">পড়ালেখা</div>
+                    <div class="modal-section-title">Education</div>
                     <button class="dropdown-btn" onclick="toggleDropdown('academicSection')">
                         <div class="dropdown-btn-left">
                             <i class="fa-solid fa-graduation-cap"></i>
-                            <span class="bn-font">একাডেমিক ব্যাকগ্রাউন্ড</span>
+                            <span>Academic Background</span>
                         </div>
                         <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="dropdown-content">
                         <div class="table-responsive">
-                            <table class="academic-table bn-font">
+                            <table class="academic-table">
                                 <thead>
                                     <tr>
-                                        <th>ডিগ্রি / গ্রুপ</th>
-                                        <th>সাল</th>
-                                        <th>প্রতিষ্ঠান</th>
-                                        <th>বোর্ড / ইউনি</th>
+                                        <th>Degree / Group</th>
+                                        <th>Year</th>
+                                        <th>Institution</th>
+                                        <th>Board / Uni</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>অর্থনীতিতে বিএসএস</strong></td>
-                                        <td>চলমান</td>
-                                        <td>সরকারি গোপালগঞ্জ কলেজ</td>
-                                        <td><span class="badge-NU">জাতীয় বিশ্ববিদ্যালয়</span></td>
+                                        <td><strong>BSS in Economics</strong></td>
+                                        <td>Ongoing</td>
+                                        <td>Govt. Gopalganj College</td>
+                                        <td><span class="badge-NU">National University</span></td>
                                     </tr>
                                     <tr>
-                                        <td><strong>এইচএসসি (মানবিক)</strong></td>
-                                        <td>২০২২</td>
-                                        <td>হাজী লালমিয়া সিটি কলেজ</td>
-                                        <td><span class="badge-board">ঢাকা বোর্ড</span></td>
+                                        <td><strong>HSC (Humanities)</strong></td>
+                                        <td>2022</td>
+                                        <td>Haji Lalmia City College</td>
+                                        <td><span class="badge-board">Dhaka Board</span></td>
                                     </tr>
                                     <tr>
-                                        <td><strong>এসএসসি (বিজ্ঞান)</strong></td>
-                                        <td>২০২০</td>
-                                        <td>জি বি ডি হাই স্কুল</td>
-                                        <td><span class="badge-board">যশোর বোর্ড</span></td>
+                                        <td><strong>SSC (Science)</strong></td>
+                                        <td>2020</td>
+                                        <td>G B D High School</td>
+                                        <td><span class="badge-board">Jessore Board</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -494,41 +515,53 @@
                     </div>
                 </div>
 
-                <!-- ২. স্কিল ও সার্টিফিকেট সেকশন -->
                 <div class="modal-section">
-                    <div class="modal-section-title bn-font">যোগ্যতা ও প্রমাণপত্র</div>
-                    <div class="section-title bn-font" style="font-size: 13px;">
-                        <i class="fa-solid fa-laptop-code"></i> স্কিলস ও সার্টিফিকেট
+                    <div class="modal-section-title">Qualifications & Certificates</div>
+                    <div class="section-title" style="font-size: 13px;">
+                        <i class="fa-solid fa-laptop-code"></i> Skills & Certificates
                     </div>
-                    <div class="cert-btn-container bn-font">
+                    <div class="cert-btn-container">
                         <a href="https://drive.google.com/file/d/1N3rSNkklYx2xa2yunW4vlcwXNwHoPFLq/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>প্রেজেন্টেশন ও পাবলিক স্পিকিং</div><i class="fa-solid fa-arrow-right"></i>
+                            <div class="cert-btn-left"><i class="fa-solid fa-comments"></i>Presentation & Public Speaking</div><i class="fa-solid fa-arrow-right"></i>
                         </a>
                         <a href="https://drive.google.com/file/d/1Mdhuj_A94x1gf-kJgfA72L0YAnOfHAtL/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>ডেটা এন্ট্রি ফ্রিল্যান্সিং</div><i class="fa-solid fa-arrow-right"></i>
+                            <div class="cert-btn-left"><i class="fa-solid fa-keyboard"></i>Data Entry Freelancing</div><i class="fa-solid fa-arrow-right"></i>
                         </a>
                         <a href="https://drive.google.com/file/d/1-OMdSXfOysKsyVec3dttUPaBPYPVdPLw/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>কৃত্রিম বুদ্ধিমত্তা (AI) এর মৌলিক ধারণা</div><i class="fa-solid fa-arrow-right"></i>
+                            <div class="cert-btn-left"><i class="fa-solid fa-brain"></i>Fundamentals of AI</div><i class="fa-solid fa-arrow-right"></i>
                         </a>
                         <a href="https://drive.google.com/file/d/1-v6GD_ZCn7-7BdTR2K-KMwYkfIAu6M85/view?usp=drivesdk" class="cert-btn" target="_blank">
-                            <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>সিভি (CV) রাইটিং</div><i class="fa-solid fa-arrow-right"></i>
+                            <div class="cert-btn-left"><i class="fa-solid fa-file-invoice"></i>CV Writing</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-chart-simple"></i>Advanced MS Excel & Sheets</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-magnifying-glass"></i>Web Research & Data Mining</div><i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="cert-btn" target="_blank">
+                            <div class="cert-btn-left"><i class="fa-solid fa-language"></i>English Communication Skill</div><i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- ৩. অর্থনৈতিক গবেষণা সেকশন -->
                 <div class="modal-section" id="researchSection">
-                    <div class="modal-section-title bn-font">গবেষণা</div>
-                    <button class="dropdown-btn bn-font" onclick="toggleDropdown('researchSection')">
+                    <div class="modal-section-title">Research</div>
+                    <button class="dropdown-btn" onclick="toggleDropdown('researchSection')">
                         <div class="dropdown-btn-left">
                             <i class="fa-solid fa-microscope"></i>
-                            <span>অর্থনৈতিক গবেষণা ও প্রবন্ধ</span>
+                            <span>Economic Research & Articles</span>
                         </div>
                         <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="dropdown-content">
+                        <div class="news-lang-container">
+                            <button class="news-lang-btn" onclick="toggleNewsLanguage(event)">
+                                <i class="fa-solid fa-language"></i> <span id="newsLangBtnText">Translate to বাংলা</span>
+                            </button>
+                        </div>
                         <div id="news-list-container" class="news-list">
-                            <div class="loading bn-font" id="loading-msg">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+                            <div class="loading" id="loading-msg">Loading articles, please wait...</div>
                         </div>
                     </div>
                 </div>
@@ -537,15 +570,17 @@
     </div>
 
     <script>
-        // পপ-আপ মডাল খোলা ও বন্ধ করার ফাংশন
+        let newsLang = 'en'; // নিউজের ডিফল্ট ভাষা ইংরেজি
+
         function openModal() {
             document.getElementById('modalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden'; // পেজের স্ক্রলিং বন্ধ
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('remove');
             document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = ''; // পেজের স্ক্রলিং চালু
+            document.body.style.overflow = ''; 
         }
 
         function closeModalOnOverlay(event) {
@@ -554,7 +589,6 @@
             }
         }
 
-        // ড্রপডাউন খোলা ও বন্ধ করার ফাংশন
         function toggleDropdown(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.dropdown-content');
@@ -568,52 +602,100 @@
             }
         }
 
-        // গুগল শিট থেকে আর্টিকেল লোড করার জন্য ডেটা (আপনার আগের কোডের মতই)
+        // শুধুমাত্র নিউজের ভাষা পরিবর্তনের ফাংশন
+        function toggleNewsLanguage(event) {
+            event.stopPropagation(); // ড্রপডাউন বন্ধ হওয়া আটকানোর জন্য
+            newsLang = newsLang === 'en' ? 'bn' : 'en';
+            
+            const btnText = document.getElementById('newsLangBtnText');
+            const container = document.getElementById('news-list-container');
+            
+            if (newsLang === 'en') {
+                btnText.innerText = "Translate to বাংলা";
+                container.classList.remove('bn-font');
+            } else {
+                btnText.innerText = "Translate to English";
+                container.classList.add('bn-font');
+            }
+            
+            fetchNews(); // নতুন ভাষা অনুযায়ী শিট থেকে ডেটা লোড হবে
+        }
+
+        // CSV কমা হ্যান্ডেলিং পার্সার (টেক্সটের কমা ফিক্স করার জন্য)
+        function parseCSV(text) {
+            let p = '', r = [];
+            let q = false; 
+            let row = [''];
+            for (let i = 0; i < text.length; i++) {
+                let c = text[i];
+                if (c === '"') { 
+                    q = !q; 
+                } else if (c === ',' && !q) { 
+                    row.push(''); 
+                } else if ((c === '\r' || c === '\n') && !q) {
+                    if (c === '\r' && text[i+1] === '\n') { i++; }
+                    r.push(row);
+                    row = [''];
+                } else {
+                    row[row.length - 1] += c;
+                }
+            }
+            if (row.length > 1 || row[0] !== '') { r.push(row); }
+            return r;
+        }
+
+        // আপনার গুগল শিটের আইডি ও শিটের নাম 
         const SHEET_ID = '1kad9syTQO71xMH7Aq8YvPpf_ZkeFuYjTFi_yvJcIVFY'; 
         const SHEET_NAME = 'Sheet1'; 
 
         async function fetchNews() {
+            const container = document.getElementById('news-list-container');
+            container.innerHTML = newsLang === 'en' ? '<div class="loading">Loading articles, please wait...</div>' : '<div class="loading">আর্টিকেল লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>';
+
             try {
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
-                const rows = csvText.split('\n').slice(1); // প্রথম সারি বাদে বাকি সব
+                
+                const rows = parseCSV(csvText).slice(1); 
+                container.innerHTML = ''; 
 
-                const newsListContainer = document.getElementById('news-list-container');
-                newsListContainer.innerHTML = ''; 
+                rows.forEach(cols => {
+                    if (cols.length < 2 || !cols[0]) return; 
 
-                rows.forEach(row => {
-                    const cols = row.split(','); // কমা দিয়ে ভাগ
-                    if (cols.length < 2) return; // ডেটা না থাকলে বাদ
+                    const date = cols[0] || '';
+                    const headline = cols[1] || '';
+                    const content = cols[2] || '';
 
-                    const date = cols[0] || 'তারিখ নেই';
-                    const headline = cols[1] || 'শিরোনাম নেই';
-                    const content = cols[2] || 'কন্টেন্ট নেই';
-
-                    // এইচটিএমএল তৈরি (আপনার আগের ডিজাইনের মতই, কিন্তু মডালের জন্য ছোট)
                     const newsItemHTML = `
-                        <div style="border-bottom: 1px solid #e2e8f0; padding: 15px; font-family: 'Hind Siliguri', sans-serif;">
+                        <div style="border-bottom: 1px solid #e2e8f0; padding: 15px;">
                             <div style="font-size: 11px; color: #718096; margin-bottom: 5px;">
                                 <i class="fa-regular fa-calendar-days"></i> ${date}
                             </div>
-                            <h3 style="font-size: 14px; color: #0d1b2a; margin-bottom: 5px;">${headline}</h3>
+                            <h3 style="font-size: 14px; color: #0d1b2a; margin-bottom: 5px; font-weight: 700;">${headline}</h3>
                             <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.5;">${content}</p>
                         </div>
                     `;
-                    newsListContainer.innerHTML += newsItemHTML;
+                    container.innerHTML += newsItemHTML;
                 });
 
                 if (rows.length === 0) {
-                    newsListContainer.innerHTML = '<div class="loading bn-font">কোনো আর্টিকেল পাওয়া যায়নি।</div>';
+                    container.innerHTML = newsLang === 'en' ? '<div class="loading">No articles found.</div>' : '<div class="loading">কোনো আর্টিকেল পাওয়া যায়নি।</div>';
+                }
+
+                // যদি ড্রপডাউন খোলা থাকে তবে হাইট অ্যাডজাস্ট করার জন্য
+                const section = document.getElementById('researchSection');
+                if (section.classList.contains('active')) {
+                    const contentDiv = section.querySelector('.dropdown-content');
+                    contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
                 }
 
             } catch (error) {
                 console.error('Error fetching news:', error);
-                document.getElementById('news-list-container').innerHTML = '<div class="loading bn-font" style="color: red;">আর্টিকেল লোড করতে সমস্যা হয়েছে! শিটের সেটিংস চেক করুন।</div>';
+                container.innerHTML = newsLang === 'en' ? '<div class="loading" style="color: red;">Failed to load articles.</div>' : '<div class="loading" style="color: red;">আর্টিকেল লোড করতে সমস্যা হয়েছে।</div>';
             }
         }
 
-        // পেজ লোড হওয়ার পর ডেটা লোড করা
         window.onload = fetchNews;
     </script>
 

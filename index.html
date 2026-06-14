@@ -32,7 +32,7 @@
             font-family: 'Hind Siliguri', sans-serif !important;
         }
 
-        /* প্রোফাইল কার্ডের ডিজাইন */
+        /* প্রোফাইলカードের ডিজাইন */
         .profile-card {
             background: white;
             border-radius: 30px;
@@ -53,17 +53,17 @@
             border-bottom-right-radius: 50% 20%;
         }
 
-        /* কুইক এক্সেস বাটন */
+        /* ==================== কুইক এক্সেস বাটন (ক্লিক সমস্যা ফিক্সড) ==================== */
         .quick-access-btn {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 45px;
-            height: 45px;
+            top: 20px; /* প্যাডিং বৃদ্ধি করা হলো যাতে বর্ডারের ভেতর সেফ জোনে থাকে */
+            left: 20px;
+            width: 50px; /* মোবাইল টাচ রেসপন্স ভালো করার জন্য সাইজ একটু বড় করা হলো */
+            height: 50px;
             background: linear-gradient(135deg, #00c6ff, #0072ff, #f35588, #ff3366);
             background-size: 300% 300%;
             animation: gradientMove 6s ease infinite;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             color: white;
             display: flex;
@@ -72,13 +72,25 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 10;
+            transition: all 0.2s ease-in-out;
+            z-index: 99; /* কার্ডের সব এলিমেন্টের উপরে থাকার জন্য ইনডেক্স বৃদ্ধি */
+            -webkit-tap-highlight-color: transparent; /* মোবাইলে এক্সট্রা ফ্ল্যাশ রিমুভ */
         }
 
-        .quick-access-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(243, 85, 136, 0.5);
+        .quick-access-btn span {
+            font-size: 9px;
+            font-weight: 700;
+            margin-top: 1px;
+            letter-spacing: 0.3px;
+        }
+
+        .quick-access-btn i {
+            font-size: 14px;
+        }
+
+        .quick-access-btn:active {
+            transform: scale(0.92); /* টাচ করলে বাটন সামান্য দেবে যাবে, যা রেসপন্স নিশ্চিত করে */
+            opacity: 0.9;
         }
 
         @keyframes gradientMove {
@@ -142,7 +154,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 100;
+            z-index: 9999; /* সবচেয়ে উপরে রাখার জন্য */
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease-in-out;
@@ -195,6 +207,18 @@
         .close-modal-btn { background: none; border: none; color: rgba(255, 255, 255, 0.8); font-size: 22px; cursor: pointer; }
         .close-modal-btn:hover { color: white; }
 
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .modal-section { text-align: left; }
+        .modal-section-title { font-size: 14px; color: #718096; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
         /* মেনু বাটন স্টাইল */
         .menu-btn {
             width: 100%;
@@ -229,7 +253,7 @@
             width: 100vw;
             height: 100vh;
             background: #f8f9fa;
-            z-index: 200;
+            z-index: 10000;
             display: flex;
             flex-direction: column;
             transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -267,7 +291,7 @@
             margin: 0 auto;
         }
 
-        /* ডিজিটাল নিয়ন গ্লো ল্যাঙ্গুয়েজ বাটন */
+        /* ল্যাঙ্গুয়েজ বাটন */
         .news-lang-container { display: flex; justify-content: flex-end; padding: 0 0 15px 0; }
         .news-lang-btn {
             background: linear-gradient(135deg, #00f0ff, #0072ff, #ff007f);
@@ -285,12 +309,12 @@
             align-items: center;
             gap: 6px;
             box-shadow: 0 0 10px rgba(0, 114, 255, 0.5), 0 4px 15px rgba(255, 0, 127, 0.3);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             animation: lightShine 4s linear infinite;
         }
         @keyframes lightShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ==================== নিউজের টাইটেল অ্যাকসেন্ট শেপ ডিজাইন ==================== */
+        /* টাইটেল অ্যাকসেন্ট শেপ */
         .news-title-accent {
             display: inline-block;
             height: 4px;
@@ -300,7 +324,6 @@
             margin-bottom: 2px;
         }
 
-        /* কলাপসিবল নিউজ কার্ড ডিজাইন */
         .news-item {
             border: 1px solid #e2e8f0;
             border-radius: 14px;
@@ -313,106 +336,37 @@
         .news-toggle-header {
             padding: 18px 15px;
             cursor: pointer;
-            background: #ffffff;
-            transition: background 0.2s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 10px;
         }
 
-        .news-toggle-header:hover { background: #f8f9fa; }
-
-        .news-title-text {
-            font-size: 15px;
-            color: #0d1b2a;
-            font-weight: 700;
-            line-height: 1.45;
-        }
-
-        .news-toggle-icon {
-            font-size: 13px;
-            color: #718096;
-            transition: transform 0.3s ease;
-        }
-
-        .news-collapse-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            padding: 0 15px;
-            background: #ffffff;
-        }
-
+        .news-title-text { font-size: 15px; color: #0d1b2a; font-weight: 700; line-height: 1.45; }
+        .news-toggle-icon { font-size: 13px; color: #718096; transition: transform 0.3s ease; }
+        .news-collapse-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 15px; }
         .news-item.open .news-collapse-body { padding-bottom: 18px; border-top: 1px solid #f1f5f9; padding-top: 10px; }
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
-        
-        .news-img {
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin: 12px 0;
-            display: block;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
+        .news-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 12px 0; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
-        /* ==================== কালারফুল শ্যাডো একাডেমিক টেবিল ডিজাইন ==================== */
-        .table-responsive {
-            padding: 5px 0;
-            overflow-x: auto;
-        }
-
+        /* টেবিল ক্যাটাগরি শ্যাডো ডিজাইন */
+        .table-responsive { padding: 5px 0; overflow-x: auto; }
         .academic-table-container {
             background: white;
             padding: 15px;
             border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(13, 27, 42, 0.08); /* গর্জিয়াস সফট শ্যাডো */
+            box-shadow: 0 10px 30px rgba(13, 27, 42, 0.08);
             border: 1px solid #e2e8f0;
         }
 
-        .academic-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            text-align: left;
-            min-width: 380px; 
-        }
-
-        /* কালারফুল টেবিল হেডার */
-        .academic-table th {
-            background-color: #0d1b2a;
-            color: #ffffff;
-            padding: 14px 12px;
-            font-weight: 700;
-            border: 1px solid #1e2d3d;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.5px;
-        }
-
-        /* স্পষ্ট ৩ডি কালারফুল সেল বর্ডার */
-        .academic-table td {
-            padding: 14px 12px;
-            border: 1px solid #cbd5e1; /* স্পষ্ট এবং শার্প বর্ডার */
-            color: #2d3748;
-            line-height: 1.4;
-            background: #ffffff;
-        }
-
-        /* টেবিল রিল্যাক্সিং রো অল্টারনেট কালার */
-        .academic-table tr:nth-child(even) td {
-            background-color: #f8fafc; /* ইন্টারচেঞ্জ ব্যাকগ্রাউন্ড */
-        }
-
-        .academic-table tr:hover td {
-            background-color: #f1f5f9; /* হোভার কালার */
-        }
-
+        .academic-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; min-width: 380px; }
+        .academic-table th { background-color: #0d1b2a; color: #ffffff; padding: 14px 12px; font-weight: 700; border: 1px solid #1e2d3d; text-transform: uppercase; font-size: 11px; }
+        .academic-table td { padding: 14px 12px; border: 1px solid #cbd5e1; color: #2d3748; background: #ffffff; }
+        .academic-table tr:nth-child(even) td { background-color: #f8fafc; }
         .badge-NU { color: #00c6ff; font-weight: bold; }
         .badge-board { color: #ff3366; font-weight: bold; }
 
-        /* স্কিল বাটন */
+        /* সার্টিফিকেট লিঙ্ক */
         .cert-btn-container { display: flex; flex-direction: column; gap: 12px; }
         .cert-btn {
             display: flex;
@@ -465,16 +419,14 @@
             </div>
             
             <div class="social-grid">
-                <a href="https://www.facebook.com/parthibdas2023" class="social-btn facebook" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/parthib_2023" class="social-btn instagram" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/parthib-das" class="social-btn linkedin" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank" title="Threads"><i class="fa-brands fa-threads" style="color: black !important; font-size: 19px;"></i></a>
+                <a href="https://www.facebook.com/parthibdas2023" class="social-btn facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/parthib_2023" class="social-btn instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/parthib-das" class="social-btn linkedin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank"><i class="fa-brands fa-threads" style="color: black !important; font-size: 19px;"></i></a>
             </div>
 
             <div class="about-section">
-                <div class="section-title">
-                    <i class="fa-solid fa-user"></i> About Me
-                </div>
+                <div class="section-title"><i class="fa-solid fa-user"></i> About Me</div>
                 <p class="about-text">
                     Hi, I am Parthib Das. As an Economics background student, I am naturally driven by data, structure, and quantitative analysis. I leverage this analytical mindset as a detail-oriented Data Entry Specialist. Expert in web research, data mining, and organizing data using MS Excel and Google Sheets. My primary goal is to deliver 100% accurate, error-free work within deadlines. I look forward to contributing to research-driven global opportunities.
                 </p>
@@ -496,10 +448,7 @@
                 <div class="modal-section">
                     <div class="modal-section-title">Education</div>
                     <button class="menu-btn" onclick="openSubPage('academicSubPage')">
-                        <div class="menu-btn-left">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <span>Academic Background</span>
-                        </div>
+                        <div class="menu-btn-left"><i class="fa-solid fa-graduation-cap"></i><span>Academic Background</span></div>
                         <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
                     </button>
                 </div>
@@ -507,10 +456,7 @@
                 <div class="modal-section">
                     <div class="modal-section-title">Qualifications & Certificates</div>
                     <button class="menu-btn" onclick="openSubPage('skillsSubPage')">
-                        <div class="menu-btn-left">
-                            <i class="fa-solid fa-laptop-code"></i>
-                            <span>Skills & Certificates</span>
-                        </div>
+                        <div class="menu-btn-left"><i class="fa-solid fa-laptop-code"></i><span>Skills & Certificates</span></div>
                         <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
                     </button>
                 </div>
@@ -518,10 +464,7 @@
                 <div class="modal-section">
                     <div class="modal-section-title">Research</div>
                     <button class="menu-btn" onclick="openSubPage('researchSubPage')">
-                        <div class="menu-btn-left">
-                            <i class="fa-solid fa-microscope"></i>
-                            <span>Economic Research & Articles</span>
-                        </div>
+                        <div class="menu-btn-left"><i class="fa-solid fa-microscope"></i><span>Economic Research & Articles</span></div>
                         <i class="fa-solid fa-arrow-right" style="color: #c5a880; font-size: 13px;"></i>
                     </button>
                 </div>
@@ -616,7 +559,6 @@
         let newsLang = 'en'; 
         let globalNewsData = []; 
 
-        // টাইটেল শেপের জন্য চমৎকার ৪টি নিয়ন গ্রেডিয়েন্ট কালার কম্বিনেশন
         const shapeGradients = [
             'linear-gradient(90deg, #ff007f, #ff758c)',
             'linear-gradient(90deg, #00f0ff, #0072ff)',
@@ -649,10 +591,8 @@
         function toggleNewsLanguage(event) {
             event.stopPropagation();
             newsLang = newsLang === 'en' ? 'bn' : 'en';
-            
             const btnText = document.getElementById('newsLangBtnText');
             const container = document.getElementById('news-list-container');
-            
             if (newsLang === 'en') {
                 btnText.innerText = "Translate to বাংলা";
                 container.classList.remove('bn-font');
@@ -666,7 +606,6 @@
         function toggleNewsCollapse(headerElement) {
             const newsItem = headerElement.parentElement;
             const collapseBody = newsItem.querySelector('.news-collapse-body');
-            
             if (newsItem.classList.contains('open')) {
                 newsItem.classList.remove('open');
                 collapseBody.style.maxHeight = null;
@@ -703,10 +642,8 @@
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${SHEET_NAME}`;
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
-                
                 globalNewsData = parseCSV(csvText).slice(1).reverse(); 
                 renderNews(); 
-
             } catch (error) {
                 console.error('Error fetching news:', error);
                 document.getElementById('news-list-container').innerHTML = '<div class="loading" style="color: red;">Failed to load articles.</div>';
@@ -716,19 +653,15 @@
         function renderNews() {
             const container = document.getElementById('news-list-container');
             container.innerHTML = ''; 
-
             if (globalNewsData.length === 0) {
                 container.innerHTML = newsLang === 'en' ? '<div class="loading">No articles found.</div>' : '<div class="loading">কোনো আর্টিকেল পাওয়া যায়নি।</div>';
                 return;
             }
-
             globalNewsData.forEach((cols, index) => {
                 if (cols.length < 3 || !cols[0]) return; 
-
                 const date = cols[0].trim() || '';
                 let headline = newsLang === 'en' ? (cols[3] || '') : (cols[1] || '');
                 let content = newsLang === 'en' ? (cols[4] || '') : (cols[2] || '');
-                
                 const imgUrlFirst = cols[5] ? cols[5].trim() : ''; 
                 const imgUrlMiddle = cols[6] ? cols[6].trim() : '';
 
@@ -741,8 +674,42 @@
                 if (imgUrlMiddle && imgUrlMiddle.startsWith('http') && content.length > 50) {
                     const middleIdx = Math.floor(content.length / 2);
                     const spaceIdx = content.indexOf(' ', middleIdx);
-                    
                     if (spaceIdx !== -1) {
                         const firstHalf = content.substring(0, spaceIdx);
                         const secondHalf = content.substring(spaceIdx);
-                        const middleImgHTML = `
+                        const middleImgHTML = `<img src="${imgUrlMiddle}" class="news-img" alt="Middle Content Image">`;
+                        updatedContent = `${firstHalf} ${middleImgHTML} ${secondHalf}`;
+                    }
+                }
+
+                const currentGradient = shapeGradients[index % shapeGradients.length];
+
+                const newsItemHTML = `
+                    <div class="news-item">
+                        <div class="news-toggle-header" onclick="toggleNewsCollapse(this)">
+                            <div>
+                                <div style="font-size: 10px; color: #718096; margin-bottom: 2px;">
+                                    <i class="fa-regular fa-calendar-days"></i> ${date}
+                                </div>
+                                <div class="news-title-text">${headline}</div>
+                                <div class="news-title-accent" style="background: ${currentGradient};"></div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down news-toggle-icon"></i>
+                        </div>
+                        <div class="news-collapse-body">
+                            ${firstImgHTML}
+                            <p style="font-size: 12px; color: #4a5568; text-align: justify; line-height: 1.6; margin-top: 8px; white-space: pre-line;">
+                                ${updatedContent}
+                            </p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += newsItemHTML;
+            });
+        }
+
+        window.onload = fetchNews;
+    </script>
+
+</body>
+</html>

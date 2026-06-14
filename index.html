@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parthib Das - Portfolio & Quick Access</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind_Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Galada&family=Hind_Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* মূল স্টাইল এবং বডি */
@@ -32,7 +32,7 @@
             font-family: 'Hind Siliguri', sans-serif !important;
         }
 
-        /* প্রোফাইল কার্ডের ডিজাইন */
+        /* প্রোফাইলカードের ডিজাইন */
         .profile-card {
             background: white;
             border-radius: 30px;
@@ -308,7 +308,7 @@
         }
         @keyframes lightShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* টাইটেল অ্যাকসেন্ট শেপ (১০০% সলিড কালার, লেখা স্পষ্ট পড়ার জন্য) */
+        /* টাইটেল অ্যাকসেন্ট শেপ */
         .news-title-accent {
             display: block;
             height: 5px;
@@ -337,14 +337,38 @@
             gap: 10px;
         }
 
-        .news-title-text { font-size: 15px; color: #0d1b2a; font-weight: 700; line-height: 1.45; }
+        /* ডাইনামিক স্টাইলিশ টাইটেল টেক্সট এবং টেক্সট-গ্লো অ্যানিমেশন */
+        .news-title-text { 
+            font-size: 16px; 
+            font-weight: 700; 
+            line-height: 1.45;
+            background: linear-gradient(135deg, #00c6ff, #0072ff, #f35588, #ff3366);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 4s linear infinite;
+        }
+
+        /* বাংলা মোডে স্টাইলিশ ক্যালিগ্রাফি ফন্ট সক্রিয় করার জন্য */
+        #news-list-container.bn-font .news-title-text {
+            font-family: 'Galada', cursive !important;
+            font-size: 20px; /* বাংলা ফন্টের সাইজ একটু বড় করা হয়েছে সুন্দর দেখানোর জন্য */
+            font-weight: normal;
+        }
+
+        @keyframes titleGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .news-toggle-icon { font-size: 13px; color: #718096; transition: transform 0.3s ease; }
         .news-collapse-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 15px; }
         .news-item.open .news-collapse-body { padding-bottom: 18px; border-top: 1px solid #f1f5f9; padding-top: 10px; }
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
         .news-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 12px 0; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
-        /* টেবিল ক্যাটাগরি শ্যাডো ডিজাইন */
+        /* টেবিল ক্যাটাগরি ডিজাইন */
         .table-responsive { padding: 5px 0; overflow-x: auto; }
         .academic-table-container {
             background: white;
@@ -356,8 +380,6 @@
 
         .academic-table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; min-width: 380px; }
         .academic-table th { background-color: #0d1b2a; color: #ffffff; padding: 14px 12px; font-weight: 700; border: 2px solid #1e2d3d; text-transform: uppercase; font-size: 11px; }
-        
-        /* একাডেমিক টেবিল গাড়ো ৩ডি বর্ডার */
         .academic-table td { padding: 14px 12px; border: 2px solid #0d1b2a; color: #2d3748; background: #ffffff; font-weight: 500; }
         .academic-table tr:hover td { background-color: #f1f5f9; }
 
@@ -583,7 +605,6 @@
             }
         }
 
-        // ==================== ফিক্সড হ্যাশ রাউটিং ইঞ্জিন ====================
         function openSubPage(pageId, routeName) { 
             document.getElementById(pageId).classList.add('active');
             window.location.hash = routeName;
@@ -596,7 +617,6 @@
             }
         }
 
-        // ব্রাউজার বা মোবাইলের ব্যাক বাটন ট্র্যাকিং লজিক
         window.onhashchange = function() {
             const currentHash = window.location.hash;
             

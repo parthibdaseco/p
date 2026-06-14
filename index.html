@@ -32,7 +32,7 @@
             font-family: 'Hind Siliguri', sans-serif !important;
         }
 
-        /* প্রোফাইলカードের ডিজাইন */
+        /* প্রোফাইল কার্ডের ডিজাইন */
         .profile-card {
             background: white;
             border-radius: 30px;
@@ -41,7 +41,7 @@
             width: 100%;
             max-width: 430px;
             overflow: hidden;
-            padding-bottom: 35px;
+            padding-bottom: 20px;
             position: relative;
         }
 
@@ -134,10 +134,10 @@
         .linkedin { background-color: #0077B5; }
         .threads { background-color: #ffffff; border: 1px solid #ccd1d9; }
 
-        /* About Me জীবন্ত রঙিন গ্লো ইফেক্ট ডিজাইন (image_53f1cd.png) */
+        /* About Me সেকশন */
         .about-section { 
             text-align: left; 
-            margin-bottom: 20px; 
+            margin-bottom: 25px; 
             background: #ffffff; 
             border-left: 5px solid transparent;
             border-image: linear-gradient(to bottom, #00c6ff, #0072ff, #ff3366) 1 100%;
@@ -174,7 +174,22 @@
         
         .about-text { font-size: 13.5px; color: #4a5568; line-height: 1.6; text-align: justify; }
 
-        /* পপ-আপ মডাল ব্যাকগ্রাউন্ড (Premium Colorful Tint) */
+        /* কাস্টম কপিরাইট ফুটার ডিজাইন (image_53e324.png এর সমাধান) */
+        .card-footer-copyright {
+            font-size: 11px;
+            color: #a0aec0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #edf2f7;
+            padding-top: 15px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* পপ-আপ মডাল ব্যাকগ্রাউন্ড */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -196,7 +211,7 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #eef2f7 0%, #dfe9f3 100%); /* রঙিন থিম ব্যাকগ্রাউন্ড */
+            background: linear-gradient(135deg, #eef2f7 0%, #dfe9f3 100%); 
             width: 90%;
             max-width: 450px;
             max-height: 90vh;
@@ -295,14 +310,14 @@
         .menu-btn-left i { color: #ffffff; font-size: 16px; }
         .menu-btn .fa-arrow-right { color: #ffffff !important; font-size: 13px; }
 
-        /* প্রতিটি সাব-পেজের ব্যাকগ্রাউন্ড হালকা কালারফুল করা হয়েছে (image_53f1c9.png & image_53f1c6.png) */
+        /* প্রতিটি সাব-পেজের ব্যাকগ্রাউন্ড */
         .sub-page-overlay {
             position: fixed;
             top: 0;
             left: 100%; 
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(135deg, #eef2f7 0%, #dfe9f3 100%); /* সাব পেজের কালারফুল ব্যাকগ্রাউন্ড */
+            background: linear-gradient(135deg, #eef2f7 0%, #dfe9f3 100%); 
             z-index: 10000;
             display: flex;
             flex-direction: column;
@@ -374,7 +389,7 @@
             margin-bottom: 2px;
         }
 
-        /* নিউজের আর্টিকেলের সাদা কার্ড কালারফুল ব্যাকগ্রাউন্ডের উপর ফুটে উঠবে (image_53f1c9.png) */
+        /* নিউজের আর্টিকেলের সাদা কার্ড */
         .news-item {
             border: 1px solid rgba(0, 114, 255, 0.1);
             border-radius: 16px;
@@ -417,7 +432,7 @@
         .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
         .news-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; margin: 12px 0; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
-        /* টেবিল রেসপনসিভ কন্টেইনার (image_53f1c6.png) */
+        /* টেবিল রেসপনসিভ কন্টেইনার */
         .table-responsive { padding: 5px 0; overflow-x: auto; }
         .academic-table-container {
             background: white;
@@ -498,12 +513,17 @@
                 <a href="https://www.threads.net/@parthib_2023" class="social-btn threads" target="_blank"><i class="fa-brands fa-threads" style="color: black !important; font-size: 19px;"></i></a>
             </div>
 
-            <!-- About Me সেকশন (image_53f1cd.png এর রিকোয়েস্ট অনুযায়ী কাস্টম নিয়ন গ্লো সহ) -->
+            <!-- About Me সেকশন -->
             <div class="about-section">
                 <div class="section-title"><i class="fa-solid fa-user"></i> About Me</div>
                 <p class="about-text">
                     Hi, I am Parthib Das. As an Economics background student, I am naturally driven by data, structure, and quantitative analysis. I leverage this analytical mindset as a detail-oriented Data Entry Specialist. Expert in web research, data mining, and organizing data using MS Excel and Google Sheets. My primary goal is to deliver 100% accurate, error-free work within deadlines. I look forward to contributing to research-driven global opportunities.
                 </p>
+            </div>
+
+            <!-- কাস্টম কপিরাইট ফুটার (image_53e324.png এর রিকোয়েস্ট অনুযায়ী) -->
+            <div class="card-footer-copyright">
+                <i class="fa-regular fa-copyright"></i> 2026 Parthib Das. All Rights Reserved.
             </div>
         </div>
     </div>
@@ -547,7 +567,7 @@
         </div>
     </div>
 
-    <!-- Academic Background Sub-page (image_53f1c6.png ব্যাকগ্রাউন্ড ফিক্স) -->
+    <!-- Academic Background Sub-page -->
     <div class="sub-page-overlay" id="academicSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -615,7 +635,7 @@
         </div>
     </div>
 
-    <!-- Research Portal Sub-page (image_53f1c9.png ব্যাকগ্রাউন্ড ফিক্স) -->
+    <!-- Research Portal Sub-page -->
     <div class="sub-page-overlay" id="researchSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i></button>

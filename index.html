@@ -287,7 +287,6 @@
         .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 114, 255, 0.45); }
         .submit-btn:disabled { background: #a0aec0; cursor: not-allowed; box-shadow: none; }
 
-        /* সাকসেস মেসেজ স্টাইল */
         .form-message {
             display: none;
             padding: 12px;
@@ -388,6 +387,7 @@
             justify-content: space-between;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none; /* লিঙ্ক আন্ডারলাইন রিমুভ করার জন্য */
         }
 
         .btn-academic { background: linear-gradient(135deg, #0072ff, #00c6ff); box-shadow: 0 6px 16px rgba(0, 114, 255, 0.4); }
@@ -419,53 +419,6 @@
         .back-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .sub-page-body { padding: 25px 20px; overflow-y: auto; flex-grow: 1; width: 100%; max-width: 600px; margin: 0 auto; }
 
-        .news-lang-container { display: flex; justify-content: flex-end; padding: 0 0 15px 0; }
-        .news-lang-btn {
-            background: linear-gradient(135deg, #00f0ff, #0072ff, #ff007f);
-            background-size: 200% auto;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
-            transition: all 0.3s ease;
-            animation: lightShine 4s linear infinite;
-        }
-        @keyframes lightShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        .news-title-accent { display: block; height: 5px; width: 50px; border-radius: 10px; margin-top: 8px; margin-bottom: 2px; }
-
-        .news-item {
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            margin-bottom: 18px;
-            overflow: hidden;
-            background: var(--card-bg);
-            box-shadow: 0 6px 18px rgba(13, 27, 42, 0.06);
-            transition: transform 0.3s ease;
-        }
-        .news-item:hover { transform: translateY(-2px); }
-        .news-toggle-header { padding: 20px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-        
-        .news-title-text { 
-            font-size: 16px; font-weight: 700; line-height: 1.45;
-        }
-
-        #news-list-container.bn-font .news-title-text { font-family: 'Galada', cursive !important; font-size: 20px; }
-        .news-toggle-icon { font-size: 13px; color: #718096; transition: transform 0.3s ease; }
-        .news-collapse-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 18px; }
-        .news-item.open .news-collapse-body { padding-bottom: 20px; border-top: 1px solid var(--border-color); padding-top: 12px; }
-        .news-item.open .news-toggle-icon { transform: rotate(180deg); color: #0072ff; }
-
-        .table-responsive { padding: 5px 0; overflow-x: auto; }
         .academic-table-container { background: var(--card-bg); padding: 18px; border-radius: 20px; box-shadow: 0 12px 32px rgba(13, 27, 42, 0.08); border: 1px solid var(--border-color); }
         .academic-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; min-width: 420px; }
         .academic-table th { background-color: #0d1b2a; color: #ffffff; padding: 15px 12px; font-weight: 700; border: 2px solid #1e2d3d; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
@@ -485,7 +438,6 @@
         .cert-btn:hover { background: linear-gradient(135deg, #e43f5a, #162447); box-shadow: 0 8px 25px rgba(228, 63, 90, 0.45); transform: translateX(4px); }
         .cert-btn-left { display: flex; align-items: center; gap: 10px; }
         .cert-btn-left i { color: #ffbc00; font-size: 18px; }
-        .loading { text-align: center; color: #718096; font-size: 13px; padding: 20px 0; }
     </style>
 </head>
 <body>
@@ -543,7 +495,6 @@
             <div class="contact-form-container">
                 <div class="form-title"><i class="fa-solid fa-paper-plane"></i> Send Me a Message</div>
                 
-                <!-- ফর্ম সাবমিট জাভাস্ক্রিপ্ট হ্যান্ডেল করবে তাই অ্যাকশন এখানে ফাকা রাখা হয়েছে -->
                 <form id="g-sheet-form">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Your Name" required>
@@ -556,7 +507,6 @@
                     </div>
                     <button type="submit" id="submitBtn" class="submit-btn">Send Message <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
                     
-                    <!-- সাকসেস/এরর মেসেজ দেখানোর এরিয়া -->
                     <div id="formStatus" class="form-message"></div>
                 </form>
             </div>
@@ -581,7 +531,7 @@
             <div class="modal-body">
                 <div class="modal-section">
                     <div class="modal-section-title">Education</div>
-                    <button class="menu-btn btn-academic" onclick="openSubPage('academicSubPage', 'academic')">
+                    <button class="menu-btn btn-academic" onclick="openSubPage('academicSubPage')">
                         <div class="menu-btn-left"><i class="fa-solid fa-graduation-cap"></i><span>Academic Background</span></div>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -589,7 +539,7 @@
 
                 <div class="modal-section">
                     <div class="modal-section-title">Qualifications & Certificates</div>
-                    <button class="menu-btn btn-skills" onclick="openSubPage('skillsSubPage', 'skills')">
+                    <button class="menu-btn btn-skills" onclick="openSubPage('skillsSubPage')">
                         <div class="menu-btn-left"><i class="fa-solid fa-laptop-code"></i><span>Skills & Certificates</span></div>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -597,10 +547,11 @@
 
                 <div class="modal-section">
                     <div class="modal-section-title">Research</div>
-                    <button class="menu-btn btn-research" onclick="openSubPage('researchSubPage', 'reports')">
+                    <!-- বাটনটিকে সরাসরি লিঙ্কে পরিবর্তন করা হয়েছে -->
+                    <a href="https://parthib.pro.bd/reports" class="menu-btn btn-research">
                         <div class="menu-btn-left"><i class="fa-solid fa-microscope"></i><span>Economic Research & Articles</span></div>
                         <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -674,35 +625,7 @@
         </div>
     </div>
 
-    <!-- Research Portal Sub-page -->
-    <div class="sub-page-overlay" id="researchSubPage">
-        <div class="sub-page-header">
-            <button class="back-btn" onclick="closeSubPage('researchSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
-            <div style="font-size: 16px; font-weight: 700;">Economic Research Portal</div>
-        </div>
-        <div class="sub-page-body">
-            <div class="news-lang-container">
-                <button class="news-lang-btn" onclick="toggleNewsLanguage(event)">
-                    <i class="fa-solid fa-language"></i> <span id="newsLangBtnText">Translate to বাংলা</span>
-                </button>
-            </div>
-            <div id="news-list-container" class="news-list">
-                <div class="loading">Loading articles, please wait...</div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        let newsLang = 'en'; 
-        let globalNewsData = []; 
-
-        const shapeGradients = [
-            'linear-gradient(90deg, #ff007f, #ff758c)',
-            'linear-gradient(90deg, #00f0ff, #0072ff)',
-            'linear-gradient(90deg, #11ffbd, #abff99)',
-            'linear-gradient(90deg, #ff9966, #ff5e62)'
-        ];
-
         // লুপ সহ টাইপরাইটার ইফেক্ট
         const text = "I am a Data Entry Expert.";
         let textIndex = 0;
@@ -750,7 +673,6 @@
         function closeModal() {
             closeSubPage('academicSubPage');
             closeSubPage('skillsSubPage');
-            closeSubPage('researchSubPage');
             document.getElementById('modalOverlay').classList.remove('active');
             document.body.style.overflow = ''; 
         }
@@ -761,91 +683,25 @@
             }
         }
 
-        function openSubPage(pageId, type) {
+        function openSubPage(pageId) {
             document.getElementById(pageId).classList.add('active');
-            if (type === 'reports') {
-                fetchResearchArticles();
-            }
         }
 
         function closeSubPage(pageId) {
             document.getElementById(pageId).classList.remove('active');
         }
 
-        function fetchResearchArticles() {
-            globalNewsData = [
-                {
-                    title_en: "Impact of Data Entry Accuracy in Economic Analysis",
-                    title_bn: "অর্থনৈতিক বিশ্লেষণে ডাটা এন্ট্রির নির্ভুলতার প্রভাব",
-                    desc_en: "Accurate data sourcing drives precise policy-making and global research.",
-                    desc_bn: "সঠিক ডাটা সোর্সিং সুনির্দিষ্ট নীতি নির্ধারণ এবং বৈশ্বিক গবেষণাকে চালিত করে।"
-                }
-            ];
-            renderArticles();
-        }
-
-        function renderArticles() {
-            const container = document.getElementById('news-list-container');
-            if (!container) return;
-            if (globalNewsData.length === 0) {
-                container.innerHTML = '<div class="loading">No articles found.</div>';
-                return;
-            }
-
-            let html = '';
-            globalNewsData.forEach((item, index) => {
-                const title = newsLang === 'en' ? item.title_en : item.title_bn;
-                const desc = newsLang === 'en' ? item.desc_en : item.desc_bn;
-                const gradient = shapeGradients[index % shapeGradients.length];
-
-                html += `
-                    <div class="news-item" id="news-${index}">
-                        <div class="news-toggle-header" onclick="this.parentElement.classList.toggle('open')">
-                            <div>
-                                <span class="news-title-text">${title}</span>
-                                <span class="news-title-accent" style="background: ${gradient}"></span>
-                            </div>
-                            <i class="fa-solid fa-chevron-down news-toggle-icon"></i>
-                        </div>
-                        <div class="news-collapse-body">
-                            <p class="about-text" style="padding-top:10px;">${desc}</p>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        function toggleNewsLanguage(event) {
-            event.stopPropagation();
-            const btnText = document.getElementById('newsLangBtnText');
-            const container = document.getElementById('news-list-container');
-
-            if (newsLang === 'en') {
-                newsLang = 'bn';
-                btnText.innerText = "Translate to English";
-                container.classList.add('bn-font');
-            } else {
-                newsLang = 'en';
-                btnText.innerText = "Translate to বাংলা";
-                container.classList.remove('bn-font');
-            }
-            renderArticles();
-        }
-
         // গুগল শিটে ব্যাকগ্রাউন্ডে ডেটা সাবমিট করার জাভাস্ক্রিপ্ট লজিক
         document.getElementById('g-sheet-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // পেজ রিলোড বন্ধ করা
+            e.preventDefault(); 
             
             const form = e.target;
             const submitBtn = document.getElementById('submitBtn');
             const statusDiv = document.getElementById('formStatus');
             
-            // বাটন ডিসেবল করা এবং লোডিং টেক্সট দেখানো
             submitBtn.disabled = true;
             submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
             
-            // ফর্ম ডেটা তৈরি
             const formData = new FormData(form);
             const keyValuePairs = [];
             for (let pair of formData.entries()) {
@@ -853,10 +709,8 @@
             }
             const formDataString = keyValuePairs.join("&");
             
-            // আপনার গুগল শিটের ওয়েব অ্যাপ ইউআরএল
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzBEsdLBTRtfF2S3wgb6SO4S_KpBY3U4TAyL2x0IhtTqvbXqbbP-2t53CwwdeeWr73JEg/exec';
             
-            // ফেইচ (Fetch) এপিআই দিয়ে ব্যাকগ্রাউন্ডে ডেটা পাঠানো
             fetch(scriptURL, {
                 method: 'POST',
                 headers: {
@@ -867,7 +721,7 @@
             .then(response => {
                 statusDiv.textContent = 'Message sent successfully! Check your Google Sheet.';
                 statusDiv.className = 'form-message success';
-                form.reset(); // ফর্ম ইনপুটগুলো খালি করা
+                form.reset(); 
             })
             .catch(error => {
                 statusDiv.textContent = 'Something went wrong. Please try again.';
@@ -875,11 +729,9 @@
                 console.error('Error!', error.message);
             })
             .finally(() => {
-                // বাটন আবার আগের অবস্থায় ফিরিয়ে আনা
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-arrow-right-to-bracket"></i>';
                 
-                // ৫ সেকেন্ড পর সাকসেস মেসেজটি স্ক্রিন থেকে গায়েব করে দেওয়া
                 setTimeout(() => {
                     statusDiv.style.display = 'none';
                 }, 5000);

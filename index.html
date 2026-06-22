@@ -387,7 +387,7 @@
             justify-content: space-between;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none; /* লিঙ্ক আন্ডারলাইন রিমুভ করার জন্য */
+            text-decoration: none; 
         }
 
         .btn-academic { background: linear-gradient(135deg, #0072ff, #00c6ff); box-shadow: 0 6px 16px rgba(0, 114, 255, 0.4); }
@@ -517,7 +517,6 @@
         </div>
     </div>
 
-    <!-- Quick Access Menu Modal -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
             <div class="modal-header">
@@ -547,7 +546,6 @@
 
                 <div class="modal-section">
                     <div class="modal-section-title">Research</div>
-                    <!-- বাটনটিকে সরাসরি লিঙ্কে পরিবর্তন করা হয়েছে -->
                     <a href="https://parthib.pro.bd/reports" class="menu-btn btn-research">
                         <div class="menu-btn-left"><i class="fa-solid fa-microscope"></i><span>Economic Research & Articles</span></div>
                         <i class="fa-solid fa-arrow-right"></i>
@@ -557,7 +555,6 @@
         </div>
     </div>
 
-    <!-- Academic Background Sub-page -->
     <div class="sub-page-overlay" id="academicSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -601,7 +598,6 @@
         </div>
     </div>
 
-    <!-- Skills & Certificates Sub-page -->
     <div class="sub-page-overlay" id="skillsSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('skillsSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -625,8 +621,10 @@
         </div>
     </div>
 
+    <!-- চ্যাটবট স্ক্রিপ্ট -->
+    <script src="https://www.chatbase.co/embed.min.js" chatbotId="YOUR_CHATBOT_ID" domain="www.chatbase.co" defer></script>
+
     <script>
-        // লুপ সহ টাইপরাইটার ইফেক্ট
         const text = "I am a Data Entry Expert.";
         let textIndex = 0;
         let isDeleting = false;
@@ -691,7 +689,6 @@
             document.getElementById(pageId).classList.remove('active');
         }
 
-        // গুগল শিটে ব্যাকগ্রাউন্ডে ডেটা সাবমিট করার জাভাস্ক্রিপ্ট লজিক
         document.getElementById('g-sheet-form').addEventListener('submit', function(e) {
             e.preventDefault(); 
             
@@ -742,45 +739,5 @@
             typeWriter();
         };
     </script>
-<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-<script>
-  window.botpressWebChat.init({
-      "composerPlaceholder": "Chat with Parthib",
-      "botConversationDescription": "AI Assistant for Parthib Das",
-      "botId": "6f692598-f5b3-4d4a-8057-0ae9587eb7ef",
-      "hostUrl": "https://cdn.botpress.cloud/webchat/v3.6",
-      "messagingUrl": "https://messaging.botpress.cloud",
-      "clientId": "6f692598-f5b3-4d4a-8057-0ae9587eb7ef",
-      "webhookId": "6f692598-f5b3-4d4a-8057-0ae9587eb7ef",
-      "lazySocket": true,
-      "themeName": "prism",
-      "botName": "Parthib's Assistant",
-      "stylesheet": "https://webchat-styler-css.botpress.app/prod/code/8f090b84-6330-4e78-8d48-39659114d59a/v99896/style.css",
-      "frontendVersion": "v3.6",
-      "showPoweredBy": false,
-      "enableConversationDeletion": true,
-      "showCloseButton": true
-  });
-</script>
-    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-<script>
-  window.botpressWebChat.init({
-      "composerPlaceholder": "Chat with Parthib",
-      "botConversationDescription": "AI Assistant for Parthib Das",
-      "botId": "6f692598-f5b3-4d4a-8057-0ae9587eb7ef",
-      "hostUrl": "https://cdn.botpress.cloud/webchat/v3.6",
-      "messagingUrl": "https://messaging.botpress.cloud",
-      "clientId": "6f692598-f5b3-4d4a-8057-0ae9587eb7ef",
-      "webhookId": "6f692598-f5b3-4d4a-8057-0ae9587eb7ef",
-      "lazySocket": true,
-      "themeName": "prism",
-      "botName": "Parthib's Assistant",
-      "stylesheet": "https://webchat-styler-css.botpress.app/prod/code/8f090b84-6330-4e78-8d48-39659114d59a/v99896/style.css",
-      "frontendVersion": "v3.6",
-      "showPoweredBy": false,
-      "enableConversationDeletion": true,
-      "showCloseButton": true
-  });
-</script>
 </body>
 </html>

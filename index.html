@@ -387,7 +387,7 @@
             justify-content: space-between;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none; 
+            text-decoration: none;
         }
 
         .btn-academic { background: linear-gradient(135deg, #0072ff, #00c6ff); box-shadow: 0 6px 16px rgba(0, 114, 255, 0.4); }
@@ -517,6 +517,7 @@
         </div>
     </div>
 
+    <!-- Quick Access Menu Modal -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
         <div class="modal-content">
             <div class="modal-header">
@@ -555,6 +556,7 @@
         </div>
     </div>
 
+    <!-- Academic Background Sub-page -->
     <div class="sub-page-overlay" id="academicSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('academicSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -598,6 +600,7 @@
         </div>
     </div>
 
+    <!-- Skills & Certificates Sub-page -->
     <div class="sub-page-overlay" id="skillsSubPage">
         <div class="sub-page-header">
             <button class="back-btn" onclick="closeSubPage('skillsSubPage')"><i class="fa-solid fa-arrow-left"></i></button>
@@ -620,9 +623,6 @@
             </div>
         </div>
     </div>
-
-    <!-- চ্যাটবট স্ক্রিপ্ট -->
-    <script src="https://www.chatbase.co/embed.min.js" chatbotId="YOUR_CHATBOT_ID" domain="www.chatbase.co" defer></script>
 
     <script>
         const text = "I am a Data Entry Expert.";
@@ -739,5 +739,9 @@
             typeWriter();
         };
     </script>
+
+    <!-- বটপ্রেস চ্যাটবট স্ক্রিপ্ট -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/06/22/16/20260622160206-0W3IJ7O5.js" defer></script>
 </body>
 </html>

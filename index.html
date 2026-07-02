@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parthib Das - Portfolio & Quick Access</title>
     
-    <!-- শুধুমাত্র এই লোগোর লাইনটি যোগ করা হয়েছে -->
+    <!-- লোগো (Favicon) -->
     <link rel="icon" type="image/png" href="https://i.postimg.cc/bYmDMpX3/Gemini-Generated-Image-l9sst3l9sst3l9ss.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -85,7 +85,7 @@
             width: 100%;
             max-width: 430px;
             overflow: hidden;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
             position: relative;
         }
 
@@ -291,30 +291,56 @@
         .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 114, 255, 0.45); }
         .submit-btn:disabled { background: #a0aec0; cursor: not-allowed; box-shadow: none; }
 
+        /* সাকসেস মেসেজে কালারফুল গ্রেডিয়েন্ট এবং নিয়ন শ্যাডো */
         .form-message {
             display: none;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 12px;
             font-size: 13px;
             font-weight: 600;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
+            line-height: 1.5;
         }
-        .form-message.success { display: block; background: #e6fffa; color: #234e52; border: 1px solid #b2f5ea; }
+        .form-message.success { 
+            display: block; 
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%); 
+            color: #006853; 
+            border: 1px solid #81e6d9;
+            box-shadow: 0 8px 20px rgba(0, 180, 140, 0.25); /* নিয়ন শ্যাডো */
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
         .form-message.error { display: block; background: #fff5f5; color: #742a2a; border: 1px solid #fed7d7; }
+
+        @keyframes popIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
         .card-footer-copyright {
             font-size: 11px;
-            color: #a0aec0;
+            color: #ffffff; 
             font-weight: 500;
             letter-spacing: 0.5px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-            margin-top: 5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 10px;
+            margin-top: 20px;
+            margin-left: -25px; 
+            margin-right: -25px;
+            margin-bottom: -25px;
+            border-bottom-left-radius: 28px; 
+            border-bottom-right-radius: 28px;
+            background: linear-gradient(135deg, #0d1b2a, #1b263b); 
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 4px;
+        }
+
+        [data-theme="dark"] .card-footer-copyright {
+            background: linear-gradient(135deg, #111827, #1f2937); 
+            border-top: 1px solid var(--border-color);
+            color: var(--text-sub);
         }
 
         .modal-overlay {
@@ -720,7 +746,8 @@
                 body: formDataString
             })
             .then(response => {
-                statusDiv.textContent = 'Message sent successfully! Check your Google Sheet.';
+                // এখানে ধন্যবাদ ও শুভেচ্ছা ইমোজি যুক্ত সুন্দর প্রফেশনাল মেসেজ দেওয়া হয়েছে
+                statusDiv.innerHTML = '✨ <strong>Thank you!</strong> Your message has been sent successfully. I will get back to you soon. Have a great day! ❤️';
                 statusDiv.className = 'form-message success';
                 form.reset(); 
             })
@@ -735,7 +762,7 @@
                 
                 setTimeout(() => {
                     statusDiv.style.display = 'none';
-                }, 5000);
+                }, 6000); // মেসেজটি দেখার জন্য সময় ১ সেকেন্ড বাড়িয়ে দেওয়া হলো
             });
         });
 
